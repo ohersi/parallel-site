@@ -3,8 +3,8 @@ export interface Channel {
     title:        string;
     description:  string;
     slug:         string;
-    date_created: Date;
-    date_updated: Date;
+    date_created: string;
+    date_updated: string;
     blocks:       Block[];
 }
 
@@ -15,6 +15,6 @@ export interface Block {
     description:  string;
     source_url:   string;
     image_url:    string;
-    date_created: Date;
-    date_updated: Date;
+    date_created: string;
+    date_updated: string;
 }
