@@ -3,12 +3,11 @@ import axios from 'axios';
 import { Metadata } from 'next';
 import Link from 'next/link';
 // Imports
-import Header from '@/components/header/header';
 import { Channel, Block, PageProps } from '@/app/interfaces';
-import { timeAgo } from '@/utils/timeAgo';
+import Header from '@/components/header/header';
 import HeaderTitle from '@/components/header/header-title';
 import HeaderInfo from '@/components/header/header-info';
-
+import { timeAgo } from '@/utils/timeAgo';
 
 // TODO: Use state management to fetch data and populate pages (Redux?)
 async function getChannelData(props: PageProps) {
@@ -64,22 +63,7 @@ const page = async (props: PageProps) => {
                 }
             </div>
         </>
-
     )
 };
 
 export default page;
-
-interface IChannelTitle {
-    channel: Channel
-}
-
-const ChannelTitle = ({ channel }: IChannelTitle) => {
-
-    return (
-        <>
-            <h1>{channel.title}</h1>
-            <h3>{channel.description}</h3>
-        </>
-    )
-}

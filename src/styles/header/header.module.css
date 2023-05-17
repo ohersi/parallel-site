@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid rgba(87, 172, 247, 0.75);
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(186, 247, 87, 0.75);
+}
