@@ -1,0 +1,21 @@
+.channel_blocks_container {
+    margin-top: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    border: 1px solid rgba(255, 208, 0, 0.729);
+}
+
+.channel_blocks {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid rgb(58, 0, 128);
+    box-sizing: border-box;
+    width: 315px;
+    height: 200px;
+    position: relative;
+    /* margin: 0px 10px 40px; */
+}
