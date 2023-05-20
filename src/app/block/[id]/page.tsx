@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { Metadata } from 'next';
 // Imports
-import { Block, Channel, PageProps } from '@/utils/types/interfaces';
+import { Block, Channel, PageProps } from '@/utils/types/types';
 import { timeAgo } from '@/utils/timeAgo';
 
 

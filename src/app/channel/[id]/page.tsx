@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Metadata } from 'next';
 import Link from 'next/link';
 // Imports
-import { Channel, Block, PageProps } from '@/utils/types/interfaces';
+import { Channel, Block, PageProps } from '@/utils/types/types';
 import Header from '@/components/header/header';
 import HeaderTitle from '@/components/header/header-title';
 import HeaderInfo from '@/components/header/header-info';

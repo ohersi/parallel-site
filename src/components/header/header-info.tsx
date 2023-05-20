@@ -1,4 +1,4 @@
-import { Channel } from "@/app/interfaces";
+import { Channel } from "@/utils/types/types";
 
 /* 
  Header info consists of:
