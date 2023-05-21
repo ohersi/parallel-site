@@ -1,9 +1,11 @@
+// Imports
+import './globals.css';
+import { Inter } from 'next/font/google';
+import Providers from '@/store/provider';
 import Nav from '@/components/navigation/nav';
 import NavLogo from '@/components/navigation/nav-logo';
 import NavProfile from '@/components/navigation/nav-profile';
 import NavSearch from '@/components/navigation/nav-search';
-import './globals.css';
-import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,8 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Nav search={<NavSearch />} logo={<NavLogo />} profile={<NavProfile />} />
+        <Providers>
+          <Nav search={<NavSearch />} logo={<NavLogo />} profile={<NavProfile />} />
         {children}
+        </Providers>
       </body>
     </html>
   )
