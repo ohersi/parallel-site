@@ -1,4 +1,4 @@
-import { Channel } from "@/utils/types/types";
+import { IChannel } from "@/utils/types/types";
 
 /* 
  Header info consists of:
@@ -10,7 +10,7 @@ import { Channel } from "@/utils/types/types";
 
 
 interface IHeaderInfo {
-    props: Channel | any; // any placeholder - replace with User interface
+    props: IChannel | any; // any placeholder - replace with User interface
 };
 
  const HeaderInfo = ({ props }: IHeaderInfo) => {

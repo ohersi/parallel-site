@@ -9,12 +9,11 @@
     transition: all 0.3s ease-in-out;
     overflow: hidden;
     z-index: 999;
-    padding: 40px 20px 20px;
   }
   
   .modal_content {
-    width: 70%;
-    height: 70%;
+    width: 100vw;
+    height: 100vh;
     background-color: #282c34;
     color: #fff;
     display: flex;
