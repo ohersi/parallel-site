@@ -1,12 +1,10 @@
-"use client"
+"use client";
 import { ReactNode, useEffect } from "react";
 import ReactPortal from "./react-portal";
 import styles from "@/styles/modal/modal.module.css";
 
 // Modal wraps around Block component rendering the component above channel page
 
-// TODO: research React Portal
-// TODO: Add functions for modal (e.g. onClose, next and prev)d
 interface IModal {
     children?: ReactNode;
     isOpen?: boolean;

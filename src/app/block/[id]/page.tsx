@@ -1,19 +1,16 @@
 // Packages
-import axios from 'axios';
 import { Metadata } from 'next';
 // Imports
 import Block from '@/components/block/block';
 import { IBlock, IPageProps } from '@/utils/types/types';
 
-
-// TODO: Use state management to fetch data and populate pages (Redux?)
 async function getBlockData(props: IPageProps) {
 
-    const res = await axios.get(`http://localhost:3000/api/v1/blocks/${props.params.id}`);
+    const res = await fetch(`http://localhost:3000/api/v1/blocks/${props.params.id}`, {
+        next: { revalidate: 10 },
+    });
 
-    console.log('data fetched');
-
-    const data = await res.data as IBlock;
+    const data = await res.json() as IBlock;
 
     return data;
 }

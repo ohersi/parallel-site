@@ -1,24 +1,44 @@
-"use client"
-import Modal from '@/components/modal/modal';
-import React, { useState } from 'react';
+import { Metadata } from "next";
+import { IChannel, IPageProps } from "@/utils/types/types";
 
-type Props = {}
+// Currently Next JS or React cache() does not cache duplicate API request when using axios
 
-const page = (props: Props) => {
+async function getTestData(props: IPageProps) {
 
-    const [isOpen, setIsOpen] = useState(false);
+    const res = await fetch(`http://localhost:3000/api/v1/channels/${1}`, {
+        next: { revalidate: 10 },
+    });
+
+    // Contains Page info and channel data
+    const data = await res.json();
+
+    return data;
+}
+
+// Dynamic Metadata for Pages
+export const generateMetadata = async (props: IPageProps): Promise<Metadata> => {
+
+    const data = await getTestData(props); // 1st API request
+    console.log('data fetched --- generateMetadata');
+
+    const channel: IChannel = data.data;
+
+    return { title: `${channel.title} — Parallel` };
+}
+
+
+const page = async (props: IPageProps) => {
+
+    // database fetching
+    const data = await getTestData(props); // 2nd API request
+
+    const channel: IChannel = data.data;
+
+    console.log('data fetched --- Page');
 
     return (
         <>
-            <button onClick={() => setIsOpen(true)}>
-                Click to Open Modal
-            </button>
-            {isOpen ?
-                <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
-                    This is Modal Content!
-                </Modal>
-                : null}
-            <div>TEST PAGE</div>
+            <div>Hello testing api fetching</div>
         </>
     )
 }
