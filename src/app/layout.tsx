@@ -1,11 +1,12 @@
 // Imports
 import './globals.css';
 import { Inter } from 'next/font/google';
-import Providers from '@/store/provider';
+import Providers from '@/lib/providers';
 import Nav from '@/components/navigation/nav';
 import NavLogo from '@/components/navigation/nav-logo';
 import NavProfile from '@/components/navigation/nav-profile';
 import NavSearch from '@/components/navigation/nav-search';
+import "@/utils/env";
 
 const inter = Inter({ subsets: ['latin'] })
 
