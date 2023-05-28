@@ -4,10 +4,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 // Imports
 import isModalOpenReducer from "@/store/isModalOpenSlice";
+import userSliceReducer from "@/store/userSlice";
 
 export const store = configureStore({
     reducer: {
       Modal: isModalOpenReducer,
+      User: userSliceReducer,
     },
 });
 
