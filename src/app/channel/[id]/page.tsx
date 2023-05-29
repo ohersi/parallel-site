@@ -1,24 +1,13 @@
 // Packages
 import { Metadata } from 'next';
 // Imports
-import { IChannel, IBlock, IPageProps } from '@/utils/types/types';
 import Header from '@/components/header/header';
-import HeaderTitle from '@/components/header/header-title';
 import HeaderInfo from '@/components/header/header-info';
+import HeaderTitle from '@/components/header/header-title';
 import ChannelBlocks from '@/components/channel/channel-blocks';
+import { IChannel, IBlock, IPageProps } from '@/utils/types/types';
+import { getChannelData } from '@/data/getChannelData';
 import styles from "@/styles/channel/channel.module.css";
-
-async function getChannelData(props: IPageProps) {
-
-    const res = await fetch(`http://localhost:3000/api/v1/channels/${props.params.id}`, {
-        next: { revalidate: 10 },
-    });
-
-    // Contains Page info and channel data
-    const data = await res.json();
-
-    return data;
-}
 
 // Dynamic Metadata for Pages
 export const generateMetadata = async (props: IPageProps): Promise<Metadata> => {

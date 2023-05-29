@@ -6,7 +6,7 @@ import useSWRMutation from 'swr/mutation';
 // Imports
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setUser } from '@/store/userSlice';
-
+import { LogInUser } from '@/data/loginUser';
 // TODO: Add Joi validation
 
 /* 
@@ -14,12 +14,8 @@ import { setUser } from '@/store/userSlice';
     route changes through links or redirects do not reset store
 */
 
-interface ILoginForm {
-    LogInUser: any
-};
-
-function LoginForm({ LogInUser }: ILoginForm) {
-
+function LoginForm() {
+    
     const router = useRouter();
 
     const [email, setEmail] = useState("");
@@ -28,11 +24,12 @@ function LoginForm({ LogInUser }: ILoginForm) {
     const { trigger } = useSWRMutation(email, () => LogInUser(email, password));
 
     const dispatch = useAppDispatch();
+    const user = useAppSelector((state) => state.User.user);
 
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
         await trigger().then((value) => (dispatch(setUser(value))));
-        router.push('/user');
+        // router.push('/');
     };
 
     return (
@@ -50,6 +47,9 @@ function LoginForm({ LogInUser }: ILoginForm) {
                 </div>
                 <button>Submit</button>
             </form>
+            <div>
+                {JSON.stringify(user)}
+            </div>
         </>
     );
 };
