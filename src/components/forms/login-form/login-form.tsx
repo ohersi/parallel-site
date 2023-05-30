@@ -1,49 +1,82 @@
 "use client"
 // Packages
-import React, { FormEvent, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import useSWRMutation from 'swr/mutation';
+import { FieldValues, useForm } from 'react-hook-form';
+import { joiResolver } from '@hookform/resolvers/joi';
 // Imports
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setUser } from '@/store/userSlice';
-import { LogInUser } from '@/data/loginUser';
-// TODO: Add Joi validation
+import { LogInUser } from '@/resources/data/loginUser';
+import loginValidation from '@/resources/validations/login.validation';
 
 /* 
     Redux store gets reset on page reload or when entering an url,
     route changes through links or redirects do not reset store
 */
 
-function LoginForm() {
-    
+const LoginForm = () => {
+
     const router = useRouter();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const { trigger } = useSWRMutation(email, () => LogInUser(email, password));
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: joiResolver(loginValidation)
+    });
 
+    // Redux
+    const { trigger, error: error } = useSWRMutation(email, () => LogInUser(email, password));
     const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.User.user);
 
-    const onSubmit = async (e: FormEvent) => {
-        e.preventDefault();
-        await trigger().then((value) => (dispatch(setUser(value))));
-        // router.push('/');
+
+    const setUserValues = async (data: FieldValues) => {
+        setEmail(data.email);
+        setPassword(data.password);
+    };
+
+    const onSubmit = async (data: FieldValues) => {
+
+        await setUserValues(data).then(async () => {
+            try {
+                const res = await trigger();
+                dispatch(setUser(res));
+                // router.push('/');
+            }
+            catch (error: any) {
+                // TODO: Setup error handling
+                console.log(error);
+            }
+        });
     };
 
     return (
         <>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label htmlFor="email">Email</label>
-                    <input type="email" autoComplete="email" name="email" required={true}
-                        value={email} onChange={e => setEmail(e.target.value)} />
+                    <input
+                        className='input'
+                        type="email"
+                        placeholder="email"
+                        autoComplete="off"
+                        {...register("email")}
+                    />
+                    <span className='error'>{errors?.email?.message?.toString()}</span>
                 </div>
+
                 <div>
                     <label htmlFor="password">Password</label>
-                    <input type="password" autoComplete="password" name="password" required={true}
-                        value={password} onChange={e => setPassword(e.target.value)} />
+                    <input
+                        className='input'
+                        type="password"
+                        placeholder="password"
+                        {...register("password")}
+                    />
+                    <span className='error'>{errors?.password?.message?.toString()}</span>
                 </div>
                 <button>Submit</button>
             </form>

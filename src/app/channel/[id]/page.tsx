@@ -6,7 +6,7 @@ import HeaderInfo from '@/components/header/header-info';
 import HeaderTitle from '@/components/header/header-title';
 import ChannelBlocks from '@/components/channel/channel-blocks';
 import { IChannel, IBlock, IPageProps } from '@/utils/types/types';
-import { getChannelData } from '@/data/getChannelData';
+import { getChannelData } from '@/resources/data/getChannelData';
 import styles from "@/styles/channel/channel.module.css";
 
 // Dynamic Metadata for Pages

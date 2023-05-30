@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 // Imports
 import Block from '@/components/block/block';
 import { IPageProps } from '@/utils/types/types';
-import { getBlockData } from '@/data/getBlockData';
+import { getBlockData } from '@/resources/data/getBlockData';
 
 
 // Dynamic Metadata for Pages

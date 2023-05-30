@@ -4,7 +4,7 @@ import axios from 'axios';
 import useSWR from "swr";
 // Imports
 import { IBlock, IChannel } from '@/utils/types/types';
-import { timeAgo } from '@/utils/timeAgo';
+import { timeAgo } from '@/resources/timeAgo';
 
 interface BlockProps {
     block: IBlock;
