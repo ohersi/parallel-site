@@ -3,9 +3,9 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import Providers from '@/lib/providers';
 import Nav from '@/components/navigation/nav';
-import NavLogo from '@/components/navigation/nav-logo';
-import NavProfile from '@/components/navigation/nav-profile';
-import NavSearch from '@/components/navigation/nav-search';
+import NavLogo from '@/components/navigation/logo.navigation';
+import NavProfile from '@/components/navigation/profile.navigation';
+import NavSearch from '@/components/navigation/search.navigation';
 import "@/utils/env";
 
 const inter = Inter({ subsets: ['latin'] })

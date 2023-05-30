@@ -2,7 +2,7 @@
 // Packages
 
 // Imports
-import LoginForm from "@/components/forms/login-form/login-form";
+import LoginForm from "@/components/form/login.form";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -1,5 +1,3 @@
-import loginValidation, { validationOptions } from "@/resources/validations/login.validation";
-
 export async function LogInUser(email: string, password: string) {
 
     const payload = {
