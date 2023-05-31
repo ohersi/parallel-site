@@ -25,3 +25,11 @@ export interface IBlock {
     date_updated: string;
     channels: IChannel[];
 };
+
+export interface IUserPayload {
+    first_name?: string | undefined;
+    last_name?: string | undefined;
+    email?: string | undefined;
+    password?: string | undefined;
+    avatar?: string | undefined;
+};

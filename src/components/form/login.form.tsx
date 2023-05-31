@@ -4,12 +4,12 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import useSWRMutation from 'swr/mutation';
 import { FieldValues, useForm } from 'react-hook-form';
-import { joiResolver } from '@hookform/resolvers/joi';
+import { yupResolver } from '@hookform/resolvers/yup';
 // Imports
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setUser } from '@/store/userSlice';
-import { LogInUser } from '@/resources/data/loginUser';
-import loginValidation from '@/resources/validations/login.validation';
+import { LogInUser } from '@/resources/data/user/loginUser';
+import userValidation from '@/resources/validations/user.validation';
 
 /* 
     Redux store gets reset on page reload or when entering an url,
@@ -24,7 +24,7 @@ const LoginForm = () => {
     const [password, setPassword] = useState("");
 
     const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: joiResolver(loginValidation)
+        resolver: yupResolver(userValidation.login)
     });
 
     // Redux
