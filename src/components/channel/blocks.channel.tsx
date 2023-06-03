@@ -1,8 +1,7 @@
 "use client";
 // Packages
 import { useState } from 'react';
-import Link from 'next/link';
-import { useRouter, useParams, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 // Imports
 import { IBlock } from '@/utils/types/types';
 import Block from '@/components/block/block';
@@ -17,9 +16,9 @@ interface IChannelBlocks {
 
 const ChannelBlocks = ({ block }: IChannelBlocks) => {
 
+    const [blockClicked, setBlockClicked] = useState<number>();
+
     const pathname = usePathname();
-    const params = useParams();
-    const paramsID = parseInt(params.id);
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
@@ -36,17 +35,18 @@ const ChannelBlocks = ({ block }: IChannelBlocks) => {
     return (
         <>
             <div
-                onClick={() => { dispatch(setIsOpen(!isOpen)); replaceUrl(`/block/${block.id}`) }}
+                onClick={() => { dispatch(setIsOpen(!isOpen)); replaceUrl(`/block/${block.id}`); setBlockClicked(block.id) }}
                 className={styles.channel_blocks}
             >
                 <div>Pathname: {pathname}</div>
+                <div>Block Clicked: {blockClicked}</div>
                 <h4>#{block.id} - {block.title}</h4>
                 <h4>{block.image_url}</h4>
             </div>
             <div>
                 {
-                    isOpen && paramsID == block.id ?
-                        <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); replaceUrl(pathname) }} isOpen={isOpen} >
+                    isOpen && blockClicked == block.id ?
+                        <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); replaceUrl(pathname); setBlockClicked(undefined) }} isOpen={isOpen} >
                             <Block block={block} />
                         </Modal>
                         : null

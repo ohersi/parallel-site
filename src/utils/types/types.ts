@@ -1,8 +1,24 @@
 export interface IPageProps {
     params: {
-        id: string
+        id: string;
+        slug: string;
+        userID: string;
+        channelID: string;
     }
 };
+
+export interface IUser {
+    id: number;
+    slug: string;
+    first_name: string;
+    last_name: string;
+    full_name: string;
+    email: string;
+    avatar: string;
+    enabled: boolean;
+    locked: boolean;
+    role: string;
+}
 
 export interface IChannel {
     user_id: number;
