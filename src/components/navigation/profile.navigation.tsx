@@ -22,11 +22,18 @@ const NavProfile = (props: INavProfile) => {
                         </div>
                     </Link>
                     :
-                    <Link href={'/login'}>
-                        <div >
-                            Login
-                        </div>
-                    </Link>
+                    <div>
+                        <Link href={'/login'}>
+                            <div >
+                                Login
+                            </div>
+                        </Link>
+                        <Link href={'/signup'}>
+                            <div >
+                                Sign Up
+                            </div>
+                        </Link>
+                    </div>
             }
         </>
     )

@@ -38,7 +38,7 @@ const UserPage = async (props: IPageProps) => {
         {
           userChannels ?
             userChannels.map((data: Data) => (
-              <div>
+              <div key={data.channel.id}>
                 <h1>{data.channel.title}</h1>
                 <div className={styles.channel_blocks_container}>
                   {

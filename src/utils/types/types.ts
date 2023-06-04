@@ -21,7 +21,7 @@ export interface IUser {
 }
 
 export interface IChannel {
-    user_id: number;
+    id: number;
     title: string;
     description: string;
     slug: string;

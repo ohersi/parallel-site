@@ -11,6 +11,7 @@ import { UpdateUser } from '@/resources/data/user/updateUser';
 import userValidation from '@/resources/validations/user.validation';
 import { IUserPayload } from '@/utils/types/types';
 import { isEmpty } from '@/resources/isEmpty';
+import { SignUpUser } from '@/resources/data/user/signupUser';
 
 /* 
     Redux store gets reset on page reload or when entering an url,
@@ -19,19 +20,17 @@ import { isEmpty } from '@/resources/isEmpty';
 
 let userPayload: IUserPayload = {};
 
-const UpdateUserForm = () => {
+const SignUpForm = () => {
 
     const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.User.user);
 
-    const router = useRouter();
-
     const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: yupResolver(userValidation.update)
+        resolver: yupResolver(userValidation.create)
     });
 
     // Redux
-    const { trigger, error: error } = useSWRMutation('api/v1/users/update', () => UpdateUser(userPayload));
+    const { trigger, error: error } = useSWRMutation('api/v1/users/', () => SignUpUser(userPayload));
 
 
     const setUserValues = async (data: FieldValues) => {
@@ -41,8 +40,6 @@ const UpdateUserForm = () => {
         if (data.email) userPayload.email = data.email;
         if (data.password) userPayload.password = data.password;
         if (data.avatar) userPayload.avatar = data.avatar;
-
-        console.log(`userpayload: ${JSON.stringify(userPayload)}`);
 
         return userPayload;
     };
@@ -137,4 +134,4 @@ const UpdateUserForm = () => {
     );
 };
 
-export default UpdateUserForm;
+export default SignUpForm;

@@ -28,7 +28,7 @@ const LoginForm = () => {
     });
 
     // Redux
-    const { trigger, error: error } = useSWRMutation(email, () => LogInUser(email, password));
+    const { trigger, error: error } = useSWRMutation('api/v1/users/login', () => LogInUser(email, password));
     const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.User.user);
 
