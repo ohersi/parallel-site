@@ -1,4 +1,6 @@
 import { IChannel } from "@/utils/types/types";
+import Link from "next/link";
+import { IPageProps } from "@/utils/types/types";
 
 /* 
  Header info consists of:
@@ -10,13 +12,19 @@ import { IChannel } from "@/utils/types/types";
 
 
 interface IHeaderInfo {
-    props: IChannel | any; // any placeholder - replace with User interface
+    props: any; // any placeholder - replace with User interface
+    params: string;
 };
 
- const HeaderInfo = ({ props }: IHeaderInfo) => {
-    
+const HeaderInfo = ({ props, params }: IHeaderInfo) => {
+
     return (
-            <h1>{props.description}</h1>
+        <>
+            <span>Info</span>
+            <div><Link href={`/${params}/followers`}>Followers</Link></div>
+            <div><Link href={`/${params}/following`}>Following</Link></div>
+            <h1>{props?.description}</h1>
+        </>
     )
 };
 
