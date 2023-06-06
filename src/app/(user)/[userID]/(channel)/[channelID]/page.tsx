@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import Header from '@/components/header/header';
 import HeaderInfo from '@/components/header/info.header';
 import HeaderTitle from '@/components/header/title.header';
+import HeaderAction from '@/components/header/header.action';
 import ChannelBlocks from '@/components/channel/blocks.channel';
 import { IChannel, IBlock, IPageProps } from '@/utils/types/types';
 import { getChannelData } from '@/resources/data/channel/getChannelData';
@@ -33,7 +34,7 @@ const ChannelPage = async (props: IPageProps) => {
     <>
       <Header
         title={<HeaderTitle title={channel.title} />}
-        action={<div>EDIT</div>}
+        action={<HeaderAction channelUser={user}/>}
         info={<HeaderInfo props={channel} />}
       />
       <div className={styles.channel_blocks_container}>

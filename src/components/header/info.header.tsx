@@ -13,7 +13,7 @@ import { IPageProps } from "@/utils/types/types";
 
 interface IHeaderInfo {
     props: any; // any placeholder - replace with User interface
-    params: string;
+    params?: string;
 };
 
 const HeaderInfo = ({ props, params }: IHeaderInfo) => {

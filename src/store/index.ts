@@ -1,19 +1,38 @@
 "use client";
 // Packages
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import thunk from 'redux-thunk';
 // Imports
 import isModalOpenReducer from "@/store/isModalOpenSlice";
 import userSliceReducer from "@/store/userSlice";
 
+const persistConfig = {
+  key: 'root',
+  storage,
+  blacklist: ['Modal'],
+  whitelist: ['User']
+}
+const rootReducer = combineReducers({
+  Modal: isModalOpenReducer,
+  User: userSliceReducer,
+})
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 export const store = configureStore({
-    reducer: {
-      Modal: isModalOpenReducer,
-      User: userSliceReducer,
-    },
+  reducer: persistedReducer,
+  devTools: process.env.NODE_ENV !== 'production',
+  middleware: [thunk]
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+export const persistor = persistStore(store);
+
+// https://blog.logrocket.com/persist-state-redux-persist-redux-toolkit-react/

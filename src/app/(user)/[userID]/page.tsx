@@ -1,14 +1,15 @@
 // Packages
+import { Metadata } from 'next';
 // Imports
 import { IBlock, IChannel, IPageProps, IUser } from '@/utils/types/types';
 import { getUserData } from '@/resources/data/user/getUserData';
 import { GetUserChannels } from '@/resources/data/channel/getUserChannels';
 import ChannelBlocks from '@/components/channel/blocks.channel';
-import styles from "@/styles/channel/channel.module.css";
-import { Metadata } from 'next';
 import Header from '@/components/header/header';
 import HeaderTitle from '@/components/header/title.header';
 import HeaderInfo from '@/components/header/info.header';
+import HeaderAction from '@/components/header/header.action';
+import styles from "@/styles/channel/channel.module.css";
 
 type Data = {
   channel: IChannel;
@@ -38,7 +39,7 @@ const UserPage = async (props: IPageProps) => {
     <>
       <Header
         title={<HeaderTitle title={`Parallel / ${user.full_name}`} />}
-        action={<div>EDIT</div>}
+        action={<HeaderAction userID={user.id}/>}
         info={<HeaderInfo props={user} params={props.params.userID}/>}
       />
       <div>{JSON.stringify(user)}</div>
