@@ -1,26 +1,23 @@
 "use client";
 // Packages
-import useSWR from "swr";
 // Imports
 import { useAppSelector } from '@/store';
-import FollowButton from "@/components/button/follow.button";
-import UnfollowButton from '../button/unfollow.button';
-import EditChannelButton from '@/components/button/editChannel.button';
 import { CheckIfUserFollows } from "@/resources/data/user/checkIfUserFollows";
+import FollowButton from "@/components/button/follow.button";
+import UnfollowButton from '@/components/button/unfollow.button';
+import EditChannelButton from '@/components/button/editChannel.button';
 
 interface IHeaderAction {
     channelUser?: any; // user from channel page
     userID?: number;   // user id from user page
-    follow_status?: boolean;
 }
 
-
-
-const HeaderAction = ({ channelUser, userID, follow_status }: IHeaderAction) => {
-
-    const { follow, error, isLoading } = CheckIfUserFollows(userID!);
+const HeaderAction = ({ channelUser, userID }: IHeaderAction) => {
 
     const loggedInUser = useAppSelector((state) => state.User.user);
+
+    const { follow, error, isLoading } = loggedInUser ? CheckIfUserFollows(userID!)
+        : { follow: false, error: undefined, isLoading: false };
 
     return (
         <>

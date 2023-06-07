@@ -2,10 +2,12 @@
 // Packages
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
+import { PURGE } from "redux-persist";
 
 export interface userState {
     user: any;
-}
+};
 
 const initialState: userState = {
     user: undefined
@@ -18,6 +20,11 @@ const userSlice = createSlice({
         setUser: (state, action: PayloadAction<any>) => {
             state.user = action.payload
         },
+    },
+    extraReducers: (builder ) => {
+        builder.addCase(PURGE, (state) => {
+            storage.removeItem('persist:root');
+        })
     },
 });
 
