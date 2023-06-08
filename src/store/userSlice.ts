@@ -21,9 +21,10 @@ const userSlice = createSlice({
             state.user = action.payload
         },
     },
-    extraReducers: (builder ) => {
+    extraReducers: (builder) => {
         builder.addCase(PURGE, (state) => {
             storage.removeItem('persist:root');
+            return initialState;
         })
     },
 });

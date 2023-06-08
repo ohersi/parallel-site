@@ -3,15 +3,32 @@ import useSWRMutation from 'swr/mutation';
 
 export function LogOutUser() {
 
-    const url = '/api/logout';
+    const externalURL = 'http://localhost:3000/api/v1/users/logout';
+    const internalURL = '/api/logout';
 
-    const fetcher = (url: any) => fetch(url, {
+    // destroy session on redis
+    const fetcher = (externalURL: any) => fetch(externalURL, {
         method: 'POST',
+        credentials: 'include',
         cache: 'no-store'
     })
-        .then((res) => res.json());
+        .then(async (res) => {
 
-    const { trigger, data, error } = useSWRMutation(url, fetcher);
+            const message = await res.json();
+
+            if (!message.success) return { success: false };
+
+            // Remove client session cookie
+            fetch(internalURL, {
+                method: 'POST',
+                credentials: 'include',
+                cache: 'no-store'
+            })
+
+            return message.success;
+        });
+
+    const { trigger, data, error } = useSWRMutation(externalURL, fetcher);
 
     return {
         trigger,

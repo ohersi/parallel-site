@@ -3,7 +3,7 @@ import cookie from "cookie";
 
 export async function POST(req: Request, res: Response) {
 
-    return new NextResponse(JSON.stringify({ success: true }), {
+    return new NextResponse(undefined, {
         status: 200,
         headers: {
             'Set-Cookie': cookie.serialize('connect.sid', "", {
