@@ -4,24 +4,20 @@ import useSWRMutation from 'swr/mutation';
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // Imports
-import { UpdateChannel } from '@/resources/data/channel/updateChannel';
+import { CreateChannel } from '@/resources/data/channel/createChannel';
 import channelValidation from '@/resources/validations/channel.validation';
-import { IChannel, IChannelPayload } from '@/utils/types/types';
+import { IChannelPayload } from '@/utils/types/types';
 import { isEmpty } from '@/resources/isEmpty';
-
-interface IUpdateChannelForm {
-    channel: IChannel;
-}
 
 let channelPayload: IChannelPayload = {};
 
-const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
+const CreateChannelForm = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: yupResolver(channelValidation.update)
+        resolver: yupResolver(channelValidation.create)
     });
 
-    const { trigger, error: error } = useSWRMutation(`api/v1/channels/${channel.id}/update`, () => UpdateChannel(channelPayload, channel.id));
+    const { trigger, error: error } = useSWRMutation(`api/v1/channels`, () => CreateChannel(channelPayload));
 
     const setChannelValues = async (data: FieldValues) => {
 
@@ -50,7 +46,7 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
 
     return (
         <>
-            <h4>UPDATE CHANNEL</h4>
+            <h4>CREATE CHANNEL</h4>
             
             <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -61,8 +57,7 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
                         type="text"
                         placeholder="Title"
                         autoComplete="off"
-                        defaultValue={channel.title}
-                        {...register("title")}
+                        {...register("title", { required: true })}
                     />
                     <span className='error'>{errors?.title?.message?.toString()}</span>
                 </div>
@@ -74,8 +69,7 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
                         type="text"
                         placeholder="Description"
                         autoComplete="off"
-                        defaultValue={channel.description}
-                        {...register("description", { required: false })}
+                        {...register("description", { required: true })}
                     />
                     <span className='error'>{errors?.description?.message?.toString()}</span>
                 </div>
@@ -86,4 +80,4 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
     );
 };
 
-export default UpdateChannelForm;
+export default CreateChannelForm;

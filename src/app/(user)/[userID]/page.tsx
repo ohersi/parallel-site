@@ -10,6 +10,8 @@ import HeaderTitle from '@/components/header/title.header';
 import HeaderInfo from '@/components/header/info.header';
 import HeaderAction from '@/components/header/header.action';
 import styles from "@/styles/channel/channel.module.css";
+import CreateChannelButton from '@/components/button/createChannel.button';
+import ChannelModal from '@/components/modal/channel.modal';
 
 type Data = {
   channel: IChannel;
@@ -35,6 +37,8 @@ const UserPage = async (props: IPageProps) => {
   const res = await GetUserChannels(userID);
   const userChannels = res?.data;
 
+  // TODO: Move CreateChannelButton to different component
+
   return (
     <>
       <Header
@@ -42,6 +46,7 @@ const UserPage = async (props: IPageProps) => {
         action={<HeaderAction userID={user.id}/>}
         info={<HeaderInfo props={user} params={props.params.userID}/>}
       />
+      <CreateChannelButton />
       <div>{JSON.stringify(user)}</div>
       <div>
         {
@@ -67,6 +72,7 @@ const UserPage = async (props: IPageProps) => {
         }
       </div>
       {/* <div>Channels: {JSON.stringify(userChannels)}</div> */}
+      <ChannelModal />
     </>
   )
 }

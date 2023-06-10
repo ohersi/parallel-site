@@ -54,3 +54,8 @@ export interface IChannelPayload {
     title?: string;
     description?: string;
 };
+
+export enum FORM {
+    CREATE = 'CREATE',
+    UPDATE = 'UPDATE'
+};

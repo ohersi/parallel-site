@@ -8,16 +8,18 @@ import thunk from 'redux-thunk';
 // Imports
 import isModalOpenReducer from "@/store/isModalOpenSlice";
 import userSliceReducer from "@/store/userSlice";
+import formTypeReducer from "@/store/formTypeSlice";
 
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['Modal'],
+  blacklist: ['Modal', 'Form'],
   whitelist: ['User']
 }
 const rootReducer = combineReducers({
   Modal: isModalOpenReducer,
   User: userSliceReducer,
+  Form: formTypeReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

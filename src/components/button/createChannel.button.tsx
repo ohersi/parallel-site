@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/store';
 import { FORM } from '@/utils/types/types';
 
 // Opens modal
-const EditChannelButton = () => {
+const CreateChannelButton = () => {
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
@@ -14,10 +14,10 @@ const EditChannelButton = () => {
     return (
         <>
             <div>
-                <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType(FORM.UPDATE)) }}>Edit Channel</button>
+                <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType(FORM.CREATE)); console.log('create clicked') }}>Create Channel</button>
             </div>
         </>
     )
 };
 
-export default EditChannelButton;
+export default CreateChannelButton;
