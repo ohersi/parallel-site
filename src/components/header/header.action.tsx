@@ -16,7 +16,7 @@ const HeaderAction = ({ channelUser, userID }: IHeaderAction) => {
 
     const loggedInUser = useAppSelector((state) => state.User.user);
 
-    const { follow, error, isLoading } = loggedInUser ? CheckIfUserFollows(userID!)
+    const { follow, error, isLoading } = loggedInUser && !channelUser && loggedInUser.id !== userID ? CheckIfUserFollows(userID!)
         : { follow: false, error: undefined, isLoading: false };
 
     return (

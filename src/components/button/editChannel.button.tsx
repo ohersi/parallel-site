@@ -1,12 +1,16 @@
+import { setIsOpen } from '@/store/isModalOpenSlice';
+import { useAppDispatch, useAppSelector } from '@/store';
 
-// TODO: Props will be channel id
-type Props = {}
+// Opens modal
+const EditChannelButton = () => {
 
-const EditChannelButton = (props: Props) => {
+    const dispatch = useAppDispatch();
+    const isOpen = useAppSelector((state) => state.Modal.isOpen);
+
     return (
         <>
             <div>
-                <button onClick={() => console.log('edit channel')}>Edit Channel</button>
+                <button onClick={() => { dispatch(setIsOpen(!isOpen)) }}>Edit Channel</button>
             </div>
         </>
     )

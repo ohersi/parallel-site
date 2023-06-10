@@ -6,6 +6,7 @@ import HeaderInfo from '@/components/header/info.header';
 import HeaderTitle from '@/components/header/title.header';
 import HeaderAction from '@/components/header/header.action';
 import ChannelBlocks from '@/components/channel/blocks.channel';
+import ChannelModal from '@/components/modal/channel.modal';
 import { IChannel, IBlock, IPageProps } from '@/utils/types/types';
 import { getChannelData } from '@/resources/data/channel/getChannelData';
 import styles from "@/styles/channel/channel.module.css";
@@ -44,6 +45,7 @@ const ChannelPage = async (props: IPageProps) => {
           ))
         }
       </div>
+      <ChannelModal channel={channel}/>
     </>
   )
 };

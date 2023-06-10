@@ -18,7 +18,7 @@ export interface IUser {
     enabled: boolean;
     locked: boolean;
     role: string;
-}
+};
 
 export interface IChannel {
     id: number;
@@ -48,4 +48,9 @@ export interface IUserPayload {
     email?: string | undefined;
     password?: string | undefined;
     avatar?: string | undefined;
+};
+
+export interface IChannelPayload {
+    title?: string;
+    description?: string;
 };

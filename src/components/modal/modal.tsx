@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode, useEffect } from "react";
-import ReactPortal from "@/components/modal/reactPortal.modal";
+import ReactPortal from "@/components/modal/reactportal.modal";
 import styles from "@/styles/modal/modal.module.css";
 
 // Modal wraps around Block component rendering the component above channel page
