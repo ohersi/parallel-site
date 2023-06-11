@@ -1,5 +1,4 @@
 "use client";
-// Packages
 // Imports
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setIsOpen } from '@/store/isModalOpenSlice';
@@ -9,11 +8,11 @@ import UpdateChannelForm from "@/components/form/updateChannel.form";
 import CreateChannelForm from '@/components/form/createChannel.form';
 import { IChannel, FORM } from '@/utils/types/types';
 
-interface IChannelModal  {
+interface IChannelFormModal  {
     channel?: IChannel;
 }
 
-const ChannelModal = ({ channel }: IChannelModal) => {
+const ChannelFormModal = ({ channel }: IChannelFormModal) => {
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
@@ -25,9 +24,9 @@ const ChannelModal = ({ channel }: IChannelModal) => {
                 isOpen ?
                     <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType('')); }} isOpen={isOpen}>
                         {
-                            formType == FORM.UPDATE ? 
+                            formType == FORM.CHANNEL_UPDATE ? 
                             <UpdateChannelForm channel={channel!}/>
-                            : formType == FORM.CREATE ?
+                            : formType == FORM.CHANNEL_CREATE ?
                             <CreateChannelForm />
                             : null
                         }
@@ -38,4 +37,4 @@ const ChannelModal = ({ channel }: IChannelModal) => {
     )
 };
 
-export default ChannelModal;
+export default ChannelFormModal;

@@ -6,10 +6,12 @@ import HeaderInfo from '@/components/header/info.header';
 import HeaderTitle from '@/components/header/title.header';
 import HeaderAction from '@/components/header/header.action';
 import ChannelBlocks from '@/components/channel/blocks.channel';
-import ChannelModal from '@/components/modal/channel.modal';
+import ChannelFormModal from '@/components/modal/channelForm.modal';
 import { IChannel, IBlock, IPageProps } from '@/utils/types/types';
 import { getChannelData } from '@/resources/data/channel/getChannelData';
 import styles from "@/styles/channel/channel.module.css";
+import CreateBlockButton from '@/components/button/createBlock.button';
+import BlockFormModal from '@/components/modal/blockForm.modal';
 
 // Dynamic Metadata for Pages
 export const generateMetadata = async (props: IPageProps): Promise<Metadata> => {
@@ -35,17 +37,19 @@ const ChannelPage = async (props: IPageProps) => {
     <>
       <Header
         title={<HeaderTitle title={channel.title} />}
-        action={<HeaderAction channelUser={user}/>}
+        action={<HeaderAction channelUser={user} />}
         info={<HeaderInfo props={channel} />}
       />
       <div className={styles.channel_blocks_container}>
+        <CreateBlockButton />
         {
           channel.blocks.map((block: IBlock) => (
             <ChannelBlocks block={block} key={block.id} />
           ))
         }
       </div>
-      <ChannelModal channel={channel}/>
+      <ChannelFormModal channel={channel} />
+      <BlockFormModal channelID={channel.id} />
     </>
   )
 };

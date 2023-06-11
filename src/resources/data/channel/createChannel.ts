@@ -3,7 +3,7 @@ import { IChannelPayload } from "@/utils/types/types";
 export async function CreateChannel(payload: IChannelPayload) {
 
     console.log(`ChannelPayload: ${JSON.stringify(payload)}`);
-    
+
     try {
         // const res = await fetch(`http://localhost:3000/api/v1/channels/`, {
         //     method: 'POST',
@@ -17,11 +17,11 @@ export async function CreateChannel(payload: IChannelPayload) {
         //     credentials: 'include',
         //     cache: 'no-store',
         // });
-        
-        // const data = await res.json();
-        // const createChannel = data.updated;
 
-        // return createChannel;
+        //     if (!res.ok) {
+        //         return { success: false };
+        //     }
+        //     return { success: true };
     }
     catch (error: any) {
         throw new Error(error);

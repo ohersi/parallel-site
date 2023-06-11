@@ -14,7 +14,6 @@ export async function getChannelData(props: IPageProps) {
 
         // Contains Page info and channel data
         const data = await res.json();
-        console.log(data);
 
         return data;
     }

@@ -14,7 +14,7 @@ const EditChannelButton = () => {
     return (
         <>
             <div>
-                <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType(FORM.UPDATE)) }}>Edit Channel</button>
+                <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType(FORM.CHANNEL_UPDATE)) }}>Edit Channel</button>
             </div>
         </>
     )

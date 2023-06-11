@@ -55,7 +55,16 @@ export interface IChannelPayload {
     description?: string;
 };
 
+export interface IBlockPayload {
+    title?: string;
+    description?: string;
+    source_url?: string;
+    image_url?: string;
+};
+
 export enum FORM {
-    CREATE = 'CREATE',
-    UPDATE = 'UPDATE'
+    CHANNEL_CREATE = 'CHANNEL_CREATE',
+    CHANNEL_UPDATE = 'CHANNEL_UPDATE',
+    BLOCK_CREATE = 'BLOCK_CREATE',
+    BLOCK_UPDATE = 'BLOCK_UPDATE',
 };

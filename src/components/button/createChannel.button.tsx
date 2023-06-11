@@ -14,7 +14,7 @@ const CreateChannelButton = () => {
     return (
         <>
             <div>
-                <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType(FORM.CREATE)); console.log('create clicked') }}>Create Channel</button>
+                <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType(FORM.CHANNEL_CREATE)); console.log('create channel clicked') }}>Create Channel</button>
             </div>
         </>
     )
