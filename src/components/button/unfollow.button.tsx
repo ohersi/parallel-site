@@ -1,6 +1,8 @@
 "use client";
 // Packages
 import useSWRMutation from 'swr/mutation';
+import { UnfollowUser } from '@/resources/data/user/unfollowUser';
+
 // Imports
 
 /*  User can unfollow another user or a channel */
