@@ -21,7 +21,7 @@ const ChannelFormModal = ({ channel }: IChannelFormModal) => {
     return (
         <>
             {
-                isOpen ?
+                isOpen && formType.includes('CHANNEL') ?
                     <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType('')); }} isOpen={isOpen}>
                         {
                             formType == FORM.CHANNEL_UPDATE ? 

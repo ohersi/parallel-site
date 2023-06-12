@@ -11,7 +11,7 @@ import HeaderInfo from '@/components/header/info.header';
 import HeaderAction from '@/components/header/header.action';
 import styles from "@/styles/channel/channel.module.css";
 import CreateChannelButton from '@/components/button/createChannel.button';
-import ChannelModal from '@/components/modal/channel.modal';
+import ChannelFormModal from '@/components/modal/channelForm.modal';
 
 type Data = {
   channel: IChannel;
@@ -72,7 +72,7 @@ const UserPage = async (props: IPageProps) => {
         }
       </div>
       {/* <div>Channels: {JSON.stringify(userChannels)}</div> */}
-      <ChannelModal />
+      <ChannelFormModal />
     </>
   )
 }
