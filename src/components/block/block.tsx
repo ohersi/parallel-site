@@ -5,7 +5,7 @@ import useSWR from "swr";
 // Imports
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setFormType } from '@/store/formTypeSlice';
-import EditBlockButton from '@/components/button/editBlock.button';
+import EditBlockButton from '@/components/button/block/editBlock.button';
 import UpdateBlockForm from '@/components/form/updateBlock.form';
 import { FORM, IBlock, IChannel } from '@/utils/types/types';
 import { timeAgo } from '@/resources/timeAgo';

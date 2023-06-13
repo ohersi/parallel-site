@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 // Imports
 import { IPageProps } from "@/utils/types/types";
 import UpdateUserForm from "@/components/form/updateUser.form";
-import DeleteUserButton from "@/components/button/deleteUser.button";
+import DeleteUserButton from "@/components/button/user/deleteUser.button";
 import { useAppSelector } from '@/store';
 
 const SettingsPage = (props: IPageProps) => {

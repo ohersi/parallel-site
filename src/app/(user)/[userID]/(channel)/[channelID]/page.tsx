@@ -9,7 +9,7 @@ import HeaderAction from '@/components/header/header.action';
 import ChannelBlocks from '@/components/channel/blocks.channel';
 import ChannelFormModal from '@/components/modal/channelForm.modal';
 import BlockFormModal from '@/components/modal/blockForm.modal';
-import CreateBlockButton from '@/components/button/createBlock.button';
+import CreateBlockButton from '@/components/button/block/createBlock.button';
 import { IChannel, IBlock, IPageProps } from '@/utils/types/types';
 import styles from "@/styles/channel/channel.module.css";
 

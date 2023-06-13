@@ -6,15 +6,15 @@ import { followUser } from "@/resources/data/user/followUser";
 
 /*  User can follow another user or a channel */
 
-const FollowButton = () => {
+const FollowUserButton = () => {
 
   return (
     <>
     <div>
-        <button onClick={() => console.log('follow!')}>Follow</button>
+        <button onClick={() => console.log('follow user!')}>Follow</button>
     </div>
     </>
   )
 }
 
-export default FollowButton;
+export default FollowUserButton;

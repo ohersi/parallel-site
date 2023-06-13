@@ -5,10 +5,10 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // Imports
 import { UpdateChannel } from '@/resources/data/channel/updateChannel';
+import DeleteChannelButton from '@/components/button/channel/deleteChannel.button';
 import channelValidation from '@/resources/validations/channel.validation';
 import { IChannel, IChannelPayload } from '@/utils/types/types';
 import { isEmpty } from '@/resources/isEmpty';
-import DeleteChannelButton from '../button/deleteChannel.button';
 
 interface IUpdateChannelForm {
     channel: IChannel;

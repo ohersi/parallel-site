@@ -3,7 +3,7 @@
 import Link from "next/link";
 // Imports
 import { useAppSelector } from '@/store';
-import LogoutButton from "@/components/button/logOut.button";
+import LogoutButton from "@/components/button/user/logOut.button";
 import styles from "../../styles/navigation/nav.module.css";
 
 interface INavProfile {

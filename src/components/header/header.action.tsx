@@ -3,9 +3,9 @@
 // Imports
 import { useAppSelector } from '@/store';
 import { CheckIfUserFollows } from "@/resources/data/user/checkIfUserFollows";
-import FollowButton from "@/components/button/follow.button";
-import UnfollowButton from '@/components/button/unfollow.button';
-import EditChannelButton from '@/components/button/editChannel.button';
+import FollowUserButton from '@/components/button/user/followUser.button';
+import UnfollowUserButton from '@/components/button/user/unfollowUser.button';
+import EditChannelButton from '@/components/button/channel/editChannel.button';
 
 interface IHeaderAction {
     channelUser?: any; // user from channel page
@@ -25,9 +25,9 @@ const HeaderAction = ({ channelUser, userID }: IHeaderAction) => {
                 loggedInUser && channelUser && channelUser.id == loggedInUser.id ?
                     <EditChannelButton />
                     : loggedInUser && loggedInUser.id !== userID && follow?.status && !error ?
-                        <UnfollowButton />
+                        <UnfollowUserButton />
                         : loggedInUser && loggedInUser.id !== userID && !follow?.status && !error ?
-                            <FollowButton />
+                            <FollowUserButton />
                             : <div>Nothing</div>
             }
         </>

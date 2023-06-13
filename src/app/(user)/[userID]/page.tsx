@@ -10,7 +10,7 @@ import HeaderTitle from '@/components/header/title.header';
 import HeaderInfo from '@/components/header/info.header';
 import HeaderAction from '@/components/header/header.action';
 import styles from "@/styles/channel/channel.module.css";
-import CreateChannelButton from '@/components/button/createChannel.button';
+import CreateChannelButton from '@/components/button/channel/createChannel.button';
 import ChannelFormModal from '@/components/modal/channelForm.modal';
 
 type Data = {
