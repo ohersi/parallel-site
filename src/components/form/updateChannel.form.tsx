@@ -8,6 +8,7 @@ import { UpdateChannel } from '@/resources/data/channel/updateChannel';
 import channelValidation from '@/resources/validations/channel.validation';
 import { IChannel, IChannelPayload } from '@/utils/types/types';
 import { isEmpty } from '@/resources/isEmpty';
+import DeleteChannelButton from '../button/deleteChannel.button';
 
 interface IUpdateChannelForm {
     channel: IChannel;
@@ -82,6 +83,7 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
 
                 <button>Submit</button>
             </form>
+            <DeleteChannelButton channelID={channel.id}/>
         </>
     );
 };

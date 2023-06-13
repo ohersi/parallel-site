@@ -15,7 +15,7 @@ const DeleteBlockButton = ({ blockID }: Props) => {
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
 
     const handleClick = async (id: number) => {
-        DeleteBlock(id)
+        await DeleteBlock(id)
             .then(() => dispatch(setIsOpen(!isOpen)))
     };
 

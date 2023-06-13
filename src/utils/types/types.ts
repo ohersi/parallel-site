@@ -68,3 +68,7 @@ export enum FORM {
     BLOCK_CREATE = 'BLOCK_CREATE',
     BLOCK_UPDATE = 'BLOCK_UPDATE',
 };
+
+export enum BUTTON {
+    CHANNEL_DELETE = 'CHANNEL_DELETE',
+};

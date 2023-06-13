@@ -16,7 +16,7 @@ const DeleteUserButton = ({ user }: Props) => {
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
 
     const handleClick = async (id: number) => {
-        // DeleteUser(id)
+        // await DeleteUser(id)
         //     .then(() => dispatch(setIsOpen(!isOpen)));
         console.log(`delete user: ${id}`);
     };
