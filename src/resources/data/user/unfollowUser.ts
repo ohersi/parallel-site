@@ -13,12 +13,10 @@ export async function UnfollowUser(id: number) {
         });
 
         if (res.status === 404) {
-            return null;
+            return { success: false }
         };
 
-        const data = await res.json();
-
-        return data;
+        return { success: true }
     }
     catch (error: any) {
         throw new Error(error);

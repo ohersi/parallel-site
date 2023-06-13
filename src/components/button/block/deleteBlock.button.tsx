@@ -1,4 +1,6 @@
 "use client";
+// Packages
+import useSWRMutation from 'swr/mutation';
 // Imports
 import { useAppDispatch, useAppSelector } from "@/store";
 import { setIsOpen } from "@/store/isModalOpenSlice";
@@ -14,8 +16,11 @@ const DeleteBlockButton = ({ blockID }: Props) => {
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
 
-    const handleClick = async (id: number) => {
-        await DeleteBlock(id)
+    const { trigger, error: error } = useSWRMutation(`api/v1/blocks/${blockID}`, () => DeleteBlock(blockID));
+
+
+    const handleClick = async () => {
+        await trigger()
             .then(() => dispatch(setIsOpen(!isOpen)))
     };
 
@@ -25,7 +30,7 @@ const DeleteBlockButton = ({ blockID }: Props) => {
                 <div>
                     <h4>Do you want to delete Block?</h4>
                     <button onClick={() => { dispatch(setIsOpen(!isOpen)) }}>Cancel</button>
-                    <button onClick={() => handleClick(blockID)}>Confirm</button>
+                    <button onClick={() => handleClick}>Confirm</button>
                 </div>
             </Modal>
             <button onClick={() => { dispatch(setIsOpen(!isOpen)) }}>Delete Block</button>

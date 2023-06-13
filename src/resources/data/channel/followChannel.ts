@@ -1,10 +1,8 @@
-export async function DeleteUser(id: number) {
-    
-    console.log(`deleing user: ${id}`);
-
+export async function FollowChannel(id: number) {
+    console.log(`following channel: ${id}`)
     // try {
-    //     const res = await fetch(`http://localhost:3000/api/v1/users/${id}`, {
-    //         method: 'DELETE',
+    //     const res = await fetch(`http://localhost:3000/api/v1/users/follow/channel/${id}`, {
+    //         method: 'POST',
     //         headers: {
     //             "Content-Type": "application/json",
     //             "Access-Control-Allow-Origin": "*",
@@ -15,10 +13,15 @@ export async function DeleteUser(id: number) {
     //         cache: 'no-store',
     //     });
 
+    //     if (res.status === 404) {
+    //         return null;
+    //     };
+
     //     const data = await res.json();
-    //     console.log(JSON.stringify(data));
+
+    //     return data;
     // }
     // catch (error: any) {
     //     throw new Error(error);
-    // }
+    // };
 };

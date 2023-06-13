@@ -1,19 +1,40 @@
 "use client";
 // Packages
+import { KeyedMutator } from 'swr';
 import useSWRMutation from 'swr/mutation';
+// Imports
 import { UnfollowUser } from '@/resources/data/user/unfollowUser';
 
-// Imports
+interface IUnfollowUserButton {
+  userID: number;
+  mutate: KeyedMutator<any>;
+  url: string;
+}
 
-/*  User can unfollow another user or a channel */
+const UnfollowUserButton = ({ userID, mutate, url }: IUnfollowUserButton) => {
 
-const UnfollowUserButton = () => {
+  const { trigger, error: error } = useSWRMutation(`api/v1/users/unfollow/user/${userID}`, () => UnfollowUser(userID));
+
+  const handleClick = async () => {
+    try {
+      await trigger().then((sucess) => {
+        if (sucess) {
+          // Rerender HeaderAction component
+          mutate(url)
+        }
+      })
+    }
+    catch (error: any) {
+      // TODO: Setup error handling
+      console.log(error);
+    }
+  };
 
   return (
     <>
-    <div>
-        <button onClick={() => console.log('unfollow user button pressed')}>Unfollow</button>
-    </div>
+      <div>
+        <button onClick={handleClick}>Unfollow</button>
+      </div>
     </>
   )
 }

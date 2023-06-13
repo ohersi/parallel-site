@@ -14,14 +14,15 @@ export function CheckIfUserFollows(id: number) {
             "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
         },
         credentials: 'include',
-        next: { revalidate: 10 },
+        cache: 'no-store',
     }).then(res => res.json())
 
-    const { data, error, isLoading } = useSWR(url, fetcher);
+    const { data, error, mutate } = useSWR(url, fetcher);
 
     return {
         follow: data,
-        isLoading,
-        error
+        mutate,
+        error,
+        url
     };
 };

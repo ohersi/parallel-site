@@ -1,6 +1,7 @@
 "use client";
 // Packages
 import { useState } from "react";
+import useSWRMutation from 'swr/mutation';
 // Imports
 import { DeleteChannel } from "@/resources/data/channel/deleteChannel";
 import { useAppDispatch, useAppSelector } from "@/store";
@@ -18,8 +19,10 @@ const DeleteChannelButton = ({ channelID }: Props) => {
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
 
-    const handleClick = async (id: number) => {
-        await DeleteChannel(id)
+    const { trigger, error: error } = useSWRMutation(`api/v1/channels/${channelID}`, () => DeleteChannel(channelID));
+
+    const handleClick = async () => {
+        await trigger()
             .then(() => {
                 setClicked('');
                 dispatch(setIsOpen(!isOpen));
@@ -33,7 +36,7 @@ const DeleteChannelButton = ({ channelID }: Props) => {
                     <div>
                         <h4>Do you want to delete Channel?</h4>
                         <button onClick={() => { setClicked('') }}>Cancel</button>
-                        <button onClick={() => handleClick(channelID)}>Confirm</button>
+                        <button onClick={() => handleClick}>Confirm</button>
                     </div>
                     :
                     <button onClick={() => { setClicked(BUTTON.CHANNEL_DELETE) }}>Delete Channel</button>
