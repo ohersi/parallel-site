@@ -23,6 +23,7 @@ const BlockFormModal = ({ channelID }: IBlockFormModal) => {
             {
                 isOpen && formType == FORM.BLOCK_CREATE ?
                     <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType('')); }} isOpen={isOpen}>
+                        <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType('')); }}>Close</button>
                         <CreateBlockForm channelID={channelID!} />
                     </Modal>
                     : null

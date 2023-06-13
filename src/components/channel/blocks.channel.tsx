@@ -47,6 +47,7 @@ const ChannelBlocks = ({ block }: IChannelBlocks) => {
                 {
                     isOpen && blockClicked == block.id ?
                         <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); replaceUrl(pathname); setBlockClicked(undefined) }} isOpen={isOpen} >
+                            <button onClick={() => { dispatch(setIsOpen(!isOpen)); replaceUrl(pathname); setBlockClicked(undefined) }}>Close</button>
                             <Block block={block} />
                         </Modal>
                         : null

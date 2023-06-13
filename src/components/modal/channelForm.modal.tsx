@@ -8,7 +8,7 @@ import UpdateChannelForm from "@/components/form/updateChannel.form";
 import CreateChannelForm from '@/components/form/createChannel.form';
 import { IChannel, FORM } from '@/utils/types/types';
 
-interface IChannelFormModal  {
+interface IChannelFormModal {
     channel?: IChannel;
 }
 
@@ -23,12 +23,13 @@ const ChannelFormModal = ({ channel }: IChannelFormModal) => {
             {
                 isOpen && formType.includes('CHANNEL') ?
                     <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType('')); }} isOpen={isOpen}>
+                        <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType('')); }}>Close</button>
                         {
-                            formType == FORM.CHANNEL_UPDATE ? 
-                            <UpdateChannelForm channel={channel!}/>
-                            : formType == FORM.CHANNEL_CREATE ?
-                            <CreateChannelForm />
-                            : null
+                            formType == FORM.CHANNEL_UPDATE ?
+                                <UpdateChannelForm channel={channel!} />
+                                : formType == FORM.CHANNEL_CREATE ?
+                                    <CreateChannelForm />
+                                    : null
                         }
                     </Modal>
                     : null

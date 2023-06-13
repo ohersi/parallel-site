@@ -35,9 +35,6 @@ const Modal = ({ children, isOpen, handleClose }: IModal) => {
     return (
         <ReactPortal wrapperId="react-portal-modal-container">
             <div className={styles.modal}>
-                <button onClick={handleClose}>
-                    Close
-                </button>
                 <div className={styles.modal_content}>{children}</div>
             </div>
         </ReactPortal>
