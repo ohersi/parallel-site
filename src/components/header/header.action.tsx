@@ -13,14 +13,16 @@ interface IHeaderAction {
 }
 
 // TODO: Fix flicker for follow buttons when componenting is first loaded
-// TODO: Error -Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
 
 const HeaderAction = ({ channelUser, userID }: IHeaderAction) => {
 
     const loggedInUser = useAppSelector((state) => state.User.user);
 
-    const { follow, error, mutate, url} = loggedInUser && !channelUser && loggedInUser.id !== userID ? CheckIfUserFollows(userID!)
-        : { follow: false, error: undefined, mutate: undefined, url: undefined };
+    let channelUserID: number | null = null;
+
+    if (loggedInUser) channelUserID = loggedInUser.id
+
+    const { follow, error, mutate, url } = CheckIfUserFollows(userID!, channelUserID);
 
     return (
         <>
@@ -28,9 +30,9 @@ const HeaderAction = ({ channelUser, userID }: IHeaderAction) => {
                 loggedInUser && channelUser && channelUser.id == loggedInUser.id ?
                     <EditChannelButton />
                     : loggedInUser && loggedInUser.id !== userID && follow?.status && userID && !error ?
-                        <UnfollowUserButton userID={userID} mutate={mutate!} url={url!}/>
+                        <UnfollowUserButton userID={userID} mutate={mutate!} url={url!} />
                         : loggedInUser && loggedInUser.id !== userID && !follow?.status && userID && !error ?
-                            <FollowUserButton userID={userID} mutate={mutate!} url={url!}/>
+                            <FollowUserButton userID={userID} mutate={mutate!} url={url!} />
                             : <div>Nothing</div>
             }
         </>
