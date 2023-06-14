@@ -1,16 +1,16 @@
 "use client";
 import useSWR from "swr";
 
-export function CheckIfUserFollows(id: number, channelUserID: number | null) {
+export function CheckIfUserFollowsUser(userID: number | null, loggedInUserID: number | null) {
 
-    if (channelUserID == id || channelUserID == null) {
+    if (userID == undefined || loggedInUserID == userID || loggedInUserID == null) {
 
         const url = '';
 
         const { data, error, mutate } = useSWR(url, () => {});
 
         return {
-            follow: data,
+            followUser: data,
             mutate,
             error,
             url
@@ -18,7 +18,7 @@ export function CheckIfUserFollows(id: number, channelUserID: number | null) {
     }
     else {
 
-        const url = `http://localhost:3000/api/v1/users/connection/${id}`;
+        const url = `http://localhost:3000/api/v1/users/connection/${userID}`;
 
         const fetcher = (url: any) => fetch(url, {
             method: 'GET',
@@ -35,7 +35,7 @@ export function CheckIfUserFollows(id: number, channelUserID: number | null) {
         const { data, error, mutate } = useSWR(url, fetcher);
 
         return {
-            follow: data,
+            followUser: data,
             mutate,
             error,
             url

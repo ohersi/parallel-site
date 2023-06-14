@@ -2,14 +2,13 @@
 // Packages
 // Imports
 import { useAppSelector } from '@/store';
-import { CheckIfUserFollows } from "@/resources/data/user/checkIfUserFollows";
-import FollowUserButton from '@/components/button/user/followUser.button';
-import UnfollowUserButton from '@/components/button/user/unfollowUser.button';
 import EditChannelButton from '@/components/button/channel/editChannel.button';
+import UserFollowMergedButton from '@/components//button/user/userFollowsMergedButton';
+import ChannelFollowMergedButton from '../button/channel/channelFollowsMergedButton';
 
 interface IHeaderAction {
     channelUser?: any; // user from channel page
-    userID?: number;   // user id from user page
+    userID?: number | null | undefined;  // user id from user page
 }
 
 // TODO: Fix flicker for follow buttons when componenting is first loaded
@@ -18,21 +17,32 @@ const HeaderAction = ({ channelUser, userID }: IHeaderAction) => {
 
     const loggedInUser = useAppSelector((state) => state.User.user);
 
-    let channelUserID: number | null = null;
+    let loggedInUserID: number | null = null;
 
-    if (loggedInUser) channelUserID = loggedInUser.id
-
-    const { follow, error, mutate, url } = CheckIfUserFollows(userID!, channelUserID);
+    if (loggedInUser) loggedInUserID = loggedInUser.id;
+    if (!userID) userID = null;
 
     return (
         <>
             {
+                // User logged in + on channel page + channel page user id matches logged in user id
                 loggedInUser && channelUser && channelUser.id == loggedInUser.id ?
+
+                    // Display Edit channel button
                     <EditChannelButton />
-                    : loggedInUser && loggedInUser.id !== userID && follow?.status && userID && !error ?
-                        <UnfollowUserButton userID={userID} mutate={mutate!} url={url!} />
-                        : loggedInUser && loggedInUser.id !== userID && !follow?.status && userID && !error ?
-                            <FollowUserButton userID={userID} mutate={mutate!} url={url!} />
+
+                    // User logged in + on channel page + channel page user id does NOT match logged in user id
+                    : loggedInUser && channelUser && channelUser.id !== loggedInUser.id ?
+
+                        // Display channel follow buttons
+                        <ChannelFollowMergedButton channelID={channelUser.id} loggedInUserID={loggedInUserID} />
+
+                        // User logged in + on user page + user page user id does NOT matche logged in user id
+                        : loggedInUser && userID && loggedInUser.id !== userID ?
+
+                            // Display user follow buttons
+                            <UserFollowMergedButton userID={userID} loggedInUserID={loggedInUserID} />
+
                             : <div>Nothing</div>
             }
         </>
