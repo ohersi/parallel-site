@@ -6,18 +6,21 @@ import { usePathname } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setIsOpen } from '@/store/isModalOpenSlice';
 import { setButtonType } from '@/store/buttonTypeSlice';
-import ConnectBlockButton from '../button/block/connectBlock.button';
-import ConnectionBlock from '../block/connection.block';
+import ConnectBlockButton from '@/components/button/block/connectBlock.button';
+import DisconnectBlockButton from '@/components/button/block/disconnectBlock.button';
+import ConnectionBlock from '@/components/block/connection.block';
 import Block from '@/components/block/block';
 import Modal from '@/components/modal/modal';
 import { BUTTON, IBlock } from "@/utils/types/types";
 import styles from "@/styles/channel/channel.module.css";
+import RemoveConnectionBlock from '../block/removeConnection.block';
 
 interface IChannelBlocks {
-    block: IBlock
+    block: IBlock;
+    channelID: number;
 };
 
-const ChannelBlocks = ({ block }: IChannelBlocks) => {
+const ChannelBlocks = ({ block, channelID }: IChannelBlocks) => {
 
     const [blockClicked, setBlockClicked] = useState<number>();
 
@@ -26,6 +29,7 @@ const ChannelBlocks = ({ block }: IChannelBlocks) => {
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
     const buttonType = useAppSelector((state) => state.Button.buttonType);
+    const user = useAppSelector((state) => state.User.user);
 
     const replaceUrl = (newUrl: string) => {
         window.history.replaceState({
@@ -39,6 +43,12 @@ const ChannelBlocks = ({ block }: IChannelBlocks) => {
     return (
         <>
             <ConnectBlockButton setBlockClicked={setBlockClicked} blockID={block.id} />
+
+            {
+                user && user.id == block.user ?
+                    <DisconnectBlockButton setBlockClicked={setBlockClicked} blockID={block.id} />
+                    : null
+            }
 
             <div
                 onClick={() => { dispatch(setIsOpen(!isOpen)); replaceUrl(`/block/${block.id}`); setBlockClicked(block.id) }}
@@ -65,6 +75,16 @@ const ChannelBlocks = ({ block }: IChannelBlocks) => {
                         <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); setBlockClicked(undefined); }} isOpen={isOpen}>
                             <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); setBlockClicked(undefined); }}>Close</button>
                             <ConnectionBlock blockID={block.id} />
+                        </Modal>
+                        : null
+                }
+            </>
+            <>
+                {
+                    isOpen && blockClicked == block.id && buttonType == BUTTON.BLOCK_CONNECTION_DELETE ?
+                        <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); setBlockClicked(undefined); }} isOpen={isOpen}>
+                            <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); setBlockClicked(undefined); }}>Close</button>
+                            <RemoveConnectionBlock blockID={block.id} channelID={channelID} />
                         </Modal>
                         : null
                 }

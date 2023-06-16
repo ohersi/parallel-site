@@ -49,7 +49,7 @@ const ChannelPage = async (props: IPageProps) => {
 
         {
           channel.blocks.map((block: IBlock) => (
-            <ChannelBlocks block={block} key={block.id} />
+            <ChannelBlocks block={block} channelID={channel.id} key={block.id} />
           ))
         }
 
