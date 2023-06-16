@@ -17,8 +17,8 @@ const UnfollowChannelButton = ({ channelID, mutate, url }: Props) => {
 
     const handleClick = async () => {
         try {
-            await trigger().then((sucess) => {
-                if (sucess) {
+            await trigger().then((success) => {
+                if (success) {
                   // Rerender HeaderAction component
                   mutate(url)
                 }

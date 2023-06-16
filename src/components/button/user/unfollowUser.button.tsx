@@ -17,8 +17,8 @@ const UnfollowUserButton = ({ userID, mutate, url }: IUnfollowUserButton) => {
 
   const handleClick = async () => {
     try {
-      await trigger().then((sucess) => {
-        if (sucess) {
+      await trigger().then((success) => {
+        if (success) {
           // Rerender HeaderAction component
           mutate(url)
         }
