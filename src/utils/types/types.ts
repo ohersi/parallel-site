@@ -62,6 +62,12 @@ export interface IBlockPayload {
     image_url?: string;
 };
 
+export interface ISearchResults {
+    channel: IChannel;
+    blocks: IBlock[];
+    total_blocks: number;
+}
+
 export enum FORM {
     CHANNEL_CREATE = 'CHANNEL_CREATE',
     CHANNEL_UPDATE = 'CHANNEL_UPDATE',
