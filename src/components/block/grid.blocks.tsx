@@ -15,12 +15,12 @@ import DisconnectBlockButton from '@/components/button/block/disconnectBlock.but
 import { BUTTON, IBlock } from "@/utils/types/types";
 import styles from "@/styles/channel/channel.module.css";
 
-interface IChannelBlocks {
+interface IBlockGrid {
     block: IBlock;
     channelID?: number;
 };
 
-const ChannelBlocks = ({ block, channelID }: IChannelBlocks) => {
+const BlockGrid = ({ block, channelID }: IBlockGrid) => {
 
     const [blockClicked, setBlockClicked] = useState<number>();
 
@@ -93,4 +93,4 @@ const ChannelBlocks = ({ block, channelID }: IChannelBlocks) => {
     )
 };
 
-export default ChannelBlocks;
+export default BlockGrid;

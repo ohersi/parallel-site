@@ -12,4 +12,9 @@ const update = yup.object({
     description: yup.string().optional(),
 });
 
-export default { create, update };
+const channelValidation = {
+    create, 
+    update
+};
+
+export default channelValidation;

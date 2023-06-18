@@ -19,4 +19,9 @@ const update = yup.object({
     source_url: yup.string().matches(regMatch, "URL is not valid.").optional(),
 });
 
-export default { create, update };
+const blockValidation = {
+    create,
+    update
+};
+
+export default blockValidation;

@@ -9,7 +9,7 @@ import { searchBlocks } from "@/resources/data/block/searchBlocks";
 import SearchSelection from "@/components/search/selection.search";
 import SearchField from "@/components/search/field.search";
 import { IUser, SEARCH } from "@/utils/types/types";
-import ChannelBlocks from "@/components/channel/blocks.channel";
+import BlockGrid from "@/components/block/grid.blocks";
 
 // TODO: Create grid of channels and users
 
@@ -76,7 +76,7 @@ const SearchPage = () => {
                             <div>
                                 {
                                     blocks.map((block) => (
-                                        <ChannelBlocks block={block} key={block.id} />
+                                        <BlockGrid block={block} key={block.id} />
                                     ))
                                 }
                             </div>

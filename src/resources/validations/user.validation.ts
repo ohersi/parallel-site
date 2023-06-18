@@ -27,5 +27,10 @@ const login = yup.object({
     password: yup.string().required(),
 });
 
+const userValidation = {
+    create,
+    update,
+    login
+};
 
-export default { create, update, login };
+export default userValidation;

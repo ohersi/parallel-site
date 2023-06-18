@@ -6,7 +6,7 @@ import Header from '@/components/header/header';
 import HeaderInfo from '@/components/header/info.header';
 import HeaderTitle from '@/components/header/title.header';
 import HeaderAction from '@/components/header/header.action';
-import ChannelBlocks from '@/components/channel/blocks.channel';
+import BlockGrid from '@/components/block/grid.blocks';
 import ChannelFormModal from '@/components/modal/channelForm.modal';
 import BlockFormModal from '@/components/modal/blockForm.modal';
 import CreateBlockButton from '@/components/button/block/createBlock.button';
@@ -49,7 +49,7 @@ const ChannelPage = async (props: IPageProps) => {
 
         {
           channel.blocks.map((block: IBlock) => (
-            <ChannelBlocks block={block} channelID={channel.id} key={block.id} />
+            <BlockGrid block={block} channelID={channel.id} key={block.id} />
           ))
         }
 

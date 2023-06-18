@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import { IBlock, IChannel, IPageProps, IUser } from '@/utils/types/types';
 import { getUserData } from '@/resources/data/user/getUserData';
 import { GetUserChannels } from '@/resources/data/channel/getUserChannels';
-import ChannelBlocks from '@/components/channel/blocks.channel';
+import BlockGrid from '@/components/block/grid.blocks';
 import Header from '@/components/header/header';
 import HeaderTitle from '@/components/header/title.header';
 import HeaderInfo from '@/components/header/info.header';
@@ -57,7 +57,7 @@ const UserPage = async (props: IPageProps) => {
                 <div className={styles.channel_blocks_container}>
                   {
                     data.blocks.map((block: IBlock) => (
-                      <ChannelBlocks block={block} key={block.id} />
+                      <BlockGrid block={block} key={block.id} />
                     ))
                   }
                 </div>
