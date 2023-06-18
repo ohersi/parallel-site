@@ -3,21 +3,21 @@
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 // Imports
+import Block from '@/components/block/block';
+import Modal from '@/components/modal/modal';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setIsOpen } from '@/store/isModalOpenSlice';
 import { setButtonType } from '@/store/buttonTypeSlice';
+import ConnectionBlock from '@/components/block/connection.block';
+import RemoveConnectionBlock from '@/components/block/removeConnection.block';
 import ConnectBlockButton from '@/components/button/block/connectBlock.button';
 import DisconnectBlockButton from '@/components/button/block/disconnectBlock.button';
-import ConnectionBlock from '@/components/block/connection.block';
-import Block from '@/components/block/block';
-import Modal from '@/components/modal/modal';
 import { BUTTON, IBlock } from "@/utils/types/types";
 import styles from "@/styles/channel/channel.module.css";
-import RemoveConnectionBlock from '../block/removeConnection.block';
 
 interface IChannelBlocks {
     block: IBlock;
-    channelID: number;
+    channelID?: number;
 };
 
 const ChannelBlocks = ({ block, channelID }: IChannelBlocks) => {
@@ -81,7 +81,7 @@ const ChannelBlocks = ({ block, channelID }: IChannelBlocks) => {
             </>
             <>
                 {
-                    isOpen && blockClicked == block.id && buttonType == BUTTON.BLOCK_CONNECTION_DELETE ?
+                    isOpen && channelID && blockClicked == block.id && buttonType == BUTTON.BLOCK_CONNECTION_DELETE ?
                         <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); setBlockClicked(undefined); }} isOpen={isOpen}>
                             <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); setBlockClicked(undefined); }}>Close</button>
                             <RemoveConnectionBlock blockID={block.id} channelID={channelID} />

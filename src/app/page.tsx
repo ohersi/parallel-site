@@ -1,4 +1,3 @@
-import DeleteBlockButton from '@/components/button/deleteBlock.button';
 import { cookies } from 'next/headers';
 
 export default function Home() {

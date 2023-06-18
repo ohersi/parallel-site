@@ -1,16 +1,15 @@
+// Packages
+import Link from "next/link";
 
-
-interface INavSearch { };
-
-const NavSearch = (props: INavSearch) => {
+const NavSearch = () => {
 
     return (
         <>
             <div>
-                Search
+                <Link href={'/search'}>Search</Link>
             </div>
         </>
     )
-}
+};
 
 export default NavSearch;
