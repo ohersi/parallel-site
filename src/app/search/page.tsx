@@ -8,8 +8,10 @@ import { searchChannels } from "@/resources/data/channel/searchChannels";
 import { searchBlocks } from "@/resources/data/block/searchBlocks";
 import SearchSelection from "@/components/search/selection.search";
 import SearchField from "@/components/search/field.search";
-import { IUser, SEARCH } from "@/utils/types/types";
+import { SEARCH } from "@/utils/types/types";
 import BlockGrid from "@/components/block/grid.blocks";
+import ChannelGrid from "@/components/channel/grid.channel";
+import UserGrid from "@/components/user/grid.user";
 
 // TODO: Create grid of channels and users
 
@@ -56,19 +58,15 @@ const SearchPage = () => {
                         <div>
                             {
                                 users.map((user) => (
-                                    <div key={user.id}>
-                                        {user.full_name}
-                                    </div>
+                                    <UserGrid user={user} key={user.id}/>
                                 ))
                             }
                         </div>
                         : channels && !channelError ?
                             <div>
                                 {
-                                    channels.map((channel) => (
-                                        <div key={channel.id}>
-                                            {channel.title}
-                                        </div>
+                                    channels.map((channel: any) => (
+                                        <ChannelGrid props={channel} key={channel.channel.id}/>
                                     ))
                                 }
                             </div>

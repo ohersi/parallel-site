@@ -13,7 +13,7 @@ export async function searchChannels(input: string) {
         }
 
         // Contains Page info and channel data
-        const data = await res.json() as IChannel[];
+        const data = await res.json();
 
         return data;
 
