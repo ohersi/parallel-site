@@ -67,11 +67,17 @@ export interface IBlockPayload {
     image_url?: string;
 };
 
+export interface IPageResults {
+    total: number;
+    last_id: null;
+    data: IChannel;
+};
+
 export interface ISearchResults {
     channel: IChannel;
     blocks: IBlock[];
     total_blocks: number;
-}
+};
 
 export enum FORM {
     CHANNEL_CREATE = 'CHANNEL_CREATE',
@@ -91,9 +97,3 @@ export enum SEARCH {
     BLOCK = 'BLOCK',
     USER = 'USER',
 };
-
-export interface IPageResults {
-    total: number;
-    last_id: null;
-    data: IChannel;
-}
