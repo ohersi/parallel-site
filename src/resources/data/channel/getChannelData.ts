@@ -1,9 +1,9 @@
 import { IPageProps } from "@/utils/types/types";
 
-export async function getChannelData(props: IPageProps) {
+export async function getChannelData({ params: { channelID } }: IPageProps) {
 
     try {
-        const res = await fetch(`http://localhost:3000/api/v1/channels/title/${props.params.channelID}`, {
+        const res = await fetch(`http://localhost:3000/api/v1/channels/title/${channelID}?limit=2`, {
             next: { revalidate: 10 },
         });
 

@@ -8,12 +8,10 @@ import { searchChannels } from "@/resources/data/channel/searchChannels";
 import { searchBlocks } from "@/resources/data/block/searchBlocks";
 import SearchSelection from "@/components/search/selection.search";
 import SearchField from "@/components/search/field.search";
-import { SEARCH } from "@/utils/types/types";
 import BlockGrid from "@/components/block/grid.blocks";
 import ChannelGrid from "@/components/channel/grid.channel";
 import UserGrid from "@/components/user/grid.user";
-
-// TODO: Create grid of channels and users
+import { SEARCH } from "@/utils/types/types";
 
 const SearchPage = () => {
 

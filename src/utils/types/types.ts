@@ -5,6 +5,10 @@ export interface IPageProps {
         userID: string;
         channelID: string;
     }
+    searchParams?: {
+        limit?: string;
+        last_id?: string;
+    }
 };
 
 export interface IUser {
@@ -28,6 +32,7 @@ export interface IChannel {
     date_created: string;
     date_updated: string;
     blocks: IBlock[];
+    user?: IUser;
 };
 
 export interface IBlock {
@@ -86,3 +91,9 @@ export enum SEARCH {
     BLOCK = 'BLOCK',
     USER = 'USER',
 };
+
+export interface IPageResults {
+    total: number;
+    last_id: null;
+    data: IChannel;
+}

@@ -1,25 +1,21 @@
 // Packages
 import { Metadata } from 'next';
 // Imports
-import { getChannelData } from '@/resources/data/channel/getChannelData';
+import Channel from '@/components/channel/channel';
 import Header from '@/components/header/header';
 import HeaderInfo from '@/components/header/info.header';
 import HeaderTitle from '@/components/header/title.header';
 import HeaderAction from '@/components/header/header.action';
-import BlockGrid from '@/components/block/grid.blocks';
 import ChannelFormModal from '@/components/modal/channelForm.modal';
 import BlockFormModal from '@/components/modal/blockForm.modal';
-import CreateBlockButton from '@/components/button/block/createBlock.button';
-import { IChannel, IBlock, IPageProps } from '@/utils/types/types';
-import styles from "@/styles/channel/channel.module.css";
-
-  // TODO: Move CreateBlockButton to different component
+import { getChannelData } from '@/resources/data/channel/getChannelData';
+import { IPageProps, IPageResults } from '@/utils/types/types';
 
 // Dynamic Metadata for Pages
 export const generateMetadata = async (props: IPageProps): Promise<Metadata> => {
   try {
-    const res = await getChannelData(props);
-    const channel: IChannel = res.data;
+    const res = await getChannelData(props) as IPageResults;
+    const channel = res.data;
 
     return { title: `${channel.title} — Parallel` };
   }
@@ -31,9 +27,9 @@ export const generateMetadata = async (props: IPageProps): Promise<Metadata> => 
 const ChannelPage = async (props: IPageProps) => {
 
   // database fetching
-  const res = await getChannelData(props);
-  const channel: IChannel = res.data;
-  const user = res.data.user;
+  const res = await getChannelData(props) as IPageResults;;
+  const channel = res.data;
+  const user = channel.user;
 
   return (
     <>
@@ -42,18 +38,8 @@ const ChannelPage = async (props: IPageProps) => {
         action={<HeaderAction channelUser={user} />}
         info={<HeaderInfo props={channel} />}
       />
-      
-      <div className={styles.channel_blocks_container}>
 
-        <CreateBlockButton />
-
-        {
-          channel.blocks.map((block: IBlock) => (
-            <BlockGrid block={block} channelID={channel.id} key={block.id} />
-          ))
-        }
-
-      </div>
+      <Channel initial={res} />
 
       <ChannelFormModal channel={channel} />
 
