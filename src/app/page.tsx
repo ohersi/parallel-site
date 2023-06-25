@@ -1,8 +1,18 @@
+// Packages
 import { cookies } from 'next/headers';
+import { Metadata } from 'next';
+// Imports
+import DefaultFeed from '@/components/feed/default.feed';
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: 'Home',
+  description: 'Home Page',
+}
+
+const HomePage = async () => {
 
   const cookieStore = cookies();
+  const session = cookieStore.has(process.env.SESSION_ID!);
 
   return (
     <main>
@@ -17,6 +27,15 @@ export default function Home() {
           ))
         }
       </div>
+      <div>
+        {
+          session ?
+            <div>USER FEED</div>
+            : <DefaultFeed />
+        }
+      </div>
     </main>
   )
-}
+};
+
+export default HomePage;

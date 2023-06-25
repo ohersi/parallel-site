@@ -11,6 +11,11 @@ import BlockFormModal from '@/components/modal/blockForm.modal';
 import { getChannelData } from '@/resources/data/channel/getChannelData';
 import { IPageProps, IPageResults } from '@/utils/types/types';
 
+// // Forces dynamic behavior
+// export const dynamic = 'force-dynamic';
+// // Hard refresh channel data removing stale cache in browser
+// export const fetchCache = 'force-no-store';
+
 // Dynamic Metadata for Pages
 export const generateMetadata = async (props: IPageProps): Promise<Metadata> => {
   try {

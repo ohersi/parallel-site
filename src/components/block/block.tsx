@@ -50,13 +50,13 @@ const Block = ({ block }: BlockProps) => {
         <>
             {
                 formType && formType == FORM.BLOCK_UPDATE ?
-                <div>
-                    <button onClick={() => {dispatch(setFormType(''));}} >X</button>
-                    <UpdateBlockForm block={block} />
-                </div>
-                    
+                    <div>
+                        <button onClick={() => { dispatch(setFormType('')); }} >X</button>
+                        <UpdateBlockForm block={block} />
+                    </div>
+
                     :
-                    <div key={`${block.id}`}>
+                    <div key={block.id}>
                         <h1>{blocks.title}</h1>
                         <h3>{blocks.description}</h3>
                         <h3>{blocks.source_url}</h3>
