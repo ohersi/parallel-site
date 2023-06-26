@@ -27,13 +27,6 @@ const HomePage = async () => {
           ))
         }
       </div>
-      <div>
-        {
-          session ?
-            <div>USER FEED</div>
-            : <DefaultFeed />
-        }
-      </div>
     </main>
   )
 };

@@ -1,32 +1,27 @@
 "use client";
 // Packages
-import { useEffect, useRef, useState, MouseEventHandler } from "react";
-import useSWR from "swr";
+import { useRef, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 // Imports
 import { GetDefaultFeed } from "@/resources/data/feed/getDefaultFeed";
-import { IBlock, IChannel } from "@/utils/types/types";
+import { IBlock, IChannel, IDefaultFeedResults } from "@/utils/types/types";
 import styles from "@/styles/channel/channel.module.css";
-import InfiniteScroll from "react-infinite-scroll-component";
 
-// TODO: Infinite scrolling
+// TODO: Replace InfiniteScroll packages with custom scroll
 
-const DefaultFeed = () => {
+interface IDefaultFeed {
+    initial: IDefaultFeedResults;
+}
+
+const DefaultFeed = ({ initial }: IDefaultFeed) => {
+
     const fetching = useRef(false);
 
-    const { data: initial, error, isLoading } = useSWR(`api/v1/feed`, () => GetDefaultFeed(channelLastID, blockLastID, 2));
+    const [channelLastID, setChannelLastID] = useState(initial.channel_lastID);
+    const [blockLastID, setBlockLastID] = useState<string | null>(initial.block_lastID);
+    const [pages, setPages] = useState<(IChannel & IBlock)[]>([initial.data]);
 
-    const [channelLastID, setChannelLastID] = useState<string | null>(null);
-    const [blockLastID, setBlockLastID] = useState<string | null>(null);
-
-    const [pages, setPages] = useState<(IChannel & IBlock)[]>([]);
-
-    useEffect(() => {
-        if (!isLoading) {
-            setChannelLastID(initial ? initial.channel_lastID : null)
-            setBlockLastID(initial ? initial.block_lastID : null)
-            setPages(initial ? [initial?.data] : [])
-        }
-    }, [isLoading]);
+    const feed = pages.flatMap((page) => page);
 
     const fetchFeed = async () => {
         if (!fetching.current && (channelLastID || blockLastID)) {
@@ -55,16 +50,11 @@ const DefaultFeed = () => {
                 fetching.current = false;
             }
         }
-    }
-
-    if (error) return <div>failed to load</div>
-    if (!initial) return <div>loading...</div>;
-
-    const feed = pages.flatMap((page) => page);;
+    };
 
     return (
         <div className={styles.channel_blocks_container}>
-            
+
             <span>Last channelID: {channelLastID ? channelLastID : 'NULL'}</span>
             <span>Last blockID: {blockLastID ? blockLastID : 'NULL'}</span>
 
@@ -97,7 +87,6 @@ const DefaultFeed = () => {
                     })
                 }
             </InfiniteScroll>
-
             {/* <div>{JSON.stringify(feed)}</div> */}
         </div>
     )
