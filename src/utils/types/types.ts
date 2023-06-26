@@ -82,6 +82,15 @@ export interface IDefaultFeedResults {
     data: IChannel & IBlock;
 }
 
+export interface IUserFeedResults {
+    userID: number;
+    full_name: string | null;
+    timestamp: Date;
+    data_type: string;
+    action_type: string;
+    data: IUser | IChannel | IBlock
+}
+
 export interface ISearchResults {
     channel: IChannel;
     blocks: IBlock[];
@@ -106,3 +115,9 @@ export enum SEARCH {
     BLOCK = 'BLOCK',
     USER = 'USER',
 };
+
+export enum FEED {
+    CHANNEL = 'Channel',
+    BLOCK = 'Block',
+    USER = 'User',
+}
