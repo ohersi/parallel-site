@@ -1,7 +1,24 @@
-export async function GetDefaultFeed() {
+import { IDefaultFeedResults } from "@/utils/types/types";
+
+export async function GetDefaultFeed(channel_lastID?: string | null, block_lastID?: string | null, limit?: number) {
+
+    let channelParams = channel_lastID ? `channel_lastID=${channel_lastID}&` : '';
+    let blockParams = block_lastID ? `block_lastID=${block_lastID}&` : '';
+    let limitParams = limit ? `limit=${limit}&` : '';
+
+    const url = `http://localhost:3000/api/v1/feed?` + limitParams + channelParams + blockParams;
+    
     try {
-        const res = await fetch(`http://localhost:3000/api/v1/feed`, {
-            next: { revalidate: 10 },
+        const res = await fetch(url, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
+            },
+            credentials: 'include',
+            cache: 'no-store',
         });
 
         if (!res.ok) {
@@ -9,9 +26,10 @@ export async function GetDefaultFeed() {
             throw new Error(errorMessage.message);
         }
 
+        // Contains Page info and channel data
         const data = await res.json();
 
-        return data;
+        return data as IDefaultFeedResults;
     }
     catch (error: any) {
         throw new Error(error);

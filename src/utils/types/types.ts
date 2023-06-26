@@ -69,9 +69,18 @@ export interface IBlockPayload {
 
 export interface IPageResults {
     total: number;
-    last_id: null;
+    last_id: string | null;
     data: IChannel;
 };
+
+export interface IDefaultFeedResults {
+    total: number;
+    channel_total: number;
+    block_total: number;
+    channel_lastID: string | null;
+    block_lastID: string | null;
+    data: IChannel & IBlock;
+}
 
 export interface ISearchResults {
     channel: IChannel;
