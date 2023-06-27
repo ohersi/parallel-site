@@ -3,6 +3,7 @@
 import useSWR from "swr";
 // Imports
 import { useAppSelector } from "@/store";
+import { timeAgo } from "@/resources/timeAgo";
 import { GetUserFeed } from "@/resources/data/user/getUserFeed";
 import { FEED, IBlock, IChannel, IUser } from "@/utils/types/types";
 
@@ -21,22 +22,31 @@ const UserFeed = () => {
         <>
             {
                 feed.map((item) => {
+                    // Can follow user
                     if (item.data_type === FEED.USER) {
                         const user = item.data as IUser;
+                        let timestamp = timeAgo(item.timestamp);
                         return <div key={user.id}>
-                            <span>{item.full_name} {item.action_type} {item.data_type} {user.full_name}</span>
+                            <span>{item.full_name} {(item.action_type).toLocaleLowerCase()} {(item.data_type).toLocaleLowerCase()}: {user.full_name}</span>
+                            <span>{timestamp}</span>
                         </div>
                     }
                     if (item.data_type === FEED.CHANNEL) {
+                        // Can follow / create channel
                         const channel = item.data as IChannel;
+                        let timestamp = timeAgo(item.timestamp);
                         return <div key={channel.id}>
-                            <span>{item.full_name} {item.action_type} {item.data_type} {channel.slug}</span>
+                            <span>{item.full_name} {(item.action_type).toLocaleLowerCase()} {(item.data_type).toLocaleLowerCase()} {channel.slug}</span>
+                            <span>{timestamp}</span>
                         </div>
                     }
                     if (item.data_type === FEED.BLOCK) {
+                        // Can connect block
                         const block = item.data as IBlock;
+                        let timestamp = timeAgo(item.timestamp);
                         return <div key={block.id}>
-                            <span>{item.full_name} {item.action_type} {item.data_type} {block.title}</span>
+                            <span>{item.full_name} {(item.action_type).toLocaleLowerCase()} {(item.data_type).toLocaleLowerCase()} {block.title}</span>
+                            <span>{timestamp}</span>
                         </div>
                     }
                 })

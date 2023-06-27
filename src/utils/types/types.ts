@@ -85,7 +85,7 @@ export interface IDefaultFeedResults {
 export interface IUserFeedResults {
     userID: number;
     full_name: string | null;
-    timestamp: Date;
+    timestamp: string;
     data_type: string;
     action_type: string;
     data: IUser | IChannel | IBlock
