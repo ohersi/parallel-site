@@ -1,0 +1,25 @@
+@use "@/styles/abstracts/" as a;
+@use "@/styles/utils" as u;
+
+html {
+    box-sizing: border-box;
+    font-size: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: u.$base-font;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+
+@include a.font-face('NeueMontreal', '/fonts/PPNeueMontreal/PPNeueMontreal-Book', 400, normal, otf);
+@include a.font-face('NeueBit', '/fonts/Bitmap/PPNeueBit-Bold', 700, normal, otf);

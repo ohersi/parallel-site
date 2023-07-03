@@ -13,7 +13,7 @@ import RemoveConnectionBlock from '@/components/block/removeConnection.block';
 import ConnectBlockButton from '@/components/button/block/connectBlock.button';
 import DisconnectBlockButton from '@/components/button/block/disconnectBlock.button';
 import { BUTTON, IBlock } from "@/utils/types/types";
-import styles from "@/styles/channel/channel.module.css";
+import styles from "@/styles/components/channel.module.scss";
 
 interface IBlockGrid {
     block: IBlock;

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import styles from "@/styles/header/header.module.css";
+import styles from "@/styles/components/header.module.scss";
 
 /* 
 Header consists of:

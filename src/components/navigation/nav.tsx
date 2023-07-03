@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import styles from "@/styles/navigation/nav.module.css"
+import styles from "@/styles/components/nav.module.scss";
 
 /* 
 Nav consists of:

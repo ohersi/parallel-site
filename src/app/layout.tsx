@@ -1,14 +1,11 @@
 // Imports
-import './globals.css';
-import { Inter } from 'next/font/google';
+import '@/styles/base/globals.scss';
 import Providers from '@/lib/providers';
 import Nav from '@/components/navigation/nav';
 import NavLogo from '@/components/navigation/logo.navigation';
 import NavProfile from '@/components/navigation/profile.navigation';
 import NavSearch from '@/components/navigation/search.navigation';
 import "@/utils/env";
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Parallel',
@@ -22,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <Providers>
           <Nav search={<NavSearch />} logo={<NavLogo />} profile={<NavProfile />} />
         {children}

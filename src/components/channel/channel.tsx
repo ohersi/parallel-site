@@ -7,7 +7,7 @@ import { useAppSelector } from "@/store";
 import BlockGrid from "@/components/block/grid.blocks";
 import CreateBlockButton from "@/components/button/block/createBlock.button";
 import { IBlock, IPageResults } from "@/utils/types/types";
-import styles from "@/styles/channel/channel.module.css";
+import styles from "@/styles/components/channel.module.scss";
 
 type PageResults = {
     initial: IPageResults;

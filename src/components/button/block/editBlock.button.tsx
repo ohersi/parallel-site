@@ -5,7 +5,7 @@ import { setIsOpen } from '@/store/isModalOpenSlice';
 import { setFormType } from '@/store/formTypeSlice';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { FORM } from '@/utils/types/types';
-import styles from "@/styles/channel/channel.module.css";
+import styles from "@/styles/components/channel.module.scss";
 
 const EditBlockButton = () => {
 

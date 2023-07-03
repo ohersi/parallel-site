@@ -1,0 +1,6 @@
+@use '@styles/abstracts' as a;
+
+.button {
+    border: 1px solid var(--text-color);
+    border-radius: 16px;
+}
