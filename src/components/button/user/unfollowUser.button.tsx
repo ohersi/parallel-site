@@ -4,6 +4,7 @@ import { KeyedMutator } from 'swr';
 import useSWRMutation from 'swr/mutation';
 // Imports
 import { UnfollowUser } from '@/resources/data/user/unfollowUser';
+import styles from '@/styles/components/button.module.scss';
 
 interface IUnfollowUserButton {
   userID: number;
@@ -32,7 +33,7 @@ const UnfollowUserButton = ({ userID, mutate, url }: IUnfollowUserButton) => {
 
   return (
     <>
-      <div>
+      <div className={styles.button}>
         <button onClick={handleClick}>Unfollow</button>
       </div>
     </>

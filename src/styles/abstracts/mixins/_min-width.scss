@@ -1,0 +1,37 @@
+@use '@/styles/abstracts/variables' as v;
+
+@mixin min-width($breakpoint) {
+    @if ($breakpoint ==xsmall) {
+        @media (min-width: v.$breakpoint-xsmall) {
+            @content;
+        }
+    }
+
+    @else if ($breakpoint ==small) {
+        @media (min-width: v.$breakpoint-small) {
+            @content;
+        }
+    }
+
+    @else if ($breakpoint ==medium) {
+        @media (min-width: v.$breakpoint-medium) {
+            @content;
+        }
+    }
+
+    @else if ($breakpoint ==large) {
+        @media (min-width: v.$breakpoint-large) {
+            @content;
+        }
+    }
+
+    @else if ($breakpoint ==xlarge) {
+        @media (min-width: v.$breakpoint-extra-large) {
+            @content;
+        }
+    }
+
+    @else {
+        @error "UNKNOWN MEDIA BREAKPOINT #{$breakpoint}";
+    }
+}

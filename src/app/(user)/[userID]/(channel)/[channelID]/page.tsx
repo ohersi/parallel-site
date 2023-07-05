@@ -39,7 +39,7 @@ const ChannelPage = async (props: IPageProps) => {
   return (
     <>
       <Header
-        title={<HeaderTitle title={channel.title} />}
+        title={<HeaderTitle props={channel} />}
         action={<HeaderAction channelUser={user} />}
         info={<HeaderInfo props={channel} />}
       />

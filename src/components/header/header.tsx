@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import styles from "@/styles/components/header.module.scss";
+import styles from "@/styles/layout/header.module.scss";
 
 /* 
 Header consists of:
@@ -17,12 +17,12 @@ interface IHeader {
 const Header = ({ title, action, info }: IHeader) => {
 
   return (
-    <div className={styles.container}>
-      <div className={styles.top}>
-        <div>{title}</div>
-        <div>{action}</div>
+    <div className={styles.header}>
+      <div className={styles.header__top}>
+        <>{title}</>
+        <>{action}</>
       </div>
-      <div>{info}</div>
+      <>{info}</>
     </div>
   )
 }

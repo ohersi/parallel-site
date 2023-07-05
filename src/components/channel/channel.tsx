@@ -52,14 +52,14 @@ const Channel = ({ initial }: PageResults) => {
     };
 
     return (
-        <div className={styles.channel_blocks_container}>
+        <div className={styles.channel}>
             {
                 loggedInUser && loggedInUser.id == channel.user?.id ?
                 <CreateBlockButton />
                 : null
             }
 
-            <InfiniteScroll
+            {/* <InfiniteScroll
                 dataLength={blocks.length}
                 next={fetchBlocks}
                 hasMore={lastID ? true : false}
@@ -69,13 +69,13 @@ const Channel = ({ initial }: PageResults) => {
                         <b>Yay! You have seen it all</b>
                     </p>
                 }
-            >
+            > */}
                 {
                     blocks.map((block: IBlock) => (
                         <BlockGrid block={block} channelID={channel.id} key={block.id} />
                     ))
                 }
-            </InfiniteScroll>
+            {/* </InfiniteScroll> */}
         </div>
     )
 };

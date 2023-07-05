@@ -2,8 +2,8 @@
 // Imports
 import { useAppSelector } from '@/store';
 import EditChannelButton from '@/components/button/channel/editChannel.button';
-import UserFollowMergedButton from '@/components//button/user/userFollowsMerged.button';
-import ChannelFollowMergedButton from '../button/channel/channelFollowsMerged.button';
+import UserFollowMergedButton from '@/components/button/user/userFollowsMerged.button';
+import ChannelFollowMergedButton from '@/components/button/channel/channelFollowsMerged.button';
 
 interface IHeaderAction {
     channelUser?: any; // user from channel page

@@ -4,6 +4,7 @@ import { KeyedMutator } from 'swr';
 import useSWRMutation from 'swr/mutation';
 // Imports
 import { UnfollowChannel } from '@/resources/data/channel/unfollowChannel';
+import styles from '@/styles/components/button.module.scss';
 
 type Props = {
     channelID: number;
@@ -32,7 +33,7 @@ const UnfollowChannelButton = ({ channelID, mutate, url }: Props) => {
 
     return (
         <>
-            <div>
+            <div className={styles.button}>
                 <button onClick={() => handleClick}>Follow</button>
             </div>
         </>

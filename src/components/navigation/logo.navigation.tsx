@@ -1,15 +1,14 @@
+// Packages
 import Link from "next/link";
+// Imports
+import styles from "@/styles/layout/nav.module.scss";
 
-interface INavLogo {};
+const NavLogo = () => {
 
-const NavLogo = (props: INavLogo) => {
-    
   return (
-    <>
-        <div>
-            <Link href={'/'}>Parallel</Link>
-        </div>
-    </>
+    <div className={styles.nav__logo}>
+      <Link href={'/'}>Parallel</Link>
+    </div>
   )
 };
 

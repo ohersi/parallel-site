@@ -4,7 +4,7 @@ import Link from "next/link";
 // Imports
 import { useAppSelector } from '@/store';
 import LogoutButton from "@/components/button/user/logOut.button";
-import styles from "@/styles/components/nav.module.scss";
+import styles from "@/styles/layout/nav.module.scss";
 
 interface INavProfile {
 
@@ -18,22 +18,22 @@ const NavProfile = (props: INavProfile) => {
         <>
             {
                 user ?
-                <div>
-                    <Link href={'/settings'}>
-                        <div className={styles.nav_logo_container}>
-                        </div>
-                    </Link>
-                    <LogoutButton />
-                </div>
+                    <div className={styles.nav__account}>
+                        <Link href={'/settings'}>
+                            <div className={styles.nav__profile_container}>
+                            </div>
+                        </Link>
+                        <LogoutButton />
+                    </div>
                     :
-                    <div>
+                    <div className={styles.nav__account}>
                         <Link href={'/login'}>
-                            <div >
+                            <div className={styles.nav__account__login}>
                                 Login
                             </div>
                         </Link>
                         <Link href={'/signup'}>
-                            <div >
+                            <div className={styles.nav__account__signup}>
                                 Sign Up
                             </div>
                         </Link>

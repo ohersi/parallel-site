@@ -1,23 +1,41 @@
-.channel_blocks_container {
+@use '../abstracts' as a;
+
+.channel {
     margin-top: 1rem;
     box-sizing: border-box;
     display: flex;
-    flex-direction: column;
+    flex-flow: row wrap;
     align-items: center;
     gap: 2rem;
     justify-content: space-around;
     border: 1px solid rgba(255, 208, 0, 0.729);
-}
 
-.channel_blocks {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    border: 1px solid rgb(58, 0, 128);
-    box-sizing: border-box;
-    width: 50vw;
-    height: 50vh;
-    position: relative;
-    /* margin: 0px 10px 40px; */
+    &__blocks {
+        $g: &; // Saving grandparent element __blocks as variable to be used in nested selector
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        border: 1px solid rgb(58, 0, 128);
+        box-sizing: border-box;
+        width: 315px;
+        height: 315px;
+        position: relative;
+        /* margin: 0px 10px 40px; */
+
+        &__overlay {
+            position: absolute;
+                display: block;
+                z-index: 99;
+                text-align: center;
+
+            #{$g}:hover>& {
+                position: absolute;
+                display: block;
+                z-index: 99;
+                text-align: center;
+            }
+        }
+
+    }
 }

@@ -1,6 +1,8 @@
-import { IChannel } from "@/utils/types/types";
+// Packages
 import Link from "next/link";
-import { IPageProps } from "@/utils/types/types";
+// Imports
+import { IChannel, IUser } from "@/utils/types/types";
+import styles from "@/styles/layout/header.module.scss";
 
 /* 
  Header info consists of:
@@ -10,21 +12,23 @@ import { IPageProps } from "@/utils/types/types";
     connect - connect users channel with another
 */
 
-
 interface IHeaderInfo {
-    props: any; // any placeholder - replace with User interface
+    props: any;
     params?: string;
 };
 
 const HeaderInfo = ({ props, params }: IHeaderInfo) => {
 
     return (
-        <>
-            <span>Info</span>
-            <div><Link href={`/${params}/followers`}>Followers</Link></div>
-            <div><Link href={`/${params}/following`}>Following</Link></div>
-            <h1>{props?.description}</h1>
-        </>
+        <div className={styles.header__info}>
+            <div className={styles.header__info__title}>Info</div>
+            <p>{props?.description}</p>
+
+            <div className={styles.header__info__buttons}>
+                <div><Link href={`/${params}/followers`}>Followers</Link></div>
+                <div><Link href={`/${params}/following`}>Following</Link></div>
+            </div>
+        </div>
     )
 };
 

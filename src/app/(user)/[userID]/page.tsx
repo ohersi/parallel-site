@@ -9,9 +9,9 @@ import Header from '@/components/header/header';
 import HeaderTitle from '@/components/header/title.header';
 import HeaderInfo from '@/components/header/info.header';
 import HeaderAction from '@/components/header/header.action';
-import styles from "@/styles/channel/channel.module.css";
 import CreateChannelButton from '@/components/button/channel/createChannel.button';
 import ChannelFormModal from '@/components/modal/channelForm.modal';
+import styles from "@/styles/components/channel.module.scss";
 
 type Data = {
   channel: IChannel;
@@ -42,9 +42,9 @@ const UserPage = async (props: IPageProps) => {
   return (
     <>
       <Header
-        title={<HeaderTitle title={`Parallel / ${user.full_name}`} />}
-        action={<HeaderAction userID={user.id}/>}
-        info={<HeaderInfo props={user} params={props.params.userID}/>}
+        title={<HeaderTitle props={user} />}
+        action={<HeaderAction userID={user.id} />}
+        info={<HeaderInfo props={user} params={props.params.userID} />}
       />
       <CreateChannelButton />
       <div>{JSON.stringify(user)}</div>

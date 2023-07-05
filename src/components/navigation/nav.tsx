@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import styles from "@/styles/components/nav.module.scss";
+import styles from "@/styles/layout/nav.module.scss";
 
 /* 
 Nav consists of:
@@ -16,10 +16,10 @@ interface INav {
 
 const Nav = ({ search, logo, profile }: INav) => {
     return (
-        <div className={styles.container}>
-            <div>{search}</div>
-            <div>{logo}</div>
-            <div>{profile}</div>
+        <div className={styles.nav}>
+            <>{search}</>
+            <>{logo}</>
+            <>{profile}</>
         </div>
     )
 };

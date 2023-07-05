@@ -41,24 +41,26 @@ const BlockGrid = ({ block, channelID }: IBlockGrid) => {
     };
 
     return (
-        <>
-            <ConnectBlockButton setBlockClicked={setBlockClicked} blockID={block.id} />
+        <div className={styles.channel__blocks}>
 
-            {
-                user && user.id == block.user ?
-                    <DisconnectBlockButton setBlockClicked={setBlockClicked} blockID={block.id} />
-                    : null
-            }
+            <div className={styles.channel__blocks__overlay}>
+                {
+                    user && user.id == block.user ?
+                        <DisconnectBlockButton setBlockClicked={setBlockClicked} blockID={block.id} />
+                        : <ConnectBlockButton setBlockClicked={setBlockClicked} blockID={block.id} />
+                }
+            </div>
 
             <div
                 onClick={() => { dispatch(setIsOpen(!isOpen)); replaceUrl(`/block/${block.id}`); setBlockClicked(block.id) }}
-                className={styles.channel_blocks}
+
             >
-                <div>Pathname: {pathname}</div>
-                <div>Block Clicked: {blockClicked}</div>
+                {/* <div>Pathname: {pathname}</div>
+                <div>Block Clicked: {blockClicked}</div> */}
                 <h4>#{block.id} - {block.title}</h4>
                 <h4>{block.image_url}</h4>
             </div>
+
             <>
                 {
                     isOpen && blockClicked == block.id && !buttonType ?
@@ -89,7 +91,7 @@ const BlockGrid = ({ block, channelID }: IBlockGrid) => {
                         : null
                 }
             </>
-        </>
+        </div>
     )
 };
 

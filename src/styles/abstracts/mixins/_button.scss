@@ -1,0 +1,9 @@
+@use '@/styles/abstracts/variables' as v;
+
+@mixin button {
+    padding: 0.5rem 1rem;
+    background-color: v.$color-primary;
+    border: 2px solid v.$color-secondary;
+    border-radius: 20px;
+    text-align: center;
+}

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 // Imports
 import { persistor } from "@/store";
 import { LogOutUser } from "@/resources/data/user/logoutUser";
+import styles from '@/styles/components/button.module.scss';
 
 const LogoutButton = () => {
 
@@ -28,7 +29,9 @@ const LogoutButton = () => {
     };
 
     return (
-        <button onClick={logOut}>Log Out</button>
+        <div className={styles.button}>
+            <button onClick={logOut}>Log Out</button>
+        </div>
     )
 };
 

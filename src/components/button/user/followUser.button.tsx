@@ -4,6 +4,7 @@ import { KeyedMutator } from 'swr';
 import useSWRMutation from 'swr/mutation';
 // Imports
 import { FollowUser } from "@/resources/data/user/followUser";
+import styles from '@/styles/components/button.module.scss';
 
 interface IFollowUserButton {
   userID: number;
@@ -32,7 +33,7 @@ const FollowUserButton = ({ userID, mutate, url }: IFollowUserButton) => {
 
   return (
     <>
-      <div>
+      <div className={styles.button}>
         <button onClick={handleClick}>Follow</button>
       </div>
     </>

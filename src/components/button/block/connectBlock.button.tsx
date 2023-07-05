@@ -7,6 +7,7 @@ import { setButtonType } from '@/store/buttonTypeSlice';
 import { setIsOpen } from '@/store/isModalOpenSlice';
 import { BUTTON } from "@/utils/types/types";
 import Link from 'next/link';
+import styles from "@/styles/components/button.module.scss";
 
 interface IConnectBlockButton {
     blockID: number;
@@ -22,15 +23,16 @@ const ConnectBlockButton = ({ blockID, setBlockClicked }: IConnectBlockButton) =
     // TODO: Link to sign up page if no user
 
     return (
-        <>
+        <div className={styles.button}>
             {
                 user ?
-                    <button onClick={() => {
-                        dispatch(setIsOpen(!isOpen));
-                        dispatch(setButtonType(BUTTON.BLOCK_CONNECTION_CREATE));
-                        setBlockClicked(blockID);
-                        console.log('connect button clicked')
-                    }}>
+                    <button
+                        onClick={() => {
+                            dispatch(setIsOpen(!isOpen));
+                            dispatch(setButtonType(BUTTON.BLOCK_CONNECTION_CREATE));
+                            setBlockClicked(blockID);
+                            console.log('connect button clicked')
+                        }}>
                         Connect
                     </button>
                     :
@@ -38,7 +40,7 @@ const ConnectBlockButton = ({ blockID, setBlockClicked }: IConnectBlockButton) =
                         <Link href={'/'}>Connect</Link>
                     </button>
             }
-        </>
+        </div>
     )
 };
 

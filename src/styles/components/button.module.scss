@@ -1,6 +1,12 @@
-@use '@styles/abstracts' as a;
+@use '../abstracts' as a;
 
 .button {
-    border: 1px solid var(--text-color);
-    border-radius: 16px;
+  @include a.button;
+  @include a.min-width(medium) {
+    // background-color: red;
+  }
+
+  &:hover {
+    scale: 1.3;
+  }
 }
