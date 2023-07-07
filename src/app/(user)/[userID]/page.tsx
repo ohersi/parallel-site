@@ -47,7 +47,6 @@ const UserPage = async (props: IPageProps) => {
         info={<HeaderInfo props={user} params={props.params.userID} />}
       />
       <CreateChannelButton />
-      <div>{JSON.stringify(user)}</div>
       <div>
         {
           userChannels ?

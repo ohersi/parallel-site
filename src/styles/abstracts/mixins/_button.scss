@@ -3,6 +3,7 @@
 @mixin button {
     padding: 0.5rem 1rem;
     background-color: v.$color-primary;
+    color:  v.$color-secondary;
     border: 2px solid v.$color-secondary;
     border-radius: 20px;
     text-align: center;

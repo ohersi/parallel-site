@@ -1,29 +1,45 @@
 "use client";
 // Packages
+import { useEffect, useState } from "react";
+import { usePathname } from 'next/navigation'
 import Link from "next/link";
 // Imports
 import { useAppSelector } from '@/store';
 import LogoutButton from "@/components/button/user/logOut.button";
 import styles from "@/styles/layout/nav.module.scss";
 
-interface INavProfile {
+const NavProfile = () => {
 
-};
-
-const NavProfile = (props: INavProfile) => {
+    const [visible, setVisible] = useState<boolean>(false);
 
     const user = useAppSelector((state) => state.User.user);
+
+    const pathname = usePathname();
+    
+    useEffect(() => setVisible(false), [pathname]);
 
     return (
         <>
             {
                 user ?
-                    <div className={styles.nav__account}>
-                        <Link href={'/settings'}>
-                            <div className={styles.nav__profile_container}>
-                            </div>
-                        </Link>
-                        <LogoutButton />
+                    <div className={styles.nav__menu}>
+
+                        <div
+                            onClick={() => setVisible((prev) => !prev)}
+                            className={styles.nav__menu__profile}
+                        >
+                        </div>
+
+                        <div className={visible ? styles.nav__menu__dropdown : styles.nav__menu__dropdown__hidden}>
+
+                            <span className={styles.nav__menu__dropdown_links}>
+                                <Link href={`/settings`}>Settings</Link>
+                            </span>
+
+                            <span className={styles.nav__menu__dropdown_links}>About</span>
+
+                            <LogoutButton />
+                        </div>
                     </div>
                     :
                     <div className={styles.nav__account}>

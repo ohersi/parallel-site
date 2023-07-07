@@ -23,14 +23,15 @@ const ConnectBlockButton = ({ blockID, setBlockClicked }: IConnectBlockButton) =
     // TODO: Link to sign up page if no user
 
     return (
-        <div className={styles.button}>
+        <>
             {
                 user ?
                     <button
+                    className={styles.button}
                         onClick={() => {
                             dispatch(setIsOpen(!isOpen));
                             dispatch(setButtonType(BUTTON.BLOCK_CONNECTION_CREATE));
-                            setBlockClicked(blockID);
+                            setBlockClicked(blockID)
                             console.log('connect button clicked')
                         }}>
                         Connect
@@ -40,7 +41,7 @@ const ConnectBlockButton = ({ blockID, setBlockClicked }: IConnectBlockButton) =
                         <Link href={'/'}>Connect</Link>
                     </button>
             }
-        </div>
+        </>
     )
 };
 

@@ -1,0 +1,77 @@
+@use '@/styles/abstracts' as a;
+
+// @include a.button;
+
+.modal {
+    border: 2px solid a.$color-secondary;
+    background-color: a.$color-primary;
+    width: 100%;
+    height: 450px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 65%;
+    align-items: start;
+    padding: 1.3rem;
+
+    @include a.min-width(xsmall) {
+        width: min(90vw, 450px);
+    }
+
+    &__close_btn {
+        // border: 1px solid black;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__search {
+        // border: 1px solid black;
+        display: flex;
+        border-bottom: 1px solid a.$color-secondary;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 0.2rem;
+
+        &__input:focus+&__icon {
+            visibility: hidden;
+        }
+    }
+
+    &__channel {
+        // border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        height: 100%;
+
+        &__header {
+            font-size: 0.9rem;
+        }
+
+        &__list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+
+            &__item {
+                display: flex;
+                border: 1px solid a.$color-secondary;
+                border-radius: 10px;
+                width: 100%;
+                justify-content: space-between;
+                padding: 0 1rem;
+                gap: 0.2rem;
+
+                &__btn {
+                    font-size: 0.9rem;
+                    color: a.$color-secondary;
+                }
+            }
+        }
+    }
+}

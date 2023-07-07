@@ -1,0 +1,50 @@
+@use '@/styles/abstracts' as a;
+
+.block {
+    background-color: rgba(0, 0, 255, 0.192);
+
+    @include a.min-width(small) {
+        display: grid;
+        grid-template-columns: 70% 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    &__image_container {
+        width: 100%;
+        height: 40vh;
+        background-color: grey;
+
+        @include a.min-width(small) {
+            height: 100%;
+        }
+    }
+
+    &__info {
+        border: 1px solid black;
+
+        &__description {
+            border-bottom: 1px solid a.$color-secondary;
+        }
+
+        &__buttons {
+            border: 1px solid red;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &__connections {
+            // border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            gap: 1rem;
+            margin: 1rem; // or padding?
+
+            &__item {
+                border: 1px solid a.$color-secondary;
+                border-radius: 10px;
+            }
+        }
+    }
+}

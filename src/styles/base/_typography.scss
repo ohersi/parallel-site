@@ -27,6 +27,41 @@ button {
     appearance: none;
 }
 
+input[type="text"],
+input[type="search"],
+textarea {
+    border: none;
+    outline: none;
+    background-color: inherit;
+    color: inherit;
+    width: 100%;
+}
+
+S::placeholder {
+    color: inherit;
+}
+
+/* clears the 'X' from Internet Explorer */
+input[type=search]::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+input[type=search]::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/* clears the 'X' from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+
 svg {
     color: inherit;
 }

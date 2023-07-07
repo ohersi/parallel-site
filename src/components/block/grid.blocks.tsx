@@ -76,7 +76,7 @@ const BlockGrid = ({ block, channelID }: IBlockGrid) => {
                     isOpen && blockClicked == block.id && buttonType == BUTTON.BLOCK_CONNECTION_CREATE ?
                         <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); setBlockClicked(undefined); }} isOpen={isOpen}>
                             <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); setBlockClicked(undefined); }}>Close</button>
-                            <ConnectionBlock blockID={block.id} />
+                            <ConnectionBlock blockID={block.id} setBlockClicked={setBlockClicked} />
                         </Modal>
                         : null
                 }

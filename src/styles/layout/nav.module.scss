@@ -17,11 +17,44 @@
         justify-content: center;
     }
 
-    &__profile_container {
-        background-color: rgb(100, 123, 95);
-        border-radius: 50%;
-        width: 1.5rem;
-        height: 1.5rem;
+    &__menu {
+        $d: &;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.5rem;
+
+        &__profile {
+            background-color: rgb(100, 123, 95);
+            border-radius: 50%;
+            width: 1.5rem;
+            height: 1.5rem;
+            z-index: 99;
+        }
+
+        &__dropdown {
+            background-color: rgba(0, 0, 255, 0.233);
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-height: 100vh;
+            padding: 1rem 2rem;
+            padding-top: 5rem;
+            gap: 1rem;
+
+            &_links {
+                font-size: 2rem;
+                color: inherit;
+            }
+        }
+
+        &__dropdown__hidden {
+            display: none;
+        }
+
     }
 
     &__account {
@@ -39,4 +72,6 @@
             @include a.button;
         }
     }
+
+
 }
