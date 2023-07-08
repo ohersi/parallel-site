@@ -1,4 +1,4 @@
-@use '../abstracts' as a;
+@use '@/styles/abstracts' as a;
 
 .button {
   @include a.button;

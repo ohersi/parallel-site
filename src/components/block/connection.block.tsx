@@ -1,23 +1,26 @@
 "use client";
 // Packages
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
-// Imports
+// REDUX
 import { useAppDispatch, useAppSelector } from "@/store";
 import { setIsOpen } from '@/store/isModalOpenSlice';
 import { setButtonType } from '@/store/buttonTypeSlice';
+import { setBlockClicked } from '@/store/blockClickedSlice';
+// FUNCTIONS
 import { GetUserChannels } from "@/resources/data/channel/getUserChannels";
 import { ConnectBlock } from "@/resources/data/block/connectBlock";
+// TYPES
 import { ISearchResults } from "@/utils/types/types";
+// STYLES
 import styles from "@/styles/components/block/connection.block.module.scss";
 
 interface IConnectionBlock {
     blockID: number;
-    setBlockClicked: Dispatch<SetStateAction<number | undefined>>
 }
 
-const ConnectionBlock = ({ blockID, setBlockClicked }: IConnectionBlock) => {
+const ConnectionBlock = ({ blockID }: IConnectionBlock) => {
 
     // TODO: Create search field, filter user channels
 
@@ -56,7 +59,7 @@ const ConnectionBlock = ({ blockID, setBlockClicked }: IConnectionBlock) => {
                     onClick={() => {
                         dispatch(setIsOpen(!isOpen));
                         dispatch(setButtonType(''));
-                        setBlockClicked(undefined);
+                        dispatch(setBlockClicked(undefined));
                     }}
                     xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 15" fill="none">
                     <line x1="1.96612" y1="0.427971" x2="16.0827" y2="14.5446" stroke="currentColor" />
@@ -102,7 +105,7 @@ const ConnectionBlock = ({ blockID, setBlockClicked }: IConnectionBlock) => {
                                 ))
                             : null
                     }
-                    <div className={styles.modal__channel__list__item}>
+                    {/* <div className={styles.modal__channel__list__item}>
                         <h4>Channel 1</h4>
                         <button
                             className={styles.modal__channel__list__item__btn}>
@@ -129,7 +132,7 @@ const ConnectionBlock = ({ blockID, setBlockClicked }: IConnectionBlock) => {
                             className={styles.modal__channel__list__item__btn}>
                             connect &nbsp; →
                         </button>
-                    </div>
+                    </div> */}
                 </div>
 
             </div>

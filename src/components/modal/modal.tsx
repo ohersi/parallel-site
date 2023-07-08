@@ -1,5 +1,7 @@
 "use client";
+// Packages
 import { ReactNode, useEffect } from "react";
+// Imports
 import ReactPortal from "@/components/modal/reactportal.modal";
 import styles from "@/styles/components/modal.module.scss";
 
@@ -35,7 +37,7 @@ const Modal = ({ children, isOpen, handleClose }: IModal) => {
     return (
         <ReactPortal wrapperId="react-portal-modal-container">
             <div className={styles.modal}>
-                <div className={styles.modal_content}>{children}</div>
+                <div className={styles.modal__content}>{children}</div>
             </div>
         </ReactPortal>
     )

@@ -1,27 +1,33 @@
 "use client";
 // Packages
-import { useState } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import useSWR from "swr";
-// Imports
+// REDUX
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setFormType } from '@/store/formTypeSlice';
 import { setIsOpen } from '@/store/isModalOpenSlice';
 import { setButtonType } from '@/store/buttonTypeSlice';
+import { setBlockClicked } from '@/store/blockClickedSlice';
+// COMPONENTS
+import Modal from '@/components/modal/modal';
 import EditBlockButton from '@/components/button/block/editBlock.button';
 import ConnectBlockButton from '@/components/button/block/connectBlock.button';
 import DownloadBlockButton from '@/components/button/block/downloadBlock.button';
 import ShareBlockButton from '@/components/button/block/shareBlock.button';
 import ConnectionBlock from '@/components/block/connection.block';
 import UpdateBlockForm from '@/components/form/updateBlock.form';
-import Modal from '@/components/modal/modal';
-import { BUTTON, FORM, IBlock, IChannel } from '@/utils/types/types';
+// FUNCTIONS
 import { timeAgo } from '@/resources/timeAgo';
+// TYPES
+import { BUTTON, FORM, IBlock, IChannel } from '@/utils/types/types';
+// STYLES
 import styles from '@/styles/components/block/block.module.scss';
 
 interface BlockProps {
     block: IBlock;
+    pathname?: string;
+    replaceURL?: (newURL: string) => void;
 }
 
 async function getBlockData(id: number) {
@@ -42,17 +48,16 @@ async function getBlockData(id: number) {
     return data;
 }
 
-const Block = ({ block }: BlockProps) => {
+const Block = ({ block, replaceURL, pathname }: BlockProps) => {
 
     const { data, error } = useSWR(`${block.id}`, getBlockData);
-
-    const [blockClicked, setBlockClicked] = useState<number>();
 
     const dispatch = useAppDispatch();
     const loggedInUser = useAppSelector((state) => state.User.user);
     const formType = useAppSelector((state) => state.Form.formType);
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
     const buttonType = useAppSelector((state) => state.Button.buttonType);
+    const blockClicked = useAppSelector((state) => state.Block.blockClicked);
 
     if (error) return <div>failed to load</div>
     if (!data) return <div>loading...</div>;
@@ -70,13 +75,25 @@ const Block = ({ block }: BlockProps) => {
                         <UpdateBlockForm block={block} />
                     </div>
                     :
-                    <div
-                        className={styles.block}
-                        key={block.id}
-                    >
+                    <div className={styles.block} key={block.id}>
                         <div className={styles.block__image_container} />
 
                         <div className={styles.block__info}>
+                            {
+                                replaceURL && pathname ?
+                                    <div className={styles.block__info__close_btn}>
+                                        <svg
+                                            onClick={() => {
+                                                dispatch(setIsOpen(!isOpen));
+                                                dispatch(setBlockClicked(undefined));
+                                                replaceURL(pathname);
+                                            }}
+                                            xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 15" fill="none">
+                                            <line x1="1.96612" y1="0.427971" x2="16.0827" y2="14.5446" stroke="currentColor" />
+                                            <line x1="1.25901" y1="14.5445" x2="15.3756" y2="0.427954" stroke="currentColor" />
+                                        </svg>
+                                    </div> : null
+                            }
 
                             <h1>{blocks.title}</h1>
 
@@ -104,7 +121,7 @@ const Block = ({ block }: BlockProps) => {
                                         <EditBlockButton />
                                         : null
                                 }
-                                <ConnectBlockButton blockID={block.id} setBlockClicked={setBlockClicked} />
+                                <ConnectBlockButton blockID={block.id} />
                                 <DownloadBlockButton />
                                 <ShareBlockButton url={blocks.source_url} />
                             </div>
@@ -132,8 +149,8 @@ const Block = ({ block }: BlockProps) => {
             <>
                 {
                     isOpen && blockClicked == block.id && buttonType == BUTTON.BLOCK_CONNECTION_CREATE ?
-                        <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); setBlockClicked(undefined); }} isOpen={isOpen}>
-                            <ConnectionBlock blockID={block.id} setBlockClicked={setBlockClicked} />
+                        <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); dispatch(setBlockClicked(undefined)); }} isOpen={isOpen}>
+                            <ConnectionBlock blockID={block.id} />
                         </Modal>
                         : null
                 }

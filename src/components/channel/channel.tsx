@@ -28,7 +28,7 @@ const Channel = ({ initial }: PageResults) => {
     const blocks = pages.flatMap((page) => page);
 
     const fetchBlocks = async () => {
-        
+
         if (!fetching.current && lastID) {
 
             console.log('fetching more blocks');
@@ -55,8 +55,8 @@ const Channel = ({ initial }: PageResults) => {
         <div className={styles.channel}>
             {
                 loggedInUser && loggedInUser.id == channel.user?.id ?
-                <CreateBlockButton />
-                : null
+                    <CreateBlockButton />
+                    : null
             }
 
             {/* <InfiniteScroll
@@ -70,11 +70,16 @@ const Channel = ({ initial }: PageResults) => {
                     </p>
                 }
             > */}
-                {
-                    blocks.map((block: IBlock) => (
-                        <BlockGrid block={block} channelID={channel.id} key={block.id} />
-                    ))
-                }
+            {
+                blocks.map((block: IBlock) => (
+                    <BlockGrid
+                        block={block}
+                        channelID={channel.id}
+                        channelUser={channel.user?.full_name}
+                        key={block.id}
+                    />
+                ))
+            }
             {/* </InfiniteScroll> */}
         </div>
     )

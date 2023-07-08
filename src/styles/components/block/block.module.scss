@@ -1,26 +1,44 @@
 @use '@/styles/abstracts' as a;
 
 .block {
-    background-color: rgba(0, 0, 255, 0.192);
+    display: grid;
+    grid-template-rows: 50vh 1fr;
+    background-color: a.$color-primary;
+    position: relative;
 
     @include a.min-width(small) {
         display: grid;
+        height: 100%;
         grid-template-columns: 70% 1fr;
-        grid-template-rows: auto auto;
+        grid-template-rows: 1fr;
     }
 
     &__image_container {
         width: 100%;
-        height: 40vh;
         background-color: grey;
-
-        @include a.min-width(small) {
-            height: 100%;
-        }
     }
 
     &__info {
         border: 1px solid black;
+
+        &__close_btn {
+            top: 0;
+            position: absolute;
+            border: 1px solid orange;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            padding: 1rem;
+
+            @include a.min-width(small) {
+                position: relative;
+                border: 1px solid orange;
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                padding: 1rem;
+            }
+        }
 
         &__description {
             border-bottom: 1px solid a.$color-secondary;

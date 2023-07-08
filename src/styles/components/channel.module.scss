@@ -11,7 +11,7 @@
     border: 1px solid rgba(255, 208, 0, 0.729);
 
     &__blocks {
-        $g: &; // Saving grandparent element __blocks as variable to be used in nested selector
+        $b: &;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -19,23 +19,52 @@
         border: 1px solid rgb(58, 0, 128);
         box-sizing: border-box;
         width: 315px;
-        height: 315px;
+        height: 100%;
         position: relative;
         /* margin: 0px 10px 40px; */
 
-        &__overlay {
-            position: absolute;
-                display: block;
-                z-index: 99;
-                text-align: center;
+        &__image {
+            $g: &;
+            background-color: gray;
+            width: 315px;
+            height: 315px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
 
-            #{$g}:hover>& {
-                position: absolute;
-                display: block;
-                z-index: 99;
-                text-align: center;
+            &__overlay {
+                display: none;
+
+                #{$g}:hover>& {
+                    position: absolute;
+                    display: block;
+                    z-index: 99;
+                    text-align: center;
+                }
             }
         }
 
+        &__info {
+            width: 100%;
+            position: relative;
+            text-align: center;
+
+            #{$b}:hover &__title {
+                visibility: hidden;
+            }
+
+            &__metadata {
+                display: none;
+
+                #{$b}:hover & {
+                    display: block;
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                }
+            }
+        }
     }
 }

@@ -1,24 +1,25 @@
 "use client";
 // Packages
-import { Dispatch, SetStateAction } from 'react';
-// Imports
-import { useAppDispatch, useAppSelector } from '@/store';
-import { setButtonType } from '@/store/buttonTypeSlice';
-import { setIsOpen } from '@/store/isModalOpenSlice';
-import { BUTTON } from "@/utils/types/types";
 import Link from 'next/link';
+// REDUX
+import { useAppDispatch, useAppSelector } from '@/store';
+import { setIsOpen } from '@/store/isModalOpenSlice';
+import { setButtonType } from '@/store/buttonTypeSlice';
+import { setBlockClicked } from '@/store/blockClickedSlice';
+// TYPES
+import { BUTTON } from "@/utils/types/types";
+// STYLES
 import styles from "@/styles/components/button.module.scss";
 
 interface IConnectBlockButton {
     blockID: number;
-    setBlockClicked: Dispatch<SetStateAction<number | undefined>>
 }
 
-const ConnectBlockButton = ({ blockID, setBlockClicked }: IConnectBlockButton) => {
+const ConnectBlockButton = ({ blockID }: IConnectBlockButton) => {
 
     const dispatch = useAppDispatch();
-    const isOpen = useAppSelector((state) => state.Modal.isOpen);
     const user = useAppSelector((state) => state.User.user);
+    const isOpen = useAppSelector((state) => state.Modal.isOpen);
 
     // TODO: Link to sign up page if no user
 
@@ -27,18 +28,18 @@ const ConnectBlockButton = ({ blockID, setBlockClicked }: IConnectBlockButton) =
             {
                 user ?
                     <button
-                    className={styles.button}
+                        className={styles.button}
                         onClick={() => {
                             dispatch(setIsOpen(!isOpen));
                             dispatch(setButtonType(BUTTON.BLOCK_CONNECTION_CREATE));
-                            setBlockClicked(blockID)
+                            dispatch(setBlockClicked(blockID))
                             console.log('connect button clicked')
                         }}>
-                        Connect
+                        connect
                     </button>
                     :
-                    <button>
-                        <Link href={'/'}>Connect</Link>
+                    <button className={styles.button}>
+                        <Link href={'/'}>connect</Link>
                     </button>
             }
         </>
