@@ -1,5 +1,6 @@
 "use client";
 // Packages
+import { Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import useSWR from "swr";
@@ -7,6 +8,7 @@ import useSWR from "swr";
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setFormType } from '@/store/formTypeSlice';
 import { setIsOpen } from '@/store/isModalOpenSlice';
+import { setIsBlockModalOpen } from '@/store/isModalOpenSlice';
 import { setButtonType } from '@/store/buttonTypeSlice';
 import { setBlockClicked } from '@/store/blockClickedSlice';
 // COMPONENTS
@@ -48,7 +50,7 @@ async function getBlockData(id: number) {
     return data;
 }
 
-const Block = ({ block, replaceURL, pathname }: BlockProps) => {
+const Block = ({ block, pathname, replaceURL }: BlockProps) => {
 
     const { data, error } = useSWR(`${block.id}`, getBlockData);
 
@@ -56,6 +58,7 @@ const Block = ({ block, replaceURL, pathname }: BlockProps) => {
     const loggedInUser = useAppSelector((state) => state.User.user);
     const formType = useAppSelector((state) => state.Form.formType);
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
+    const blockModalOpen = useAppSelector((state) => state.Modal.isBlockModalOpen);
     const buttonType = useAppSelector((state) => state.Button.buttonType);
     const blockClicked = useAppSelector((state) => state.Block.blockClicked);
 
@@ -86,6 +89,7 @@ const Block = ({ block, replaceURL, pathname }: BlockProps) => {
                                             onClick={() => {
                                                 dispatch(setIsOpen(!isOpen));
                                                 dispatch(setBlockClicked(undefined));
+                                                dispatch(setIsBlockModalOpen(!blockModalOpen));
                                                 replaceURL(pathname);
                                             }}
                                             xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 15" fill="none">

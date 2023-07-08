@@ -5,10 +5,12 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface isOpenState {
     isOpen: boolean;
+    isBlockModalOpen: boolean;
 }
 
 const initialState: isOpenState = {
-    isOpen: false
+    isOpen: false,
+    isBlockModalOpen: false
 };
 
 const isModalOpenSlice = createSlice({
@@ -18,8 +20,11 @@ const isModalOpenSlice = createSlice({
         setIsOpen: (state, action: PayloadAction<boolean>) => {
             state.isOpen = action.payload
         },
+        setIsBlockModalOpen: (state, action: PayloadAction<boolean>) => {
+            state.isBlockModalOpen = action.payload
+        },
     },
 });
 
-export const { setIsOpen } = isModalOpenSlice.actions;
+export const { setIsOpen, setIsBlockModalOpen } = isModalOpenSlice.actions;
 export default isModalOpenSlice.reducer;

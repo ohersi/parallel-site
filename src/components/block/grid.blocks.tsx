@@ -4,12 +4,12 @@ import { usePathname } from 'next/navigation';
 // REDUX
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setIsOpen } from '@/store/isModalOpenSlice';
+import { setIsBlockModalOpen } from '@/store/isModalOpenSlice';
 import { setButtonType } from '@/store/buttonTypeSlice';
 import { setBlockClicked } from '@/store/blockClickedSlice';
 // COMPONENTS
 import Block from '@/components/block/block';
 import Modal from '@/components/modal/modal';
-import ConnectionBlock from '@/components/block/connection.block';
 import RemoveConnectionBlock from '@/components/block/removeConnection.block';
 import ConnectBlockButton from '@/components/button/block/connectBlock.button';
 import DisconnectBlockButton from '@/components/button/block/disconnectBlock.button';
@@ -31,6 +31,7 @@ const BlockGrid = ({ block, channelID, channelUser }: IBlockGrid) => {
     const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.User.user);
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
+    const blockModalOpen = useAppSelector((state) => state.Modal.isBlockModalOpen);
     const buttonType = useAppSelector((state) => state.Button.buttonType);
     const blockClicked = useAppSelector((state) => state.Block.blockClicked);
 
@@ -50,6 +51,7 @@ const BlockGrid = ({ block, channelID, channelUser }: IBlockGrid) => {
                 onClick={() => {
                     dispatch(setIsOpen(!isOpen));
                     dispatch(setBlockClicked(block.id))
+                    dispatch(setIsBlockModalOpen(!blockModalOpen));
                     replaceURL(`/block/${block.id}`);
                 }}
             >
@@ -75,19 +77,13 @@ const BlockGrid = ({ block, channelID, channelUser }: IBlockGrid) => {
 
             <>
                 {
-                    isOpen && blockClicked == block.id && !buttonType ?
+                    isOpen && blockClicked == block.id ?
                         <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setBlockClicked(undefined)); replaceURL(pathname); }} isOpen={isOpen} >
-                            <Block block={block} replaceURL={replaceURL} pathname={pathname} />
-                        </Modal>
-                        : null
-                }
-            </>
-            <>
-                {
-                    isOpen && blockClicked == block.id && buttonType == BUTTON.BLOCK_CONNECTION_CREATE ?
-                        <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); dispatch(setBlockClicked(undefined)); }} isOpen={isOpen}>
-                            <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); dispatch(setBlockClicked(undefined)); }}>Close</button>
-                            <ConnectionBlock blockID={block.id} />
+                            <Block
+                                block={block}
+                                pathname={pathname}
+                                replaceURL={replaceURL}
+                            />
                         </Modal>
                         : null
                 }
