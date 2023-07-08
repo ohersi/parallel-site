@@ -76,6 +76,7 @@ const Channel = ({ initial }: PageResults) => {
                         block={block}
                         channelID={channel.id}
                         channelUser={channel.user?.full_name}
+                        channelTitle={channel.title}
                         key={block.id}
                     />
                 ))

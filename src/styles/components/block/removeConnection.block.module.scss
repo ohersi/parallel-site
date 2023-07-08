@@ -1,0 +1,37 @@
+@use '@/styles/abstracts' as a;
+
+.modal {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__box {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        border: 2px solid a.$color-secondary;
+        background-color: a.$color-primary;
+        width: max(40vw, 450px);
+        min-height: 250px;
+        padding: 1.3rem;
+        text-align: center;
+
+        &__button {
+            // border: 1px solid black;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-evenly;
+            gap: 0.5rem;
+
+            &__cancel {
+                @include a.button;
+            }
+
+            &__confirm {
+                @include a.button;
+            }
+        }
+    }
+
+}

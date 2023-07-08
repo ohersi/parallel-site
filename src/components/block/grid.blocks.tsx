@@ -22,9 +22,10 @@ interface IBlockGrid {
     block: IBlock;
     channelID?: number;
     channelUser?: string;
+    channelTitle?: string;
 };
 
-const BlockGrid = ({ block, channelID, channelUser }: IBlockGrid) => {
+const BlockGrid = ({ block, channelID, channelUser, channelTitle }: IBlockGrid) => {
 
     const pathname = usePathname();
 
@@ -77,7 +78,7 @@ const BlockGrid = ({ block, channelID, channelUser }: IBlockGrid) => {
 
             <>
                 {
-                    isOpen && blockClicked == block.id ?
+                    isOpen && blockClicked == block.id && buttonType !== BUTTON.BLOCK_CONNECTION_DELETE ?
                         <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setBlockClicked(undefined)); replaceURL(pathname); }} isOpen={isOpen} >
                             <Block
                                 block={block}
@@ -90,10 +91,14 @@ const BlockGrid = ({ block, channelID, channelUser }: IBlockGrid) => {
             </>
             <>
                 {
-                    isOpen && channelID && blockClicked == block.id && buttonType == BUTTON.BLOCK_CONNECTION_DELETE ?
+                    isOpen && channelID && channelTitle && blockClicked == block.id && buttonType == BUTTON.BLOCK_CONNECTION_DELETE ?
                         <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); dispatch(setBlockClicked(undefined)); }} isOpen={isOpen}>
-                            <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); dispatch(setBlockClicked(undefined)); }}>Close</button>
-                            <RemoveConnectionBlock blockID={block.id} channelID={channelID} />
+                            <RemoveConnectionBlock
+                                blockID={block.id}
+                                blockTitle={block.title}
+                                channelID={channelID}
+                                channelTitle={channelTitle}
+                            />
                         </Modal>
                         : null
                 }
