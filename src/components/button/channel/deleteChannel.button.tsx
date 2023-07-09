@@ -7,6 +7,7 @@ import { DeleteChannel } from "@/resources/data/channel/deleteChannel";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { setIsOpen } from "@/store/isModalOpenSlice";
 import { BUTTON } from "@/utils/types/types";
+import styles from "@/styles/components/form/updateChannel.form.module.scss";
 
 type Props = {
     channelID: number;
@@ -30,18 +31,33 @@ const DeleteChannelButton = ({ channelID }: Props) => {
     };
 
     return (
-        <>
+        <div className={styles.modal__box__delete__container}>
             {
                 clicked == BUTTON.CHANNEL_DELETE ?
                     <div>
-                        <h4>Do you want to delete Channel?</h4>
-                        <button onClick={() => { setClicked('') }}>Cancel</button>
-                        <button onClick={() => handleClick}>Confirm</button>
+                        <h4>Do you want to delete channel?</h4>
+                        <div className={styles.modal__box__delete__container__buttons}>
+                            <button
+                                className={styles.modal__box__delete__container__buttons__btn}
+                                onClick={() => { setClicked('') }}>
+                                cancel
+                            </button>
+                            <button
+                                className={styles.modal__box__delete__container__buttons__btn}
+                                // onClick={() => handleClick}>
+                                onClick={() => console.log('testing delete channel btn!')}>
+                                confirm &nbsp; ✓
+                            </button>
+                        </div>
                     </div>
                     :
-                    <button onClick={() => { setClicked(BUTTON.CHANNEL_DELETE) }}>Delete Channel</button>
+                    <button
+                        className={styles.modal__box__delete__container__btn}
+                        onClick={() => { setClicked(BUTTON.CHANNEL_DELETE) }}>
+                        delete channel &nbsp; x
+                    </button>
             }
-        </>
+        </div>
     )
 };
 

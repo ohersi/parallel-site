@@ -27,6 +27,12 @@ button {
     appearance: none;
 }
 
+textarea {
+    resize: vertical;
+    min-height: 1.5rem;
+    height: 250px;
+}
+
 input[type="text"],
 input[type="search"],
 textarea {
@@ -37,7 +43,7 @@ textarea {
     width: 100%;
 }
 
-S::placeholder {
+::placeholder {
     color: inherit;
 }
 
