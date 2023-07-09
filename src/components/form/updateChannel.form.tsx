@@ -81,7 +81,10 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
 
                 <h4>UPDATE CHANNEL</h4>
 
-                <form className={styles.modal__box__form} onSubmit={handleSubmit(onSubmit)}>
+                <form
+                    className={styles.modal__box__form}
+                    onSubmit={handleSubmit(onSubmit)}
+                >
 
                     <div className={styles.modal__box__form__item}>
                         <label
