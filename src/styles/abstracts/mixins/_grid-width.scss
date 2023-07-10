@@ -1,0 +1,34 @@
+@use '@/styles/abstracts/variables' as v;
+
+@mixin grid-width($size) {
+    @for $i from 1 through 12 {
+        $diff: $i * 20;
+        $max: $size * $i + $diff;
+        $min: $max +20;
+
+        @media(min-width: $min) {
+            max-width: $max;
+            @content;
+        }
+    }
+}
+
+
+/* 
+MIN WIDTHS
+1) 315 -> 355 ---> 40
+2) 630 -> 690 ---> 60
+3) 945 -> 1025 ---> 80
+4) 1260 -> 1360 ---> 100
+5) 1575 -> 1695 ---> 120
+
+MAX WIDTHS
+1) 315 -> 335 ---> 20
+2) 630 -> 670 ---> 40
+3) 945 -> 1005 ---> 60
+
+og * i + (i * 20) = max width;
+max-width + 20 = min-width;
+
+
+*/

@@ -5,10 +5,11 @@
     box-sizing: border-box;
     display: flex;
     flex-flow: row wrap;
-    align-items: center;
-    gap: 2rem;
-    justify-content: space-around;
-    border: 1px solid rgba(255, 208, 0, 0.729);
+    margin-left: 10px;
+    gap: 1rem;
+    // border: 1px solid rgba(255, 208, 0, 0.729);
+
+    @include a.grid-width(a.$block-width);
 
     &__blocks {
         $b: &;
@@ -16,7 +17,7 @@
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        border: 1px solid rgb(58, 0, 128);
+        border: 1px solid a.$color-secondary;
         box-sizing: border-box;
         width: 315px;
         height: 100%;
@@ -67,4 +68,17 @@
             }
         }
     }
+}
+
+.default_block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid a.$color-secondary;
+    box-sizing: border-box;
+    width: 315px;
+    height: 315px;
+    position: relative;
+    /* margin: 0px 10px 40px; */
 }

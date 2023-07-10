@@ -1,0 +1,6 @@
+@use '../abstracts' as a;
+
+.page {
+    margin: 0 auto;
+    @include a.grid-width(a.$block-width);
+}
