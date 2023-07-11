@@ -5,8 +5,4 @@
   @include a.min-width(medium) {
     // background-color: red;
   }
-
-  &:hover {
-    scale: 1.3;
-  }
 }

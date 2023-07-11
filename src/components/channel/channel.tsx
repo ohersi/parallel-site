@@ -81,6 +81,30 @@ const Channel = ({ initial }: PageResults) => {
                     />
                 ))
             }
+            <div className={styles.default_block}>
+                TEST
+            </div>
+            <div className={styles.default_block}>
+                TEST
+            </div>
+            <div className={styles.default_block}>
+                TEST
+            </div>
+            <div className={styles.default_block}>
+                TEST
+            </div>
+            <div className={styles.default_block}>
+                TEST
+            </div>
+            <div className={styles.default_block}>
+                TEST
+            </div>
+            <div className={styles.default_block}>
+                TEST
+            </div>
+            <div className={styles.default_block}>
+                TEST
+            </div>
             {/* </InfiniteScroll> */}
         </div>
     )

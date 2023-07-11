@@ -44,7 +44,7 @@ const BlockGrid = ({ block, channelID, channelUser, channelTitle }: IBlockGrid) 
             '',
             newURL);
     };
-
+console.log(`channelUser: ${channelUser}`)
     return (
         <>
             <div
@@ -68,10 +68,10 @@ const BlockGrid = ({ block, channelID, channelUser, channelTitle }: IBlockGrid) 
 
                 <div className={styles.channel__blocks__info}>
                     <div className={styles.channel__blocks__info__title}>
-                        <p>#{block.id} - {block.title}</p>
+                        #{block.id} - {block.title}
                     </div>
                     <div className={styles.channel__blocks__info__metadata}>
-                        <p>Connected by {channelUser}</p>
+                        Connected by {channelUser}
                     </div>
                 </div>
             </div>

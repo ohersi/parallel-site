@@ -9,8 +9,6 @@
     gap: 1rem;
     // border: 1px solid rgba(255, 208, 0, 0.729);
 
-    @include a.grid-width(a.$block-width);
-
     &__blocks {
         $b: &;
         display: flex;
@@ -26,7 +24,7 @@
 
         &__image {
             $g: &;
-            background-color: gray;
+            background-color: rgba(128, 128, 128, 0.548);
             width: 315px;
             height: 315px;
             display: flex;
@@ -47,9 +45,18 @@
         }
 
         &__info {
+            padding: 1rem 0.5rem;
+            border-top: 1px solid a.$color-secondary;
             width: 100%;
             position: relative;
-            text-align: center;
+
+            // text-align: center;
+            &__title {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+            }
 
             #{$b}:hover &__title {
                 visibility: hidden;
@@ -59,11 +66,13 @@
                 display: none;
 
                 #{$b}:hover & {
-                    display: block;
+                    display: flex;
+                    align-items: center;
                     position: absolute;
                     width: 100%;
                     height: 100%;
                     top: 0;
+                    // border: 1px solid red;
                 }
             }
         }
