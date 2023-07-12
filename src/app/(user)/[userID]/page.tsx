@@ -50,7 +50,7 @@ const UserPage = async (props: IPageProps) => {
           info={<HeaderInfo props={user} params={props.params.userID} />}
         />
 
-        <CreateChannelButton />
+        {/* <CreateChannelButton /> */}
 
         <div className={styles.page__grid}>
           {

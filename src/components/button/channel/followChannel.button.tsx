@@ -20,10 +20,10 @@ const FollowChannelButton = ({ channelID, mutate, url }: Props) => {
         try {
             await trigger().then((success) => {
                 if (success) {
-                  // Rerender HeaderAction component
-                  mutate(url)
+                    // Rerender HeaderAction component
+                    mutate(url)
                 }
-              })
+            })
         }
         catch (error: any) {
             // TODO: Setup error handling
@@ -32,11 +32,9 @@ const FollowChannelButton = ({ channelID, mutate, url }: Props) => {
     };
 
     return (
-        <>
-            <div className={styles.button}>
-                <button onClick={() => handleClick}>Follow</button>
-            </div>
-        </>
+        <button className={styles.button} onClick={() => handleClick}>
+            follow
+        </button>
     )
 }
 

@@ -24,6 +24,7 @@
         height: 100%;
         overflow-x: auto;
         padding: 1rem;
+        text-align: start;
         background-color: a.$color-primary;
         border: 1px solid a.$color-secondary;
 
@@ -41,6 +42,7 @@
             display: flex;
             justify-content: flex-end;
             width: 100%;
+            margin-bottom: 2rem;
         }
 
         &__form {
@@ -83,6 +85,7 @@
             width: 100%;
             gap: 1rem;
             margin-top: 2rem;
+            padding-top: 2em;
             border-top: 1px solid a.$color-secondary;
 
             &__container {

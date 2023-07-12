@@ -1,32 +1,36 @@
 @use '../abstracts' as a;
 
 .nav {
+    top: 0;
+    position: sticky;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
-    padding: 1rem;
-    border: 1px solid rgba(247, 87, 87, 0.75);
+    padding: 1.3rem 1rem;
+    background-color: a.$color-primary;
+    // border: 1px solid a.$color-secondary;
+    z-index: 100;
 
     &__search {
-        border: 1px solid black;
+        // border: 1px solid black;
     }
 
     &__logo {
-        border: 1px solid black;
+        // border: 1px solid black;
         display: flex;
         justify-content: center;
     }
 
     &__menu {
         $d: &;
-        border: 1px solid black;
+        // border: 1px solid black;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
         gap: 0.5rem;
 
         &__profile {
-            background-color: rgb(100, 123, 95);
+            background-color: a.$color-secondary;
             border-radius: 50%;
             width: 1.5rem;
             height: 1.5rem;

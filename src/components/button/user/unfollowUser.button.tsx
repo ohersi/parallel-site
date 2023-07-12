@@ -32,11 +32,9 @@ const UnfollowUserButton = ({ userID, mutate, url }: IUnfollowUserButton) => {
   };
 
   return (
-    <>
-      <div className={styles.button}>
-        <button onClick={handleClick}>Unfollow</button>
-      </div>
-    </>
+    <button className={styles.button} onClick={handleClick}>
+      unfollow
+    </button>
   )
 }
 

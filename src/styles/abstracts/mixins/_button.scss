@@ -1,10 +1,16 @@
 @use '@/styles/abstracts/variables' as v;
 
 @mixin button {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 2rem;
     background-color: v.$color-primary;
-    color:  v.$color-secondary;
-    border: 2px solid v.$color-secondary;
+    color: v.$color-secondary;
+    border: 1px solid v.$color-secondary;
     border-radius: 20px;
     text-align: center;
+
+    &:hover {
+        background-color: v.$color-secondary;
+        color: v.$color-primary;
+        border: 1px solid v.$color-secondary;
+    }
 }

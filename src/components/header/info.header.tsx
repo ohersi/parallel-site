@@ -22,8 +22,11 @@ const HeaderInfo = ({ props, params }: IHeaderInfo) => {
     return (
         <div className={styles.header__info}>
             <div className={styles.header__info__title}>Info</div>
-            <p>{props?.description}</p>
-
+            {
+                props?.description ?
+                    <p>{props.description}</p>
+                    : <p>&mdash;</p>
+            }
             <div className={styles.header__info__buttons}>
                 <div><Link href={`/${params}/followers`}>Followers</Link></div>
                 <div><Link href={`/${params}/following`}>Following</Link></div>

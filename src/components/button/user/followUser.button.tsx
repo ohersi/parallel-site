@@ -32,11 +32,9 @@ const FollowUserButton = ({ userID, mutate, url }: IFollowUserButton) => {
   };
 
   return (
-    <>
-      <div className={styles.button}>
-        <button onClick={handleClick}>Follow</button>
-      </div>
-    </>
+    <button className={styles.button} onClick={handleClick}>
+      follow
+    </button>
   )
 };
 

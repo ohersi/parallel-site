@@ -4,6 +4,8 @@ import { useAppSelector } from '@/store';
 import EditChannelButton from '@/components/button/channel/editChannel.button';
 import UserFollowMergedButton from '@/components/button/user/userFollowsMerged.button';
 import ChannelFollowMergedButton from '@/components/button/channel/channelFollowsMerged.button';
+import styles from '@/styles/components/button.module.scss';
+import Link from 'next/link';
 
 interface IHeaderAction {
     channelUser?: any; // user from channel page
@@ -36,7 +38,13 @@ const HeaderAction = ({ channelUser, userID }: IHeaderAction) => {
 
                             <UserFollowMergedButton userID={userID} loggedInUserID={loggedInUserID} />
 
-                            : <div>Nothing</div>
+                            : loggedInUser && userID && loggedInUser.id == userID ?
+
+                                <Link href={'/settings'}>
+                                    <div className={styles.button}>settings</div>
+                                </Link>
+
+                                : null
             }
         </>
     )

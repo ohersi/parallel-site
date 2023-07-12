@@ -14,9 +14,11 @@ const EditChannelButton = () => {
 
     return (
         <>
-            <div className={styles.button}>
-                <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType(FORM.CHANNEL_UPDATE)) }}>Edit Channel</button>
-            </div>
+            <button
+                className={styles.button}
+                onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType(FORM.CHANNEL_UPDATE)) }}>
+                edit
+            </button>
         </>
     )
 };
