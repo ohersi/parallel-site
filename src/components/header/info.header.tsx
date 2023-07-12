@@ -1,16 +1,11 @@
+"use client";
 // Packages
 import Link from "next/link";
 // Imports
-import { IChannel, IUser } from "@/utils/types/types";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { setViewType, setSortType } from "@/store/filterTypeSlice";
+import { FEED, SORT } from "@/utils/types/types";
 import styles from "@/styles/layout/header.module.scss";
-
-/* 
- Header info consists of:
-    info - User or channel information text
-    action - followers/following for user & share for channel
-    view - filter user by channels/blocks/all
-    connect - connect users channel with another
-*/
 
 interface IHeaderInfo {
     props: any;
@@ -19,17 +14,72 @@ interface IHeaderInfo {
 
 const HeaderInfo = ({ props, params }: IHeaderInfo) => {
 
+    const dispatch = useAppDispatch();
+    const viewType = useAppSelector((state) => state.Filter.viewType);
+    const sortType = useAppSelector((state) => state.Filter.sortType);
+
     return (
-        <div className={styles.header__info}>
-            <div className={styles.header__info__title}>Info</div>
+        <div className={props?.email ? styles.header__grid : styles.header__single}>
+            <div className={styles.header__grid__info}>
+                <div className={styles.header__grid__info__title}>Info</div>
+                {
+                    props?.description ?
+                        <p>{props.description}</p>
+                        : <p>&mdash;</p>
+                }
+                <div className={styles.header__grid__info__buttons}>
+                    <div><Link href={`/${params}/followers`}>Followers</Link></div>
+                    <div><Link href={`/${params}/following`}>Following</Link></div>
+                </div>
+            </div>
+
             {
-                props?.description ?
-                    <p>{props.description}</p>
-                    : <p>&mdash;</p>
+                props?.email ?
+                    <div className={styles.header__grid__info}>
+                        <div className={styles.header__grid__info__title}>View</div>
+
+                        <div className={styles.header__grid__info__buttons}>
+                            <div onClick={() => dispatch(setViewType(FEED.CHANNEL))}>
+                                Channels
+                                {
+                                    viewType == FEED.CHANNEL ?
+                                        <span>&nbsp; &#8592;</span>
+                                        : null
+                                }
+                            </div>
+                            <div onClick={() => dispatch(setViewType(FEED.BLOCK))}>
+                                Blocks
+                                {
+                                    viewType == FEED.BLOCK ?
+                                        <span>&nbsp; &#8592;</span>
+                                        : null
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    : null
             }
-            <div className={styles.header__info__buttons}>
-                <div><Link href={`/${params}/followers`}>Followers</Link></div>
-                <div><Link href={`/${params}/following`}>Following</Link></div>
+
+            <div className={styles.header__grid__info}>
+                <div className={styles.header__grid__info__title}>Sort</div>
+                <div className={styles.header__grid__info__buttons}>
+                    <div onClick={() => dispatch(setSortType(SORT.RECENTLY_UPDATED))}>
+                        Recently Updated
+                        {
+                            sortType == SORT.RECENTLY_UPDATED ?
+                                <span>&nbsp; &#8592;</span>
+                                : null
+                        }
+                    </div>
+                    <div onClick={() => dispatch(setSortType(SORT.OLDEST))}>
+                        Oldest
+                        {
+                            sortType == SORT.OLDEST ?
+                                <span>&nbsp; &#8592;</span>
+                                : null
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     )

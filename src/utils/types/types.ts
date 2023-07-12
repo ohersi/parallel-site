@@ -121,3 +121,8 @@ export enum FEED {
     BLOCK = 'Block',
     USER = 'User',
 }
+
+export enum SORT {
+    RECENTLY_UPDATED = 'RECENTLY_UPDATED',
+    OLDEST = 'OLDEST',
+}

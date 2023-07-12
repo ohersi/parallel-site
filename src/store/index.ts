@@ -10,13 +10,14 @@ import isModalOpenReducer from "@/store/isModalOpenSlice";
 import userSliceReducer from "@/store/userSlice";
 import formTypeReducer from "@/store/formTypeSlice";
 import buttonTypeReducer from "@/store/buttonTypeSlice";
+import filterTypeReducer from "@/store/filterTypeSlice";
 import searchSliceReducer from "@/store/searchSlice";
 import blockClickedReducer from "@/store/blockClickedSlice";
 
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['Modal', 'Form', 'Button', 'Search', 'Block'],
+  blacklist: ['Modal', 'Form', 'Button', 'Filter', 'Search', 'Block'],
   whitelist: ['User']
 }
 const rootReducer = combineReducers({
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   User: userSliceReducer,
   Form: formTypeReducer,
   Button: buttonTypeReducer,
+  Filter: filterTypeReducer,
   Search: searchSliceReducer,
   Block: blockClickedReducer,
 })

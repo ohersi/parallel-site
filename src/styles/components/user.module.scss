@@ -1,0 +1,55 @@
+.grid {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
+    padding-bottom: 1rem;
+
+    &__box {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+
+        &__row {
+            box-sizing: border-box;
+            overflow: hidden;
+            margin-left: 10px;
+            padding: 0 0.5em 0;
+
+            &__text {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                margin-bottom: 1.5rem;
+                gap: 0.5rem;
+
+                &__title {
+                    font-size: 2.2rem;
+                    font-weight: bold;
+                }
+            }
+
+            &__item {
+                display: flex;
+                gap: 1rem;
+                margin-bottom: 2.5rem;
+                width: fit-content;
+                box-sizing: border-box;
+            }
+
+            &__info {
+                padding-right: 1em;
+                text-decoration: 1px underline;
+                text-underline-offset: 3px;
+            }
+        }
+    }
+
+    &__grid {
+        box-sizing: border-box;
+        display: flex;
+        flex-flow: row wrap;
+        margin: 2rem 0 0 10px;
+        gap: 1rem;
+        // border: 1px solid rgba(255, 208, 0, 0.729);
+    }
+}

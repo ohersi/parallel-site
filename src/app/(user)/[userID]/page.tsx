@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { IBlock, IChannel, IPageProps, IUser } from '@/utils/types/types';
 import { getUserData } from '@/resources/data/user/getUserData';
 import { GetUserChannels } from '@/resources/data/channel/getUserChannels';
+import { GetUserBlocks } from '@/resources/data/block/getUserBlocks';
 import BlockGrid from '@/components/block/grid.blocks';
 import Header from '@/components/header/header';
 import HeaderTitle from '@/components/header/title.header';
@@ -14,6 +15,7 @@ import CreateChannelButton from '@/components/button/channel/createChannel.butto
 import ChannelFormModal from '@/components/modal/channelForm.modal';
 import styles from "@/styles/pages/user.page.module.scss";
 import { timeAgo } from '@/resources/timeAgo';
+import User from '@/components/user/user';
 
 type Data = {
   channel: IChannel;
@@ -36,8 +38,9 @@ const UserPage = async (props: IPageProps) => {
 
   const user = await getUserData(props) as IUser;
   let userID = user.id.toString()
-  const res = await GetUserChannels(userID);
-  const userChannels = res?.data;
+  const channels = await GetUserChannels(userID);
+  const userBlocks = await GetUserBlocks(userID);
+  const userChannels = channels?.data;
 
   // TODO: Move CreateChannelButton to different component
 
@@ -52,57 +55,8 @@ const UserPage = async (props: IPageProps) => {
 
         {/* <CreateChannelButton /> */}
 
-        <div className={styles.page__grid}>
-          {
-            userChannels ?
-              userChannels.map((data: Data) => (
-                <div
-                  className={styles.page__grid__row}
-                  key={data.channel.id}
-                >
+        <User user={user} userChannels={userChannels} userBlocks={userBlocks} />
 
-                  <div className={styles.page__grid__row__text}>
-                    <div className={styles.page__grid__row__text__title}>
-                      <Link href={`/${user.slug}/${data.channel.slug}`}>
-                        {data.channel.title}
-                      </Link>
-                    </div>
-                    <div className={styles.page__grid__row__text__info}>
-                      <Link href={`/${user.slug}/${data.channel.slug}`}>
-                        by {user.full_name}
-                        &nbsp; • &nbsp;
-                        {timeAgo(data.channel.date_created)}
-                      </Link>
-                    </div>
-                  </div>
-
-                  <div className={styles.page__grid__row__item}>
-                    {
-                      data.blocks.map((block: IBlock) => (
-                        <BlockGrid
-                          block={block}
-                          channelID={data.channel.id}
-                          channelUser={user.full_name}
-                          channelTitle={data.channel.title}
-                          key={block.id} />
-                      ))
-                    }
-                  </div>
-
-                  <div className={styles.page__grid__row__info}>
-                    {
-                      data.total_blocks ?
-                        <span>+{data.total_blocks} more blocks</span>
-                        : null
-                    }
-                  </div>
-
-                </div>
-              ))
-              : null
-          }
-        </div>
-        {/* <div>Channels: {JSON.stringify(userChannels)}</div> */}
         <ChannelFormModal />
       </div>
     </div >
