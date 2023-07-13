@@ -1,27 +1,21 @@
 // Packages
 import { Metadata } from 'next';
-import Link from 'next/link';
-// Imports
-import { IBlock, IChannel, IPageProps, IUser } from '@/utils/types/types';
+// COMPONENTS
+import User from '@/components/user/user';
+import Header from '@/components/header/header';
+import HeaderInfo from '@/components/header/info.header';
+import HeaderTitle from '@/components/header/title.header';
+import HeaderAction from '@/components/header/header.action';
+import ChannelFormModal from '@/components/modal/channelForm.modal';
+import CreateChannelButton from '@/components/button/channel/createChannel.button';
+// FUNCTIONS
 import { getUserData } from '@/resources/data/user/getUserData';
 import { GetUserChannels } from '@/resources/data/channel/getUserChannels';
 import { GetUserBlocks } from '@/resources/data/block/getUserBlocks';
-import BlockGrid from '@/components/block/grid.blocks';
-import Header from '@/components/header/header';
-import HeaderTitle from '@/components/header/title.header';
-import HeaderInfo from '@/components/header/info.header';
-import HeaderAction from '@/components/header/header.action';
-import CreateChannelButton from '@/components/button/channel/createChannel.button';
-import ChannelFormModal from '@/components/modal/channelForm.modal';
+// TYPES
+import { IBlock, IChannel, IPageProps, IUser } from '@/utils/types/types';
+// STYLES
 import styles from "@/styles/pages/user.page.module.scss";
-import { timeAgo } from '@/resources/timeAgo';
-import User from '@/components/user/user';
-
-type Data = {
-  channel: IChannel;
-  blocks: IBlock[];
-  total_blocks: number;
-}
 
 // Dynamic Metadata for Pages
 export const generateMetadata = async (props: IPageProps): Promise<Metadata> => {

@@ -28,8 +28,12 @@ const HeaderInfo = ({ props, params }: IHeaderInfo) => {
                         : <p>&mdash;</p>
                 }
                 <div className={styles.header__grid__info__buttons}>
-                    <div><Link href={`/${params}/followers`}>Followers</Link></div>
-                    <div><Link href={`/${params}/following`}>Following</Link></div>
+                    <div className={styles.header__grid__info__buttons__follow}>
+                        <Link href={`/${params}/followers`}>Followers</Link>
+                    </div>
+                    <div className={styles.header__grid__info__buttons__follow}>
+                        <Link href={`/${params}/following`}>Following</Link>
+                    </div>
                 </div>
             </div>
 
@@ -59,28 +63,32 @@ const HeaderInfo = ({ props, params }: IHeaderInfo) => {
                     </div>
                     : null
             }
+            {
 
-            <div className={styles.header__grid__info}>
-                <div className={styles.header__grid__info__title}>Sort</div>
-                <div className={styles.header__grid__info__buttons}>
-                    <div onClick={() => dispatch(setSortType(SORT.RECENTLY_UPDATED))}>
-                        Recently Updated
-                        {
-                            sortType == SORT.RECENTLY_UPDATED ?
-                                <span>&nbsp; &#8592;</span>
-                                : null
-                        }
+                props?.email ?
+                    <div className={styles.header__grid__info}>
+                        <div className={styles.header__grid__info__title}>Sort</div>
+                        <div className={styles.header__grid__info__buttons}>
+                            <div onClick={() => dispatch(setSortType(SORT.RECENTLY_UPDATED))}>
+                                Recently Updated
+                                {
+                                    sortType == SORT.RECENTLY_UPDATED ?
+                                        <span>&nbsp; &#8592;</span>
+                                        : null
+                                }
+                            </div>
+                            <div onClick={() => dispatch(setSortType(SORT.OLDEST))}>
+                                Oldest
+                                {
+                                    sortType == SORT.OLDEST ?
+                                        <span>&nbsp; &#8592;</span>
+                                        : null
+                                }
+                            </div>
+                        </div>
                     </div>
-                    <div onClick={() => dispatch(setSortType(SORT.OLDEST))}>
-                        Oldest
-                        {
-                            sortType == SORT.OLDEST ?
-                                <span>&nbsp; &#8592;</span>
-                                : null
-                        }
-                    </div>
-                </div>
-            </div>
+                    : null
+            }
         </div>
     )
 };

@@ -69,7 +69,7 @@ const Channel = ({ initial }: PageResults) => {
                         <b>Yay! You have seen it all</b>
                     </p>
                 }
-            > */}
+            // > */}
             {
                 blocks.map((block: IBlock) => (
                     <BlockGrid

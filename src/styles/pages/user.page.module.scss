@@ -1,6 +1,7 @@
 @use '../abstracts' as a;
 
 .page {
+    max-width: a.$block-width + 20;
     margin: 0 auto;
     @include a.grid-width(a.$block-width);
 }

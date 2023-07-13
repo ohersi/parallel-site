@@ -30,7 +30,7 @@ const LogoutButton = () => {
 
     return (
         <button
-        className={styles.nav__menu__dropdown_links}
+        className={styles.nav__menu__dropdown__bottom__section__links}
             onClick={logOut}
         >
             Log Out

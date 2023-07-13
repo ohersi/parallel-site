@@ -5,7 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 // Imports
 import { GetDefaultFeed } from "@/resources/data/feed/getDefaultFeed";
 import { IBlock, IChannel, IDefaultFeedResults } from "@/utils/types/types";
-import styles from "@/styles/channel/channel.module.css";
+import styles from "@/styles/components/channel.module.scss";
 
 // TODO: Replace InfiniteScroll packages with custom scroll
 
