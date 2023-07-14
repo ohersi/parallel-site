@@ -1,11 +1,13 @@
 "use client";
+// Packages
+import Link from 'next/link';
 // Imports
 import { useAppSelector } from '@/store';
 import EditChannelButton from '@/components/button/channel/editChannel.button';
 import UserFollowMergedButton from '@/components/button/user/userFollowsMerged.button';
 import ChannelFollowMergedButton from '@/components/button/channel/channelFollowsMerged.button';
-import styles from '@/styles/components/button.module.scss';
-import Link from 'next/link';
+import CreateChannelButton from '@/components/button/channel/createChannel.button';
+import styles from "@/styles/layout/header.module.scss";
 
 interface IHeaderAction {
     channelUser?: any; // user from channel page
@@ -40,10 +42,8 @@ const HeaderAction = ({ channelUser, userID }: IHeaderAction) => {
 
                             : loggedInUser && userID && loggedInUser.id == userID ?
 
-                                <Link href={'/settings'}>
-                                    <div className={styles.button}>settings</div>
-                                </Link>
-
+                                <CreateChannelButton userID={userID} />
+                                
                                 : null
             }
         </>

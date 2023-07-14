@@ -13,7 +13,7 @@ import { getUserData } from '@/resources/data/user/getUserData';
 import { GetUserChannels } from '@/resources/data/channel/getUserChannels';
 import { GetUserBlocks } from '@/resources/data/block/getUserBlocks';
 // TYPES
-import { IBlock, IChannel, IPageProps, IUser } from '@/utils/types/types';
+import { IPageProps, IUser } from '@/utils/types/types';
 // STYLES
 import styles from "@/styles/pages/user.page.module.scss";
 
@@ -36,24 +36,18 @@ const UserPage = async (props: IPageProps) => {
   const userBlocks = await GetUserBlocks(userID);
   const userChannels = channels?.data;
 
-  // TODO: Move CreateChannelButton to different component
-
   return (
-    <div>
-      <div className={styles.page}>
-        <Header
-          title={<HeaderTitle props={user} />}
-          action={<HeaderAction userID={user.id} />}
-          info={<HeaderInfo props={user} params={props.params.userID} />}
-        />
+    <div className={styles.page}>
+      <Header
+        title={<HeaderTitle props={user} />}
+        action={<HeaderAction userID={user.id} />}
+        info={<HeaderInfo props={user} params={props.params.userID} />}
+      />
 
-        {/* <CreateChannelButton /> */}
+      <User user={user} userChannels={userChannels} userBlocks={userBlocks} />
 
-        <User user={user} userChannels={userChannels} userBlocks={userBlocks} />
-
-        <ChannelFormModal />
-      </div>
-    </div >
+      <ChannelFormModal />
+    </div>
   )
 }
 

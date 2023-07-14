@@ -3,15 +3,26 @@
 import useSWRMutation from 'swr/mutation';
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-// Imports
-import { CreateChannel } from '@/resources/data/channel/createChannel';
+// REDUX
+import { useAppDispatch, useAppSelector } from '@/store';
+import { setIsOpen } from '@/store/isModalOpenSlice';
+import { setFormType } from '@/store/formTypeSlice';
+// VALIDATIONS
 import channelValidation from '@/resources/validations/channel.validation';
-import { IChannelPayload } from '@/utils/types/types';
+// FUNCTIONS
+import { CreateChannel } from '@/resources/data/channel/createChannel';
 import { isEmpty } from '@/resources/isEmpty';
+// TPYES
+import { IChannelPayload } from '@/utils/types/types';
+// STYLES
+import styles from '@/styles/components/form/createChannel.form.module.scss';
 
 let channelPayload: IChannelPayload = {};
 
 const CreateChannelForm = () => {
+
+    const dispatch = useAppDispatch();
+    const isOpen = useAppSelector((state) => state.Modal.isOpen);
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(channelValidation.create)
@@ -45,38 +56,71 @@ const CreateChannelForm = () => {
     };
 
     return (
-        <>
-            <h4>CREATE CHANNEL</h4>
-            
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.modal}>
 
-                <div>
-                    <label htmlFor="title">Title</label>
-                    <input
-                        className='input'
-                        type="text"
-                        placeholder="Title"
-                        autoComplete="off"
-                        {...register("title", { required: true })}
-                    />
-                    <span className='error'>{errors?.title?.message?.toString()}</span>
+            <div className={styles.modal__box}>
+                <div className={styles.modal__box__close_btn}>
+                    <svg
+                        onClick={() => {
+                            dispatch(setIsOpen(!isOpen));
+                            dispatch(setFormType(''));
+                        }}
+                        xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 15" fill="none">
+                        <line x1="1.96612" y1="0.427971" x2="16.0827" y2="14.5446" stroke="currentColor" />
+                        <line x1="1.25901" y1="14.5445" x2="15.3756" y2="0.427954" stroke="currentColor" />
+                    </svg>
                 </div>
 
-                <div>
-                    <label htmlFor="description">Description</label>
-                    <input
-                        className='input'
-                        type="text"
-                        placeholder="Description"
-                        autoComplete="off"
-                        {...register("description", { required: true })}
-                    />
-                    <span className='error'>{errors?.description?.message?.toString()}</span>
-                </div>
+                <h2>Create Channel</h2>
 
-                <button>Submit</button>
-            </form>
-        </>
+                <form
+                    className={styles.modal__box__form}
+                    onSubmit={handleSubmit(onSubmit)}
+                >
+
+                    <div className={styles.modal__box__form__item}>
+                        <label
+                            className={styles.modal__box__form__item__label}
+                            htmlFor="title">
+                            Title
+                        </label>
+                        <span className={styles.modal__box__form__item__input}>
+                            <input
+                                className='input'
+                                type="text"
+                                placeholder="Title"
+                                autoComplete="off"
+                                {...register("title", { required: true })}
+                            />
+                        </span>
+                        <span className='error'>{errors?.title?.message?.toString()}</span>
+                    </div>
+
+                    <div className={styles.modal__box__form__item}>
+                        <label
+                            className={styles.modal__box__form__item__label}
+                            htmlFor="description">
+                            Description
+                        </label>
+                        <span className={styles.modal__box__form__item__input}>
+                            <input
+                                className='input'
+                                type="text"
+                                placeholder="Description"
+                                autoComplete="off"
+                                {...register("description", { required: true })}
+                            />
+                        </span>
+                        <span className='error'>{errors?.description?.message?.toString()}</span>
+                    </div>
+
+                    <div className={styles.modal__box__form__submit}>
+                        <button className={styles.modal__box__form__submit__btn}>create</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
     );
 };
 

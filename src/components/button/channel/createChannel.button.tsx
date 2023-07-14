@@ -3,19 +3,35 @@
 import { setIsOpen } from '@/store/isModalOpenSlice';
 import { setFormType } from '@/store/formTypeSlice';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { FORM } from '@/utils/types/types';
+import { FORM, IUser } from '@/utils/types/types';
+import styles from '@/styles/components/button.module.scss';
+
+interface ICreateChannelButton {
+    userID: number
+}
 
 // Opens modal
-const CreateChannelButton = () => {
+const CreateChannelButton = ({ userID }: ICreateChannelButton) => {
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
+    const loggedInUser: IUser = useAppSelector((state) => state.User.user);
 
     return (
         <>
-            <div>
-                <button onClick={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType(FORM.CHANNEL_CREATE)); console.log('create channel clicked') }}>Create Channel</button>
-            </div>
+            {
+                loggedInUser && userID == loggedInUser.id ?
+                    <button
+                        className={styles.button}
+                        onClick={() => {
+                            dispatch(setIsOpen(!isOpen));
+                            dispatch(setFormType(FORM.CHANNEL_CREATE));
+                            console.log('create channel clicked')
+                        }}>
+                        + create channel
+                    </button>
+                    : null
+            }
         </>
     )
 };

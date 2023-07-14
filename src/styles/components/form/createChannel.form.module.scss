@@ -1,0 +1,5 @@
+@use '@/styles/abstracts' as a;
+
+.modal {
+    @include a.form-modal(a.$createChannel-height, a.$createBlock-margin-top, a.$createChannel-margin-bottom);
+}

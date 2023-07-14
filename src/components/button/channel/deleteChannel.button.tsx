@@ -31,19 +31,19 @@ const DeleteChannelButton = ({ channelID }: Props) => {
     };
 
     return (
-        <div className={styles.modal__box__delete__container}>
+        <div className={styles.modal__delete__container}>
             {
                 clicked == BUTTON.CHANNEL_DELETE ?
                     <div>
                         <h4>Do you want to delete channel?</h4>
-                        <div className={styles.modal__box__delete__container__buttons}>
+                        <div className={styles.modal__delete__container__buttons}>
                             <button
-                                className={styles.modal__box__delete__container__buttons__btn}
+                                className={styles.modal__delete__container__buttons__btn}
                                 onClick={() => { setClicked('') }}>
                                 cancel
                             </button>
                             <button
-                                className={styles.modal__box__delete__container__buttons__btn}
+                                className={styles.modal__delete__container__buttons__btn}
                                 // onClick={() => handleClick}>
                                 onClick={() => console.log('testing delete channel btn!')}>
                                 confirm &nbsp; ✓
@@ -52,7 +52,7 @@ const DeleteChannelButton = ({ channelID }: Props) => {
                     </div>
                     :
                     <button
-                        className={styles.modal__box__delete__container__btn}
+                        className={styles.modal__delete__container__btn}
                         onClick={() => { setClicked(BUTTON.CHANNEL_DELETE) }}>
                         delete channel &nbsp; x
                     </button>

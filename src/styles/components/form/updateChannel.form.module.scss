@@ -1,110 +1,35 @@
 @use '@/styles/abstracts' as a;
 
 .modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background-color: rgba(242, 242, 242, 0.658);
+    @include a.form-modal(a.$updateChannel-height, a.$updateChannel-margin-top, a.$updateChannel-margin-bottom);
 
-    @include a.min-width(xsmall) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        padding: 1rem;
-        background-color: rgba(242, 242, 242, 0.658);
-    }
-
-    &__box {
+    &__delete {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 550px;
-        height: 100%;
-        overflow-x: auto;
-        padding: 1rem;
-        text-align: start;
-        background-color: a.$color-primary;
-        border: 1px solid a.$color-secondary;
+        width: 100%;
+        gap: 1rem;
+        margin-top: 2rem;
+        padding-top: 2em;
+        border-top: 1px solid a.$color-secondary;
 
-        @include a.min-width(xsmall) {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 550px;
-            padding: 1rem;
-            background-color: a.$color-primary;
-            border: 1px solid a.$color-secondary;
-        }
-
-        &__close_btn {
-            display: flex;
-            justify-content: flex-end;
+        &__container {
             width: 100%;
-            margin-bottom: 2rem;
-        }
+            text-align: center;
 
-        &__form {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            gap: 1rem;
-
-            &__item {
+            &__buttons {
                 display: flex;
-                flex-direction: column;
-                gap: 0.5rem 0;
-
-                &__label {
-                    text-align: start;
-                }
-
-                &__input {
-                    border: 1px solid a.$color-secondary;
-                }
-
-                &__textarea {
-                    border: 1px solid a.$color-secondary;
-                }
-            }
-
-            &__submit {
-                text-align: center;
+                flex-flow: row wrap;
+                justify-content: center;
+                gap: 1.5rem;
 
                 &__btn {
                     @include a.button;
                 }
             }
-        }
 
-        &__delete {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            gap: 1rem;
-            margin-top: 2rem;
-            padding-top: 2em;
-            border-top: 1px solid a.$color-secondary;
-
-            &__container {
-                width: 100%;
-                text-align: center;
-
-                &__buttons {
-                    display: flex;
-                    justify-content: center;
-                    gap: 0 1.5rem;
-
-                    &__btn {
-                        @include a.button;
-                    }
-                }
-
-                &__btn {
-                    @include a.button;
-                }
+            &__btn {
+                @include a.button;
             }
         }
     }
