@@ -3,7 +3,7 @@
 import useSWRMutation from "swr/mutation";
 // Imports
 import { useAppDispatch, useAppSelector } from "@/store";
-import { setIsOpen } from "@/store/modalSlice";
+import { setIsBlockModalOpen, setIsOpen } from "@/store/modalSlice";
 import { setBlockClicked } from "@/store/blockClickedSlice";
 import { setButtonType } from "@/store/buttonTypeSlice";
 import { DisconnectBlock } from "@/resources/data/block/disconnectBlock";
@@ -14,9 +14,18 @@ interface IRemoveConnectionBlock {
     blockTitle: string;
     channelID: number;
     channelTitle: string;
+    pathname: string;
+    replaceURL: (newURL: string) => void;
 }
 
-const RemoveConnectionBlock = ({ blockID, blockTitle, channelID, channelTitle }: IRemoveConnectionBlock) => {
+const RemoveConnectionBlock = ({
+    blockID,
+    blockTitle,
+    channelID,
+    channelTitle,
+    pathname,
+    replaceURL
+}: IRemoveConnectionBlock) => {
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
@@ -31,7 +40,7 @@ const RemoveConnectionBlock = ({ blockID, blockTitle, channelID, channelTitle }:
     return (
         <div className={styles.modal}>
             <div className={styles.modal__box}>
-                <p>Remove block: `{blockTitle}` from channel: `{channelTitle}`?</p>
+                <p>Disconnect block `{blockTitle}` from channel `{channelTitle}`?</p>
 
                 <div className={styles.modal__box__button}>
                     <button
@@ -40,14 +49,16 @@ const RemoveConnectionBlock = ({ blockID, blockTitle, channelID, channelTitle }:
                             dispatch(setIsOpen(!isOpen))
                             dispatch(setButtonType(''));
                             dispatch(setBlockClicked(undefined));
+                            dispatch(setIsBlockModalOpen(false));
+                            replaceURL(pathname);
                         }}>
-                        Cancel
+                        cancel
                     </button>
                     <button
                         className={styles.modal__box__button__confirm}
                         // onClick={() => handleClick}
                         onClick={() => { console.log('testing remove connection!') }}>
-                        Confirm
+                        confirm
                     </button>
                 </div>
             </div>

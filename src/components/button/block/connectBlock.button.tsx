@@ -39,7 +39,7 @@ const ConnectBlockButton = ({ blockID }: IConnectBlockButton) => {
                         connect
                     </button>
                     :
-                    <Link href={'/'}>
+                    <Link href={'/login'}>
                         <button className={styles.button}>connect</button>
                     </Link>
             }

@@ -71,85 +71,87 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
 
     return (
         <>
-            {
-                formType && formType == FORM.BLOCK_UPDATE ?
-                    <div>
-                        <button onClick={() => { dispatch(setFormType('')); }} >X</button>
-                        <UpdateBlockForm block={block} />
+            <div className={styles.block} key={block.id}>
+                <div className={styles.block__image_container} />
+
+                <div className={styles.block__info}>
+                    {
+                        replaceURL && pathname ?
+                            <div className={styles.block__info__close_btn}>
+                                <svg
+                                    onClick={() => {
+                                        dispatch(setIsOpen(!isOpen));
+                                        dispatch(setBlockClicked(undefined));
+                                        dispatch(setIsBlockModalOpen(!blockModalOpen));
+                                        replaceURL(pathname);
+                                    }}
+                                    xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 15" fill="none">
+                                    <line x1="1.96612" y1="0.427971" x2="16.0827" y2="14.5446" stroke="currentColor" />
+                                    <line x1="1.25901" y1="14.5445" x2="15.3756" y2="0.427954" stroke="currentColor" />
+                                </svg>
+                            </div> : null
+                    }
+
+                    <h1>{blocks.title}</h1>
+
+                    <p className={styles.block__info__description}>{blocks.description}</p>
+
+                    <p>
+                        <time dateTime={blocks.date_created} title={blocks.date_created}>
+                            Added {timeAgo(blocks.date_created)}
+                        </time>
+                    </p>
+
+                    <p>
+                        <time dateTime={blocks.date_updated} title={blocks.date_updated}>
+                            Last updated {timeAgo(blocks.date_updated)}
+                        </time>
+                    </p>
+
+                    <p>
+                        <Link href={blocks.source_url}>Source</Link>
+                    </p>
+
+                    <div className={styles.block__info__buttons}>
+                        {
+                            loggedInUser && block.user == loggedInUser.id ?
+                                <EditBlockButton />
+                                : null
+                        }
+                        <ConnectBlockButton blockID={block.id} />
+                        <DownloadBlockButton />
+                        <ShareBlockButton url={blocks.source_url} />
                     </div>
-                    :
-                    <div className={styles.block} key={block.id}>
-                        <div className={styles.block__image_container} />
 
-                        <div className={styles.block__info}>
-                            {
-                                replaceURL && pathname ?
-                                    <div className={styles.block__info__close_btn}>
-                                        <svg
-                                            onClick={() => {
-                                                dispatch(setIsOpen(!isOpen));
-                                                dispatch(setBlockClicked(undefined));
-                                                dispatch(setIsBlockModalOpen(!blockModalOpen));
-                                                replaceURL(pathname);
-                                            }}
-                                            xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 15" fill="none">
-                                            <line x1="1.96612" y1="0.427971" x2="16.0827" y2="14.5446" stroke="currentColor" />
-                                            <line x1="1.25901" y1="14.5445" x2="15.3756" y2="0.427954" stroke="currentColor" />
-                                        </svg>
-                                    </div> : null
-                            }
+                    <div className={styles.block__info__connections}>
 
-                            <h1>{blocks.title}</h1>
+                        <span className={styles.block__info__description}>{connections > 1 ? `${connections} CONNECTIONS` : `${connections} CONNECTION`} </span>
 
-                            <p className={styles.block__info__description}>{blocks.description}</p>
-
-                            <p>
-                                <time dateTime={blocks.date_created} title={blocks.date_created}>
-                                    Added {timeAgo(blocks.date_created)}
-                                </time>
-                            </p>
-
-                            <p>
-                                <time dateTime={blocks.date_updated} title={blocks.date_updated}>
-                                    Last updated {timeAgo(blocks.date_updated)}
-                                </time>
-                            </p>
-
-                            <p>
-                                <Link href={blocks.source_url}>Source</Link>
-                            </p>
-
-                            <div className={styles.block__info__buttons}>
+                        <div className={styles.block__info__connections__item}>
+                            <h5>
                                 {
-                                    loggedInUser && block.user == loggedInUser.id ?
-                                        <EditBlockButton />
-                                        : null
+                                    blocks.channels.map((channel: IChannel) => (
+                                        <div key={channel.slug}>
+                                            <div>CHANNEL - {channel.title}</div>
+                                        </div>
+                                    ))
                                 }
-                                <ConnectBlockButton blockID={block.id} />
-                                <DownloadBlockButton />
-                                <ShareBlockButton url={blocks.source_url} />
-                            </div>
-
-                            <div className={styles.block__info__connections}>
-
-                                <span className={styles.block__info__description}>{connections > 1 ? `${connections} CONNECTIONS` : `${connections} CONNECTION`} </span>
-
-                                <div className={styles.block__info__connections__item}>
-                                    <h5>
-                                        {
-                                            blocks.channels.map((channel: IChannel) => (
-                                                <div key={channel.slug}>
-                                                    <div>CHANNEL - {channel.title}</div>
-                                                </div>
-                                            ))
-                                        }
-                                    </h5>
-                                </div>
-                            </div>
-
+                            </h5>
                         </div>
                     </div>
-            }
+
+                </div>
+            </div>
+            <>
+                {
+                    isOpen && blockClicked == block.id && formType && formType == FORM.BLOCK_UPDATE ?
+                        <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setFormType('')); dispatch(setBlockClicked(undefined)); }} isOpen={isOpen}>
+                            <UpdateBlockForm block={block} />
+                        </Modal>
+
+                        : null
+                }
+            </>
             <>
                 {
                     isOpen && blockClicked == block.id && buttonType == BUTTON.BLOCK_CONNECTION_CREATE ?

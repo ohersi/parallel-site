@@ -1,5 +1,6 @@
 "use client";
 // Packages
+import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 // REDUX
 import { useAppDispatch, useAppSelector } from '@/store';
@@ -44,7 +45,14 @@ const BlockGrid = ({ block, channelID, channelUser, channelTitle }: IBlockGrid) 
             '',
             newURL);
     };
-console.log(`channelUser: ${channelUser}`)
+
+    useEffect(() => {
+        return (): void => {
+            dispatch(setIsOpen(false));
+            dispatch(setIsBlockModalOpen(false));
+        }
+    }, [])
+
     return (
         <>
             <div
@@ -92,12 +100,14 @@ console.log(`channelUser: ${channelUser}`)
             <>
                 {
                     isOpen && channelID && channelTitle && blockClicked == block.id && buttonType == BUTTON.BLOCK_CONNECTION_DELETE ?
-                        <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); dispatch(setBlockClicked(undefined)); }} isOpen={isOpen}>
+                        <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)); dispatch(setButtonType('')); dispatch(setBlockClicked(undefined)); dispatch(setIsBlockModalOpen(false)); replaceURL(pathname); }} isOpen={isOpen}>
                             <RemoveConnectionBlock
                                 blockID={block.id}
                                 blockTitle={block.title}
                                 channelID={channelID}
                                 channelTitle={channelTitle}
+                                pathname={pathname}
+                                replaceURL={replaceURL}
                             />
                         </Modal>
                         : null
