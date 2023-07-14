@@ -77,14 +77,14 @@ const NavProfile = () => {
                     :
                     <div className={styles.nav__account}>
                         <Link href={'/login'}>
-                            <div className={styles.nav__account__login}>
-                                Login
-                            </div>
+                            <button className={styles.nav__account__login}>
+                                login
+                            </button>
                         </Link>
                         <Link href={'/signup'}>
-                            <div className={styles.nav__account__signup}>
-                                Sign Up
-                            </div>
+                            <button className={styles.nav__account__signup}>
+                                sign up
+                            </button>
                         </Link>
                     </div>
             }

@@ -1,7 +1,7 @@
 "use client";
 // Packages
 // Imports
-import { setIsOpen } from '@/store/isModalOpenSlice';
+import { setIsOpen } from '@/store/modalSlice';
 import { setFormType } from '@/store/formTypeSlice';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { FORM } from '@/utils/types/types';

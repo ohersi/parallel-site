@@ -7,8 +7,8 @@ import useSWR from "swr";
 // REDUX
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setFormType } from '@/store/formTypeSlice';
-import { setIsOpen } from '@/store/isModalOpenSlice';
-import { setIsBlockModalOpen } from '@/store/isModalOpenSlice';
+import { setIsOpen } from '@/store/modalSlice';
+import { setIsBlockModalOpen } from '@/store/modalSlice';
 import { setButtonType } from '@/store/buttonTypeSlice';
 import { setBlockClicked } from '@/store/blockClickedSlice';
 // COMPONENTS

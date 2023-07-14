@@ -3,7 +3,7 @@
 import useSWRMutation from 'swr/mutation';
 // Imports
 import { useAppDispatch, useAppSelector } from "@/store";
-import { setIsOpen } from "@/store/isModalOpenSlice";
+import { setIsOpen } from "@/store/modalSlice";
 import Modal from "@/components/modal/modal";
 import { DeleteBlock } from "@/resources/data/block/deleteBlock";
 

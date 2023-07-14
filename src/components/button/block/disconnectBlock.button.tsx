@@ -3,7 +3,7 @@
 import { Dispatch, SetStateAction } from "react";
 // REDUX
 import { useAppDispatch, useAppSelector } from '@/store';
-import { setIsOpen } from '@/store/isModalOpenSlice';
+import { setIsOpen } from '@/store/modalSlice';
 import { setButtonType } from '@/store/buttonTypeSlice';
 import { setBlockClicked } from '@/store/blockClickedSlice';
 // FUNCTIONS

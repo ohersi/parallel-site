@@ -5,7 +5,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // REDUX
 import { useAppDispatch, useAppSelector } from '@/store';
-import { setIsOpen } from '@/store/isModalOpenSlice';
+import { setIsOpen } from '@/store/modalSlice';
 import { setFormType } from '@/store/formTypeSlice';
 // FUNCTIONS
 import { CreateBlock } from '@/resources/data/block/createBlock';

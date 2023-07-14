@@ -5,7 +5,7 @@ import useSWRMutation from 'swr/mutation';
 // Imports
 import { DeleteChannel } from "@/resources/data/channel/deleteChannel";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { setIsOpen } from "@/store/isModalOpenSlice";
+import { setIsOpen } from "@/store/modalSlice";
 import { BUTTON } from "@/utils/types/types";
 import styles from "@/styles/components/form/updateChannel.form.module.scss";
 

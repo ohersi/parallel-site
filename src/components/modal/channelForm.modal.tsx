@@ -1,7 +1,7 @@
 "use client";
 // Imports
 import { useAppDispatch, useAppSelector } from '@/store';
-import { setIsOpen } from '@/store/isModalOpenSlice';
+import { setIsOpen } from '@/store/modalSlice';
 import { setFormType } from '@/store/formTypeSlice';
 import Modal from "@/components/modal/modal";
 import UpdateChannelForm from "@/components/form/updateChannel.form";

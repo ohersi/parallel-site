@@ -6,7 +6,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 // Imports
-import isModalOpenReducer from "@/store/isModalOpenSlice";
+import modalReducer from "@/store/modalSlice";
 import userSliceReducer from "@/store/userSlice";
 import formTypeReducer from "@/store/formTypeSlice";
 import buttonTypeReducer from "@/store/buttonTypeSlice";
@@ -21,7 +21,7 @@ const persistConfig = {
   whitelist: ['User']
 }
 const rootReducer = combineReducers({
-  Modal: isModalOpenReducer,
+  Modal: modalReducer,
   User: userSliceReducer,
   Form: formTypeReducer,
   Button: buttonTypeReducer,

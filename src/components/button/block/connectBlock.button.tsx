@@ -3,7 +3,7 @@
 import Link from 'next/link';
 // REDUX
 import { useAppDispatch, useAppSelector } from '@/store';
-import { setIsOpen } from '@/store/isModalOpenSlice';
+import { setIsOpen } from '@/store/modalSlice';
 import { setButtonType } from '@/store/buttonTypeSlice';
 import { setBlockClicked } from '@/store/blockClickedSlice';
 // TYPES
@@ -39,9 +39,9 @@ const ConnectBlockButton = ({ blockID }: IConnectBlockButton) => {
                         connect
                     </button>
                     :
-                    <button className={styles.button}>
-                        <Link href={'/'}>connect</Link>
-                    </button>
+                    <Link href={'/'}>
+                        <button className={styles.button}>connect</button>
+                    </Link>
             }
         </>
     )

@@ -3,7 +3,7 @@
 import useSWRMutation from "swr/mutation";
 // Imports
 import { useAppDispatch, useAppSelector } from "@/store";
-import { setIsOpen } from "@/store/isModalOpenSlice";
+import { setIsOpen } from "@/store/modalSlice";
 import { setBlockClicked } from "@/store/blockClickedSlice";
 import { setButtonType } from "@/store/buttonTypeSlice";
 import { DisconnectBlock } from "@/resources/data/block/disconnectBlock";

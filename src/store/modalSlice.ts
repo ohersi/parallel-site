@@ -3,17 +3,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-export interface isOpenState {
+export interface modalState {
     isOpen: boolean;
     isBlockModalOpen: boolean;
 }
 
-const initialState: isOpenState = {
+const initialState: modalState = {
     isOpen: false,
     isBlockModalOpen: false
 };
 
-const isModalOpenSlice = createSlice({
+const modalSlice = createSlice({
     name: "Modal",
     initialState,
     reducers: {
@@ -26,5 +26,5 @@ const isModalOpenSlice = createSlice({
     },
 });
 
-export const { setIsOpen, setIsBlockModalOpen } = isModalOpenSlice.actions;
-export default isModalOpenSlice.reducer;
+export const { setIsOpen, setIsBlockModalOpen } = modalSlice.actions;
+export default modalSlice.reducer;
