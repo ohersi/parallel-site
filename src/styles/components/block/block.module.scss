@@ -2,33 +2,98 @@
 
 .block {
     display: grid;
-    grid-template-rows: 50vh 1fr;
+    grid-template-rows: auto 50vh auto;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "close"
+        "img"
+        "info";
     background-color: a.$color-primary;
     position: relative;
+    padding-bottom: 1rem;
 
     @include a.min-width(small) {
         display: grid;
-        height: 100%;
         grid-template-columns: 70% 1fr;
         grid-template-rows: 1fr;
+        grid-template-areas:
+            "img info";
+        padding: 0;
+        height: 100%;
     }
 
     &__image_container {
         width: 100%;
         background-color: grey;
+        grid-area: img;
+    }
+
+    &__close {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding: 1rem;
+        grid-area: close;
+
+        &__btn {
+            cursor: pointer;
+            color: inherit;
+            height: fit-content;
+        }
+
+        @include a.min-width(small) {
+            display: none;
+        }
+    }
+
+    &__resize {
+        display: none;
+
+        @include a.min-width(small) {
+            grid-area: re;
+            display: inline-block;
+            cursor: col-resize;
+            position: relative;
+            padding: 0 1rem;
+            z-index: 2;
+            opacity: 0;
+
+            &::after {
+                border-left: 1px solid a.$color-secondary;
+                content: "";
+                display: flex;
+                position: relative;
+                width: 1px;
+                height: 100%;
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+        }
     }
 
     &__info {
-        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0 1rem;
+        margin-top: 1rem;
+        grid-area: info;
+        height: 100%;
 
-        &__close_btn {
-            top: 0;
-            position: absolute;
-            border: 1px solid orange;
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            padding: 1rem;
+        @include a.min-width(small) {
+            margin-top: 0;
+        }
+
+        &__close {
+            display: none;
+
+            &__btn {
+                cursor: pointer;
+                color: inherit;
+                height: fit-content;
+            }
 
             @include a.min-width(small) {
                 position: relative;
@@ -40,24 +105,59 @@
             }
         }
 
-        &__description {
-            border-bottom: 1px solid a.$color-secondary;
-        }
-
-        &__buttons {
-            border: 1px solid red;
+        &__text {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            gap: 1rem;
+            // background-color: rgba(0, 128, 0, 0.219);
+            border-bottom: 1px solid a.$color-secondary;
+
+            &__title {
+                font-size: 2.2rem;
+                font-weight: bold;
+            }
+
+            &__description {
+                // border-bottom: 1px solid a.$color-secondary;
+            }
+        }
+
+        &__metadata {
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            // background-color: rgba(255, 166, 0, 0.38);
+            margin-bottom: 2rem;
+        }
+
+        &__links {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+
+            &__title {
+                font-size: 1.1rem;
+                font-weight: bold;
+                border-bottom: 1px solid a.$color-secondary;
+                margin-bottom: 0.5rem;
+            }
         }
 
         &__connections {
-            // border: 1px solid black;
+            border-top: 1px solid a.$color-secondary;
             display: flex;
             flex-direction: column;
             text-align: center;
             gap: 1rem;
-            margin: 1rem; // or padding?
+            margin-top: 1rem;
+            padding-top: 1rem;
+
+            &__btn {
+                width: 100%;
+                // background-color: red;
+                padding: 0.5rem;
+            }
 
             &__item {
                 border: 1px solid a.$color-secondary;

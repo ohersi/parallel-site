@@ -1,0 +1,29 @@
+@use '@/styles/abstracts/variables' as v;
+
+@mixin font-size($size) {
+    @for $i from 1 through 12 {
+        $font: 1rem+($i / 3);
+        $diff: $i * 20;
+        $max: $size * $i +$diff;
+        $min: $max +20;
+
+        @media(min-width: $min) {
+            font-size: min($font, 2.5rem);
+            @content;
+        }
+    }
+}
+
+@mixin svg-size($size) {
+    @for $i from 1 through 12 {
+        $svg: 1rem+($i / 3);
+        $diff: $i * 20;
+        $max: $size * $i +$diff;
+        $min: $max +20;
+
+        @media(min-width: $min) {
+            width: min($svg, 1.8rem);
+            @content;
+        }
+    }
+}

@@ -1,3 +1,5 @@
+@use '@/styles/abstracts/variables' as v;
+
 h1,
 h2,
 h3 {
@@ -55,11 +57,35 @@ input[type=search]::-ms-clear {
     height: 0;
 }
 
+input[type=search]:focus::-ms-clear {
+    display: inline-block;
+    appearance: none;
+    height: 1rem;
+    width: 1rem;
+    mask: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNyIgdmlld0JveD0iMCAwIDE3IDE1IiBmaWxsPSJub25lIj4KPGxpbmUgeDE9IjEuOTY2MTIiIHkxPSIwLjQyNzk3MSIgeDI9IjE2LjA4MjciIHkyPSIxNC41NDQ2IiBzdHJva2U9ImN1cnJlbnRDb2xvciIgLz4KPGxpbmUgeDE9IjEuMjU5MDEiIHkxPSIxNC41NDQ1IiB4Mj0iMTUuMzc1NiIgeTI9IjAuNDI3OTU0IiBzdHJva2U9ImN1cnJlbnRDb2xvciIgLz4KPC9zdmc+") no-repeat 50% 50%;
+    background-size: contain;
+    background: v.$color-secondary;
+}
+
+/*---------------------------*/
+
 input[type=search]::-ms-reveal {
     display: none;
     width: 0;
     height: 0;
 }
+
+input[type=search]:focus::-ms-reveal {
+    display: inline-block;
+    appearance: none;
+    height: 1rem;
+    width: 1rem;
+    mask: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNyIgdmlld0JveD0iMCAwIDE3IDE1IiBmaWxsPSJub25lIj4KPGxpbmUgeDE9IjEuOTY2MTIiIHkxPSIwLjQyNzk3MSIgeDI9IjE2LjA4MjciIHkyPSIxNC41NDQ2IiBzdHJva2U9ImN1cnJlbnRDb2xvciIgLz4KPGxpbmUgeDE9IjEuMjU5MDEiIHkxPSIxNC41NDQ1IiB4Mj0iMTUuMzc1NiIgeTI9IjAuNDI3OTU0IiBzdHJva2U9ImN1cnJlbnRDb2xvciIgLz4KPC9zdmc+") no-repeat 50% 50%;
+    background-size: contain;
+    background: v.$color-secondary;
+}
+
+/*---------------------------*/
 
 /* clears the 'X' from Chrome */
 input[type="search"]::-webkit-search-decoration,
@@ -67,6 +93,20 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
     display: none;
+}
+
+/* clears the 'X' from Chrome */
+input[type="search"]:focus::-webkit-search-decoration,
+input[type="search"]:focus::-webkit-search-cancel-button,
+input[type="search"]:focus::-webkit-search-results-button,
+input[type="search"]:focus::-webkit-search-results-decoration {
+    display: inline-block;
+    appearance: none;
+    height: 1rem;
+    width: 1rem;
+    mask: url("data:image/svg+xml;base64, PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNyIgaGVpZ2h0PSIxNyIgdmlld0JveD0iMCAwIDE3IDE1IiBmaWxsPSJub25lIj4KPGxpbmUgeDE9IjEuOTY2MTIiIHkxPSIwLjQyNzk3MSIgeDI9IjE2LjA4MjciIHkyPSIxNC41NDQ2IiBzdHJva2U9ImN1cnJlbnRDb2xvciIgLz4KPGxpbmUgeDE9IjEuMjU5MDEiIHkxPSIxNC41NDQ1IiB4Mj0iMTUuMzc1NiIgeTI9IjAuNDI3OTU0IiBzdHJva2U9ImN1cnJlbnRDb2xvciIgLz4KPC9zdmc+") no-repeat 50% 50%;
+    background-size: contain;
+    background: v.$color-secondary;
 }
 
 svg {

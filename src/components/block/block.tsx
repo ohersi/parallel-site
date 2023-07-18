@@ -1,6 +1,5 @@
 "use client";
 // Packages
-import { Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import useSWR from "swr";
@@ -72,12 +71,10 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
     return (
         <>
             <div className={styles.block} key={block.id}>
-                <div className={styles.block__image_container} />
-
-                <div className={styles.block__info}>
-                    {
-                        replaceURL && pathname ?
-                            <div className={styles.block__info__close_btn}>
+                {
+                    replaceURL && pathname ?
+                        <div className={styles.block__close}>
+                            <button className={styles.block__close__btn}>
                                 <svg
                                     onClick={() => {
                                         dispatch(setIsOpen(!isOpen));
@@ -89,43 +86,66 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
                                     <line x1="1.96612" y1="0.427971" x2="16.0827" y2="14.5446" stroke="currentColor" />
                                     <line x1="1.25901" y1="14.5445" x2="15.3756" y2="0.427954" stroke="currentColor" />
                                 </svg>
+                            </button>
+                        </div> : null
+                }
+
+                <div className={styles.block__image_container} />
+
+                <div className={styles.block__info}>
+                    {
+                        replaceURL && pathname ?
+                            <div className={styles.block__info__close}>
+                                <button className={styles.block__info__close__btn}>
+                                    <svg
+                                        onClick={() => {
+                                            dispatch(setIsOpen(!isOpen));
+                                            dispatch(setBlockClicked(undefined));
+                                            dispatch(setIsBlockModalOpen(!blockModalOpen));
+                                            replaceURL(pathname);
+                                        }}
+                                        xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 15" fill="none">
+                                        <line x1="1.96612" y1="0.427971" x2="16.0827" y2="14.5446" stroke="currentColor" />
+                                        <line x1="1.25901" y1="14.5445" x2="15.3756" y2="0.427954" stroke="currentColor" />
+                                    </svg>
+                                </button>
                             </div> : null
                     }
 
-                    <h1>{blocks.title}</h1>
+                    <div className={styles.block__info__text}>
+                        <span className={styles.block__info__text__title}>{blocks.title}</span>
+                        <p className={styles.block__info__text__description}>{blocks.description}</p>
+                    </div>
 
-                    <p className={styles.block__info__description}>{blocks.description}</p>
-
-                    <p>
+                    <div className={styles.block__info__metadata}>
                         <time dateTime={blocks.date_created} title={blocks.date_created}>
                             Added {timeAgo(blocks.date_created)}
                         </time>
-                    </p>
-
-                    <p>
                         <time dateTime={blocks.date_updated} title={blocks.date_updated}>
                             Last updated {timeAgo(blocks.date_updated)}
                         </time>
-                    </p>
-
-                    <p>
                         <Link href={blocks.source_url}>Source</Link>
-                    </p>
-
-                    <div className={styles.block__info__buttons}>
-                        {
-                            loggedInUser && block.user == loggedInUser.id ?
-                                <EditBlockButton />
-                                : null
-                        }
-                        <ConnectBlockButton blockID={block.id} />
-                        <DownloadBlockButton />
-                        <ShareBlockButton url={blocks.source_url} />
                     </div>
+
+                    <div className={styles.block__info__links}>
+                        <span className={styles.block__info__links__title}>Actions</span>
+                        <span>Share</span>
+                        <span>Download</span>
+                    </div>
+
+                    {
+                        loggedInUser && block.user == loggedInUser.id ?
+                            <EditBlockButton blockID={block.id} />
+                            : null
+                    }
 
                     <div className={styles.block__info__connections}>
 
                         <span className={styles.block__info__description}>{connections > 1 ? `${connections} CONNECTIONS` : `${connections} CONNECTION`} </span>
+
+                        <div className={styles.block__info__connections__btn}>
+                            <ConnectBlockButton blockID={block.id} />
+                        </div>
 
                         <div className={styles.block__info__connections__item}>
                             <h5>

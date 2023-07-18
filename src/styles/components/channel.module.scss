@@ -10,16 +10,16 @@
 
     &__blocks {
         $b: &;
+        position: relative;
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
         border: 1px solid a.$color-secondary;
-        box-sizing: border-box;
         width: 315px;
         height: 100%;
-        position: relative;
-        /* margin: 0px 10px 40px; */
+        cursor: pointer;
 
         &__image {
             $g: &;
@@ -79,14 +79,7 @@
 }
 
 .default_block {
-    display: flex;
-    flex-direction: column;
+    @include a.default_block;
     justify-content: space-around;
     align-items: center;
-    border: 1px solid a.$color-secondary;
-    box-sizing: border-box;
-    width: 315px;
-    height: 315px;
-    position: relative;
-    /* margin: 0px 10px 40px; */
 }
