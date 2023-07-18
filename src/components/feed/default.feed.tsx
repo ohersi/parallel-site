@@ -3,9 +3,12 @@
 import { useRef, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 // Imports
+import { useAppSelector } from "@/store";
+import BlockGrid from "@/components/block/grid.blocks";
+import ChannelGrid from "@/components/channel/grid.channel";
 import { GetDefaultFeed } from "@/resources/data/feed/getDefaultFeed";
-import { IBlock, IChannel, IDefaultFeedResults } from "@/utils/types/types";
-import styles from "@/styles/components/channel.module.scss";
+import { IBlock, IChannel, IDefaultFeedResults, FEED, SORT } from "@/utils/types/types";
+import styles from "@/styles/components/feed/default.feed.module.scss";
 
 // TODO: Replace InfiniteScroll packages with custom scroll
 
@@ -16,6 +19,8 @@ interface IDefaultFeed {
 const DefaultFeed = ({ initial }: IDefaultFeed) => {
 
     const fetching = useRef(false);
+    const viewType = useAppSelector((state) => state.Filter.viewType);
+    const sortType = useAppSelector((state) => state.Filter.sortType);
 
     const [channelLastID, setChannelLastID] = useState(initial.channel_lastID);
     const [blockLastID, setBlockLastID] = useState<string | null>(initial.block_lastID);
@@ -53,41 +58,78 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
     };
 
     return (
-        <div className={styles.channel_blocks_container}>
+        <div className={styles.feed}>
 
             <span>Last channelID: {channelLastID ? channelLastID : 'NULL'}</span>
             <span>Last blockID: {blockLastID ? blockLastID : 'NULL'}</span>
 
-            <InfiniteScroll
-                dataLength={feed.length}
-                next={fetchFeed}
-                hasMore={channelLastID || blockLastID ? true : false}
-                loader={<h4>Loading...</h4>}
-                endMessage={
-                    <p style={{ textAlign: 'center' }}>
-                        <b>Yay! You have seen it all</b>
-                    </p>
-                }
-            >
+            <span>
+                <button onClick={fetchFeed}>Get More</button>
+            </span>
+
+            <div className={styles.feed__grid}>
                 {
-                    feed.map((item, index) => {
-                        if (item.source_url) {
-                            // TODO: Replace index with block slug 
-                            return <div key={index} className={styles.channel_blocks}>
-                                <span>{item.title}</span>
-                                <span>{item.id}</span>
-                                <div>{item?.description}</div>
-                                <span>{item?.source_url}</span>
-                            </div>
-                        }
-                        return <div key={item.slug} className={styles.channel_blocks}>
-                            <span>{item.slug}</span>
-                            <div>{item?.description}</div>
+                    feed && viewType == FEED.ALL ?
+                        <div className={styles.feed__grid__box}>
+                            {
+                                sortType == SORT.RECENTLY_UPDATED ?
+                                    feed.map((item: any, index) => {
+                                        if (item.source_url) {
+                                            // TODO: Replace index with block slug 
+                                            return <BlockGrid block={item} key={index} />
+
+                                        }
+                                        return <ChannelGrid channel={item} key={item.slug} />
+                                    })
+                                    : sortType == SORT.OLDEST ?
+                                        feed.slice().reverse().map((item: any, index) => {
+                                            if (item.source_url) {
+                                                // TODO: Replace index with block slug 
+                                                return <BlockGrid block={item} key={index} />
+
+                                            }
+                                            return <ChannelGrid channel={item} key={item.slug} />
+                                        })
+                                        : null
+                            }
                         </div>
-                    })
+                        :
+                        feed && viewType == FEED.CHANNEL ?
+                            <div className={styles.feed__grid__box}>
+                                {
+                                    sortType == SORT.RECENTLY_UPDATED ?
+                                        feed.map((item: any) => {
+                                            if (!item.source_url)
+                                                return <ChannelGrid channel={item} key={item.slug} />
+                                        })
+                                        : sortType == SORT.OLDEST ?
+                                            feed.slice().reverse().map((item: any) => {
+                                                if (!item.source_url)
+                                                    return <ChannelGrid channel={item} key={item.slug} />
+                                            })
+                                            : null
+                                }
+                            </div>
+                            :
+                            feed && viewType == FEED.BLOCK ?
+                                <div className={styles.feed__grid__box}>
+                                    {
+                                        sortType == SORT.RECENTLY_UPDATED ?
+                                            feed.map((item: any, index) => {
+                                                if (item.source_url)
+                                                    return <BlockGrid block={item} key={index} />
+                                            })
+                                            : sortType == SORT.OLDEST ?
+                                                feed.slice().reverse().map((item: any, index) => {
+                                                    if (item.source_url)
+                                                        return <BlockGrid block={item} key={index} />
+                                                })
+                                                : null
+                                    }
+                                </div>
+                                : null
                 }
-            </InfiniteScroll>
-            {/* <div>{JSON.stringify(feed)}</div> */}
+            </div>
         </div>
     )
 };

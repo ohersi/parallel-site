@@ -51,13 +51,24 @@
         display: grid;
         gap: 1.5rem;
 
-        @include a.min-width(medium) {
+        @include a.header-size(a.$block-width, 3) {
             grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
         }
     }
 
+    &__double {
+        display: grid;
+        gap: 1.5rem;
+
+        @include a.header-size(a.$block-width, 2) {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+    }
+
     &__grid,
+    &__double,
     &__single {
         &__info {
             display: flex;

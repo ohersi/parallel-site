@@ -27,3 +27,14 @@
         }
     }
 }
+
+@mixin header-size($size, $i) {
+    $diff: $i * 20;
+    $max: $size * $i +$diff;
+    $min: $max +20;
+
+    @media(min-width: $min) {
+        @content;
+    }
+
+}

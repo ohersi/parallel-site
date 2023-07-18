@@ -99,7 +99,7 @@ const SearchPage = () => {
                             <div className={styles.page__grid}>
                                 {
                                     channels.map((channel: any) => (
-                                        <ChannelGrid props={channel} key={channel.channel.id} />
+                                        <ChannelGrid channel={channel} key={channel.id} />
                                     ))
                                 }
                             </div>

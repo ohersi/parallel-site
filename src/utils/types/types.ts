@@ -120,6 +120,7 @@ export enum FEED {
     CHANNEL = 'Channel',
     BLOCK = 'Block',
     USER = 'User',
+    ALL = 'All',
 }
 
 export enum SORT {

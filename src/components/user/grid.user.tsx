@@ -12,14 +12,16 @@ interface IUserGrid {
 const UserGrid = ({ user }: IUserGrid) => {
 
     return (
-        <Link href={`${user.slug}`}>
-            <div className={styles.user_block}>
-                <div className={styles.user_block__image}>
+        <div className={styles.block__user}>
+            <Link href={`${user.slug}`}>
+                <div className={styles.block__user__box}>
+                    <div className={styles.block__user__box__image}>
 
+                    </div>
+                    <div>{user.full_name}</div>
                 </div>
-                <div>{user.full_name}</div>
-            </div>
-        </Link>
+            </Link>
+        </div>
     )
 };
 

@@ -1,8 +1,10 @@
 "use client";
 // Packages
+import { useEffect } from 'react';
 import Link from 'next/link';
 // Imports
-import { useAppSelector } from '@/store';
+import { useAppDispatch, useAppSelector } from '@/store';
+import { setViewType } from '@/store/filterTypeSlice';
 import BlockGrid from '@/components/block/grid.blocks';
 import { IUser, IChannel, IBlock, FEED, SORT } from '@/utils/types/types';
 import { timeAgo } from '@/resources/timeAgo';
@@ -22,11 +24,14 @@ interface IUserProps {
 
 const User = ({ user, userChannels, userBlocks }: IUserProps) => {
 
+    const dispatch = useAppDispatch();
     const viewType = useAppSelector((state) => state.Filter.viewType);
     const sortType = useAppSelector((state) => state.Filter.sortType);
 
     const channelReverseSorted = userChannels.reverse();
     const blocksReverseSorted = userBlocks?.reverse();
+
+    useEffect(() => { dispatch(setViewType(FEED.CHANNEL)) }, []);
 
     return (
         <div className={styles.grid}>

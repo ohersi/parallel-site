@@ -6,7 +6,7 @@
     flex-flow: row wrap;
     margin: 2rem 0 0 10px;
     gap: 1rem;
-    // border: 1px solid rgba(255, 208, 0, 0.729);
+    padding-bottom: 1rem;
 
     &__blocks {
         $b: &;
@@ -55,10 +55,10 @@
                 height: 100%;
                 display: flex;
                 align-items: center;
-            }
 
-            #{$b}:hover &__title {
-                visibility: hidden;
+                #{$b}:hover &__hidden {
+                    visibility: hidden;
+                }
             }
 
             &__metadata {
