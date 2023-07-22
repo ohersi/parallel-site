@@ -1,4 +1,5 @@
-@use '../abstracts' as a;
+@use '@/styles/abstracts' as a;
+@use '@/styles/utils' as u;
 
 .grid {
     display: flex;
@@ -25,8 +26,8 @@
                 gap: 0.5rem;
 
                 &__title {
-                    font-size: 2.2rem;
-                    font-weight: bold;
+                    font-size: 2.5rem;
+                    font-family: u.$secondary-font;
                 }
             }
 

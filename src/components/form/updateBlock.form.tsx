@@ -82,7 +82,7 @@ const UpdateBlockForm = ({ block }: IUpdateBlockForm) => {
                     </svg>
                 </div>
 
-                <h2>Update Block</h2>
+                <span className={styles.modal__box__title}>Update Block</span>
 
                 <form
                     className={styles.modal__box__form}

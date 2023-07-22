@@ -79,7 +79,7 @@ const CreateBlockForm = ({ channelID }: ICreateBlockForm) => {
                     </svg>
                 </div>
 
-                <h2>Create Block</h2>
+                <span className={styles.modal__box__title}>Create Block</span>
 
                 <form
                     className={styles.modal__box__form}

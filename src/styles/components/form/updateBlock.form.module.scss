@@ -1,5 +1,5 @@
 @use '@/styles/abstracts' as a;
 
 .modal {
-    @include a.form-modal(a.$createBlock-height, a.$createBlock-margin-top, a.$createBlock-margin-bottom);
+    @include a.form-modal(a.$updateBlock-height, a.$updateBlock-margin-top, a.$updateBlock-margin-bottom);
 }

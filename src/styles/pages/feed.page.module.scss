@@ -1,0 +1,18 @@
+@use '@/styles/abstracts' as a;
+@use '@/styles/utils' as u;
+
+.page {
+    margin: 0 auto;
+    @include a.grid-width(a.$block-width);
+
+    &__login {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: calc(100vh - 80px);
+        width: 100%;
+        font-size: 4rem;
+        font-family: u.$secondary-font;
+    }
+}

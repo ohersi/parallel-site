@@ -1,6 +1,7 @@
 @use '@/styles/abstracts/variables' as v;
 @use '@/styles/abstracts/mixins/min-width' as m;
 @use '@/styles/abstracts/mixins/button' as b;
+@use '@/styles/utils' as u;
 
 @mixin form-modal($height, $margin-top, $margin-bottom) {
     display: flex;
@@ -45,6 +46,12 @@
             justify-content: flex-end;
             width: 100%;
             margin-bottom: $margin-bottom;
+        }
+
+        &__title {
+            font-size: 1.8rem;
+            font-family: u.$secondary-font;
+            margin-bottom: 0.5rem;
         }
 
         &__form {

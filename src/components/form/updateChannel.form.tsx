@@ -79,7 +79,7 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
                     </svg>
                 </div>
                 
-                    <h2>Update Channel</h2>
+                <span className={styles.modal__box__title}>Update Channel</span>
                 
 
                 <form
@@ -126,7 +126,7 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
                 </form>
 
                 <div className={styles.modal__delete}>
-                    <h2>Delete Channel</h2>
+                <span className={styles.modal__box__title}>Delete Channel</span>
                     <DeleteChannelButton channelID={channel.id} />
                 </div>
             </div>

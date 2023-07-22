@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import { Metadata } from 'next';
 // Imports
 import UserFeed from '@/components/feed/user.feed';
+import styles from '@/styles/pages/feed.page.module.scss';
 
 export const metadata: Metadata = {
     title: 'Feed',
@@ -15,13 +16,16 @@ const FeedPage = async () => {
     const session = cookieStore.has(process.env.SESSION_ID!);
 
     return (
-        <>
+        <div className={styles.page}>
             {
                 session ?
                     <UserFeed />
-                    : <div>Login required!</div>
+                    :
+                    <div className={styles.page__login}>
+                        Login required!
+                    </div>
             }
-        </>
+        </div>
     )
 };
 

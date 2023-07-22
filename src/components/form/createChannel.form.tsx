@@ -71,7 +71,7 @@ const CreateChannelForm = () => {
                     </svg>
                 </div>
 
-                <h2>Create Channel</h2>
+                <span className={styles.modal__box__title}>Create Channel</span>
 
                 <form
                     className={styles.modal__box__form}
