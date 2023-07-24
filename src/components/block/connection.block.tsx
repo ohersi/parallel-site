@@ -22,9 +22,8 @@ interface IConnectionBlock {
 
 const ConnectionBlock = ({ blockID }: IConnectionBlock) => {
 
-    // TODO: Create search field, filter user channels
-
     const [search, setSearch] = useState<string>('');
+    const [connected, setConnected] = useState<any>({});
 
     let channelClicked: number | undefined;
 
@@ -36,21 +35,32 @@ const ConnectionBlock = ({ blockID }: IConnectionBlock) => {
 
     const { data } = useSWR(user ? `/api/v1/users/${user.id}/channels` : null, () => user ? GetUserChannels(user.id) : () => { });
 
-    const { trigger, error: error } = useSWRMutation(`api/v1/blocks/${blockID}/connect?channel=${channelClicked}`, () => ConnectBlock(blockID, channelClicked));
+    const { trigger, error: error } = useSWRMutation(`api/v1/blocks/${blockID}/connect?channel`, () => ConnectBlock(blockID, channelClicked));
 
     const arr = data ? data.data : null;
 
     const handleClick = async (channelID: number) => {
 
         channelClicked = channelID;
+        console.log(`channelClicked: ${channelClicked}`)
 
-        await trigger().then((success) => {
-            if (success) {
+        await trigger()
+            .then((res) => {
+                console.log(res)
+                if (res) {
+                    if (typeof channelClicked === 'number') {
+                        let obj = { [channelClicked]: res.success };
+                        setConnected((connected: {}) => ({
+                            ...connected,
+                            ...obj
+                        }))
+                    }
+                }
                 // TODO: Disable connect if success replace with checkmark
-            }
-            channelClicked = undefined
-        });
+            })
+            .finally(() => channelClicked = undefined);
     }
+    console.log(connected);
 
     return (
         <div className={styles.modal}>
@@ -98,11 +108,19 @@ const ConnectionBlock = ({ blockID }: IConnectionBlock) => {
                                             key={res.channel.title}
                                         >
                                             <h4>{res.channel.title}</h4>
-                                            <button
-                                                className={styles.modal__box__channel__list__item__btn}
-                                                onClick={() => handleClick(res.channel.id)}>
-                                                connect &nbsp; →
-                                            </button>
+                                            {
+                                                connected[`${res.channel.id}`] === true ?
+                                                    <span>&#x2713;</span>
+                                                    :
+                                                    connected[`${res.channel.id}`] === false ?
+                                                        <span>&#x2715; Failed!</span>
+                                                        :
+                                                        <button
+                                                            className={styles.modal__box__channel__list__item__btn}
+                                                            onClick={() => handleClick(res.channel.id)}>
+                                                            connect &nbsp; →
+                                                        </button>
+                                            }
                                         </div>
                                     ))
                                 : null

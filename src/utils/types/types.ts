@@ -47,6 +47,11 @@ export interface IBlock {
     channels: IChannel[];
 };
 
+export interface ICombinedObj {
+    block: IBlock,
+    channel: IChannel
+};
+
 export interface IUserPayload {
     first_name?: string | undefined;
     last_name?: string | undefined;
@@ -83,12 +88,15 @@ export interface IDefaultFeedResults {
 }
 
 export interface IUserFeedResults {
-    userID: number;
-    full_name: string | null;
+    user: {
+        id: number,
+        full_name: string | null,
+        slug: string | null
+    };
     timestamp: string;
     data_type: string;
     action_type: string;
-    data: IUser | IChannel | IBlock
+    data: IUser | IChannel | ICombinedObj;
 }
 
 export interface ISearchResults {
@@ -122,6 +130,12 @@ export enum FEED {
     USER = 'User',
     ALL = 'All',
 }
+
+export enum ACTION {
+    CREATED = 'Created',
+    FOLLOWED = 'Followed',
+    CONNECTED = 'Connected',
+};
 
 export enum SORT {
     RECENTLY_UPDATED = 'RECENTLY_UPDATED',

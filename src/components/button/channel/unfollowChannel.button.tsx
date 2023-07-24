@@ -32,8 +32,8 @@ const UnfollowChannelButton = ({ channelID, mutate, url }: Props) => {
     };
 
     return (
-        <button className={styles.button} onClick={() => handleClick}>
-            Follow
+        <button className={styles.button} onClick={handleClick}>
+            unfollow
         </button>
     )
 }

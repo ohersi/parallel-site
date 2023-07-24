@@ -1,14 +1,14 @@
 @use '@/styles/abstracts/variables' as v;
 
-@mixin font-size($size) {
+@mixin font-size($size, $start, $cap) {
     @for $i from 1 through 12 {
-        $font: 1rem+($i / 3);
+        $font: $start+($i / 3);
         $diff: $i * 20;
         $max: $size * $i +$diff;
         $min: $max +20;
 
         @media(min-width: $min) {
-            font-size: min($font, 2.5rem);
+            font-size: min($font, $cap);
             @content;
         }
     }

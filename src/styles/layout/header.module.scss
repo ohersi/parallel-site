@@ -15,34 +15,49 @@
         justify-content: space-between;
         align-items: center;
         // border: 1px solid rgba(186, 247, 87, 0.75);
-        gap: 1rem;
+        row-gap: 2rem;
 
         &__title_container {
             display: flex;
-            flex-wrap: wrap;
-            text-align: center;
-            align-items: center;
+            flex-direction: column;
+            row-gap: 0.5rem;
             // border: 1px solid brown;
+
+            &__row {
+                display: flex;
+                flex-wrap: wrap;
+            }
 
             &__item {
                 // border: 1px solid red;
                 display: flex;
                 align-items: center;
-                font-size: 1.8rem;
-                font-weight: bold;
+                font-size: clamp(1.1rem, 1.1rem + 0.8028vw, 1.5rem);
+                font-weight: 500;
+
+                // @media(min-width: (a.$block-width+40)) {
+                //     background-color: rgba(255, 0, 0, 0.267);
+                //     font-size: 1.5rem;
+                // }
 
                 &:after {
                     content: "/";
                     margin: 0px 0.33em;
-                    font-weight: normal;
-                    font-size: 1.8rem;
+                    font-weight: 500;
+                    font-size: clamp(1.1rem, 1.1rem + 0.8028vw, 1.5rem);
                 }
 
                 &__title {
                     display: flex;
                     text-align: start;
-                    font-size: 3.2rem;
+                    font-size: clamp(4rem, 4rem + 4.507vw, 5rem);
+                    @include a.font-size(a.$block-width, 5rem, 6.5rem);
                     font-family: u.$secondary-font;
+                    word-break: break-word;
+
+                    // @media(min-width: (a.$block-width + 40)) {
+                    //     font-size: 6.2rem;
+                    // }
                 }
             }
         }
@@ -88,7 +103,7 @@
                 gap: 0.3rem;
 
                 &__follow {
-                    font-weight: bold;
+                    font-weight: 500;
                 }
             }
         }

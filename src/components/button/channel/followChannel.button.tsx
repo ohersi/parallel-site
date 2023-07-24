@@ -32,7 +32,7 @@ const FollowChannelButton = ({ channelID, mutate, url }: Props) => {
     };
 
     return (
-        <button className={styles.button} onClick={() => handleClick}>
+        <button className={styles.button} onClick={handleClick}>
             follow
         </button>
     )

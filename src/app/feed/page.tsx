@@ -2,6 +2,8 @@
 import { cookies } from 'next/headers';
 import { Metadata } from 'next';
 // Imports
+import Header from '@/components/header/header';
+import HeaderTitle from '@/components/header/title.header';
 import UserFeed from '@/components/feed/user.feed';
 import styles from '@/styles/pages/feed.page.module.scss';
 
@@ -19,7 +21,12 @@ const FeedPage = async () => {
         <div className={styles.page}>
             {
                 session ?
-                    <UserFeed />
+                    <>
+                        <Header
+                            title={<HeaderTitle props={'Feed'} />}
+                        />
+                        <UserFeed />
+                    </>
                     :
                     <div className={styles.page__login}>
                         Login required!

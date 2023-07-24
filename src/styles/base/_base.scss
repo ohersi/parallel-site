@@ -22,4 +22,5 @@ body {
 
 
 @include a.font-face('NeueMontreal', '/fonts/PPNeueMontreal/PPNeueMontreal-Book', 400, normal, otf);
+@include a.font-face('NeueMontreal', '/fonts/PPNeueMontreal/PPNeueMontreal-Medium', 500, normal, otf);
 @include a.font-face('Mondwest', '/fonts/Bitmap/PPMondwest-Regular', 400, normal, otf);
