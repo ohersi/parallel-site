@@ -37,14 +37,18 @@
             gap: 1.5rem;
 
             &__text {
-                display: flex;
-                justify-content: center;
-                // border: 1px solid black;
-                gap: 0.8rem;
-                font-size: 2rem;
+                display: block;
+                font-size: clamp(1.5rem, 1.1743rem + 1.4679vw, 2rem);
+                text-align: center;
+                overflow-wrap: break-word;
+
+                &__default {
+                    display: inline;
+                }
 
                 &__highlight {
                     display: inline;
+                    box-sizing: border-box;
                     font-weight: 500;
                 }
             }

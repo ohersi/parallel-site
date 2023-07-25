@@ -107,13 +107,22 @@ const ConnectionBlock = ({ blockID }: IConnectionBlock) => {
                                             className={styles.modal__box__channel__list__item}
                                             key={res.channel.title}
                                         >
-                                            <h4>{res.channel.title}</h4>
+                                            <div className={styles.modal__box__channel__list__item__title}>{res.channel.title}</div>
                                             {
                                                 connected[`${res.channel.id}`] === true ?
-                                                    <span>&#x2713;</span>
+                                                    <span className={styles.modal__box__channel__list__item__status}>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
+                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.58049 17.352L0.273232 12.0448L0.980338 11.3376L6.20421 16.5615L18.5601 0.90168L19.3452 1.5211L6.36555 17.9714L5.58049 17.352Z" fill="currentColor" />
+                                                        </svg>
+                                                    </span>
                                                     :
                                                     connected[`${res.channel.id}`] === false ?
-                                                        <span>&#x2715; Failed!</span>
+                                                        <span className={styles.modal__box__channel__list__item__status}>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 22 21" fill="none">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M20.738 10.4366C20.738 15.6279 16.5296 19.8363 11.3383 19.8363C6.14697 19.8363 1.93858 15.6279 1.93858 10.4366C1.93858 5.24525 6.14697 1.03686 11.3383 1.03686C16.5296 1.03686 20.738 5.24525 20.738 10.4366ZM21.738 10.4366C21.738 16.1802 17.0819 20.8363 11.3383 20.8363C5.59469 20.8363 0.938583 16.1802 0.938583 10.4366C0.938583 4.69296 5.59469 0.0368576 11.3383 0.0368576C17.0819 0.0368576 21.738 4.69296 21.738 10.4366ZM15.3924 14.704L11.3383 10.6499L7.2842 14.704L6.5771 13.9969L10.6312 9.94281L6.8575 6.16912L7.5646 5.46201L11.3383 9.2357L15.112 5.46202L15.8191 6.16912L12.0454 9.94281L16.0995 13.9969L15.3924 14.704Z" fill="currentColor" />
+                                                            </svg> 
+                                                            FAILED
+                                                        </span>
                                                         :
                                                         <button
                                                             className={styles.modal__box__channel__list__item__btn}

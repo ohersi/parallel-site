@@ -41,19 +41,19 @@ const UserFeed = () => {
 
                             <div className={styles.feed__section__item}>
                                 <div className={styles.feed__section__item__text}>
-                                    <Link href={`/${item.user.slug ? item.user.slug : `/`}`}>
-                                        <span className={styles.feed__section__item__text__highlight}>
-                                            {item.user.full_name}
-                                        </span>
-                                    </Link>
-                                    <span>
-                                        {(item.action_type).toLocaleLowerCase()}
+                                    <span className={styles.feed__section__item__text__highlight}>
+                                        <Link href={`/${item.user.slug ? item.user.slug : `/`}`}>
+                                            {item.user.full_name}&nbsp;
+                                        </Link>
                                     </span>
-                                    <Link href={`/${user.slug}`}>
-                                        <span className={styles.feed__section__item__text__highlight}>
+                                    <span className={styles.feed__section__item__text__default}>
+                                        {(item.action_type).toLocaleLowerCase()}&nbsp;
+                                    </span>
+                                    <span className={styles.feed__section__item__text__highlight}>
+                                        <Link href={`/${user.slug}`}>
                                             {user.full_name}
-                                        </span>
-                                    </Link>
+                                        </Link>
+                                    </span>
                                 </div>
                                 <UserGrid user={user} />
                             </div>
@@ -73,19 +73,19 @@ const UserFeed = () => {
 
                             <div className={styles.feed__section__item}>
                                 <div className={styles.feed__section__item__text}>
-                                    <Link href={`/${item.user.slug ? item.user.slug : `/`}`}>
-                                        <span className={styles.feed__section__item__text__highlight}>
-                                            {item.user.full_name}
-                                        </span>
-                                    </Link>
-                                    <span>
-                                        {(item.action_type).toLocaleLowerCase()}
+                                    <span className={styles.feed__section__item__text__highlight}>
+                                        <Link href={`/${item.user.slug ? item.user.slug : `/`}`}>
+                                            {item.user.full_name}&nbsp;
+                                        </Link>
                                     </span>
-                                    <Link href={`/${channel.user?.slug}/${channel.slug}`}>
-                                        <span className={styles.feed__section__item__text__highlight}>
+                                    <span className={styles.feed__section__item__text__default}>
+                                        {(item.action_type).toLocaleLowerCase()}&nbsp;
+                                    </span>
+                                    <span className={styles.feed__section__item__text__highlight}>
+                                        <Link href={`/${channel.user?.slug}/${channel.slug}`}>
                                             {channel.title}
-                                        </span>
-                                    </Link>
+                                        </Link>
+                                    </span>
                                 </div>
                                 <ChannelGrid channel={channel} />
                             </div>
@@ -108,19 +108,19 @@ const UserFeed = () => {
 
                                 <div className={styles.feed__section__item}>
                                     <div className={styles.feed__section__item__text}>
-                                        <Link href={`/${item.user.slug ? item.user.slug : `/`}`}>
-                                            <span className={styles.feed__section__item__text__highlight}>
-                                                {item.user.full_name}
-                                            </span>
-                                        </Link>
-                                        <span>
-                                            {(item.action_type).toLocaleLowerCase()}
+                                        <span className={styles.feed__section__item__text__highlight}>
+                                            <Link href={`/${item.user.slug ? item.user.slug : `/`}`}>
+                                                {item.user.full_name}&nbsp;
+                                            </Link>
                                         </span>
-                                        <Link href={`/${item.user.slug ? item.user.slug : `/`}/${obj.channel.slug}`}>
-                                            <span className={styles.feed__section__item__text__highlight}>
+                                        <span className={styles.feed__section__item__text__default}>
+                                            {(item.action_type).toLocaleLowerCase()}&nbsp;
+                                        </span>
+                                        <span className={styles.feed__section__item__text__highlight}>
+                                            <Link href={`/${item.user.slug ? item.user.slug : `/`}/${obj.channel.slug}`}>
                                                 {obj.block.title}
-                                            </span>
-                                        </Link>
+                                            </Link>
+                                        </span>
                                     </div>
                                     <BlockGrid block={obj.block} />
                                 </div>
@@ -139,19 +139,19 @@ const UserFeed = () => {
 
                                 <div className={styles.feed__section__item}>
                                     <div className={styles.feed__section__item__text}>
-                                        <Link href={`/${item.user.slug ? item.user.slug : `/`}`}>
-                                            <span className={styles.feed__section__item__text__highlight}>
-                                                {item.user.full_name}
-                                            </span>
-                                        </Link>
-                                        <span>
-                                            {(item.action_type).toLocaleLowerCase()} a block to
+                                        <span className={styles.feed__section__item__text__highlight}>
+                                            <Link href={`/${item.user.slug ? item.user.slug : `/`}`}>
+                                                {item.user.full_name}&nbsp;
+                                            </Link>
                                         </span>
-                                        <Link href={`/${obj.channel.user?.slug}/${obj.channel.slug}`}>
-                                            <span className={styles.feed__section__item__text__highlight}>
+                                        <span className={styles.feed__section__item__text__default}>
+                                            {(item.action_type).toLocaleLowerCase()} a block to&nbsp;
+                                        </span>
+                                        <span className={styles.feed__section__item__text__highlight}>
+                                            <Link href={`/${obj.channel.user?.slug}/${obj.channel.slug}`}>
                                                 {obj.channel.title}
-                                            </span>
-                                        </Link>
+                                            </Link>
+                                        </span>
                                     </div>
                                     <BlockGrid block={obj.block} />
                                 </div>

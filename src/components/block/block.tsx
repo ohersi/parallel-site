@@ -147,17 +147,18 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
                             <ConnectBlockButton blockID={block.id} />
                         </div>
 
-                        <div className={styles.block__info__connections__item}>
-                            <h5>
-                                {
-                                    blocks.channels.map((channel: IChannel) => (
-                                        <div key={channel.slug}>
-                                            <div>CHANNEL - {channel.title}</div>
-                                        </div>
-                                    ))
-                                }
-                            </h5>
-                        </div>
+                        {
+                            blocks.channels.map((channel: IChannel) => (
+                                <div className={styles.block__info__connections__item} key={channel.slug}>
+                                    <div className={styles.block__info__connections__item__title}>
+                                        {channel.title}
+                                    </div>
+                                    <div className={styles.block__info__connections__item__user}>
+                                        by {channel.user?.full_name}
+                                    </div>
+                                </div>
+                            ))
+                        }
                     </div>
 
                 </div>
