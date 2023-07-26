@@ -1,0 +1,39 @@
+@use '@/styles/abstracts/' as a;
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: calc(100svh - 80px);
+    gap: 1rem;
+
+    @include a.min-width(large) {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: none;
+        align-items: center;
+        // border: 1px solid black;
+    }
+
+    &__right_svg_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20%;
+
+        @include a.min-width(large) {
+            width: 100%;
+        }
+    }
+
+    &__left_svg_container {
+        display: none;
+
+        @include a.min-width(large) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+}

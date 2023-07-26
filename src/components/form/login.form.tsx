@@ -1,6 +1,7 @@
 "use client"
 // Packages
 import { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import useSWRMutation from 'swr/mutation';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -10,11 +11,7 @@ import { useAppDispatch, useAppSelector } from '@/store';
 import { setUser } from '@/store/userSlice';
 import { LogInUser } from '@/resources/data/user/loginUser';
 import userValidation from '@/resources/validations/user.validation';
-
-/* 
-    Redux store gets reset on page reload or when entering an url,
-    route changes through links or redirects do not reset store
-*/
+import styles from '@/styles/components/form/login.form.module.scss';
 
 const LoginForm = () => {
 
@@ -23,15 +20,13 @@ const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const dispatch = useAppDispatch();
+
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(userValidation.login)
     });
 
-    // Redux
     const { trigger, error: error } = useSWRMutation('api/v1/users/login', () => LogInUser(email, password));
-    const dispatch = useAppDispatch();
-    const user = useAppSelector((state) => state.User.user);
-
 
     const setUserValues = async (data: FieldValues) => {
         setEmail(data.email);
@@ -41,49 +36,72 @@ const LoginForm = () => {
     const onSubmit = async (data: FieldValues) => {
 
         await setUserValues(data).then(async () => {
-            try {
-                const res = await trigger();
-                dispatch(setUser(res));
-                // router.push('/');
-            }
-            catch (error: any) {
-                // TODO: Setup error handling
-                console.log(error);
-            }
+            await trigger()
+                .then((res) => {
+                    if (res.error) {
+                        // TODO: Setup error handling
+                        console.log(res);
+                    }
+                    else {
+                        dispatch(setUser(res));
+                        router.push('/feed');
+                    }
+                });
         });
     };
 
     return (
-        <>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        className='input'
-                        type="email"
-                        placeholder="email"
-                        autoComplete="off"
-                        {...register("email")}
-                    />
+        <div className={styles.login}>
+
+            <div className={styles.login__title}>Login</div>
+
+            <form
+                className={styles.login__form}
+                onSubmit={handleSubmit(onSubmit)}>
+                <div className={styles.login__form__item}>
+                    <label
+                        className={styles.login__form__item__label}
+                        htmlFor="email">
+                        Email
+                    </label>
+                    <span className={styles.login__form__item__input}>
+                        <input
+                            className='input'
+                            type="email"
+                            autoComplete="off"
+                            {...register("email")}
+                        />
+                    </span>
                     <span className='error'>{errors?.email?.message?.toString()}</span>
                 </div>
 
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        className='input'
-                        type="password"
-                        placeholder="password"
-                        {...register("password")}
-                    />
+                <div className={styles.login__form__item}>
+                    <label
+                        className={styles.login__form__item__label}
+                        htmlFor="password">
+                        Password
+                    </label>
+                    <span className={styles.login__form__item__input}>
+                        <input
+                            className='input'
+                            type="password"
+                            {...register("password")}
+                        />
+                    </span>
                     <span className='error'>{errors?.password?.message?.toString()}</span>
                 </div>
-                <button>Submit</button>
+
+                <div className={styles.login__form__submit}>
+                    <button className={styles.login__form__submit__btn}>login</button>
+                </div>
             </form>
-            <div>
-                {JSON.stringify(user)}
+            <div className={styles.login__form__signup}>
+                Don't have an account?&nbsp;
+                <Link href={'/signup'}>
+                    <span className={styles.login__form__signup__link}>Sign up here.</span>
+                </Link>
             </div>
-        </>
+        </div>
     );
 };
 

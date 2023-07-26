@@ -1,0 +1,66 @@
+@use '@/styles/abstracts/' as a;
+@use '@/styles/utils' as u;
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    height: 100%;
+    min-width: 400px;
+    gap: 4rem;
+    // border: 1px solid black;
+
+    @include a.min-width(large) {
+        justify-content: center;
+    }
+
+    &__title {
+        font-size: 8rem;
+        font-family: u.$secondary-font;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+
+        &__item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem 0;
+
+            &__label {
+                text-align: start;
+            }
+
+            &__input {
+                border: 1px solid a.$color-secondary;
+            }
+
+            &__textarea {
+                border: 1px solid a.$color-secondary;
+            }
+        }
+
+        &__submit {
+            margin-top: 2rem;
+            text-align: center;
+
+            &__btn {
+                @include a.button;
+            }
+        }
+
+        &__signup {
+
+            &__link {
+                text-decoration: 1px underline;
+                text-underline-offset: 3px;
+            }
+        }
+    }
+
+
+}
