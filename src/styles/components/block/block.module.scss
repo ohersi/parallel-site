@@ -1,32 +1,71 @@
 @use '@/styles/abstracts' as a;
 @use '@/styles/utils' as u;
 
-.block {
-    display: grid;
-    grid-template-rows: auto 50vh auto;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-        "close"
-        "img"
-        "info";
+.modal_block {
+    display: flex;
+    flex-direction: column;
     background-color: a.$color-primary;
     position: relative;
-    padding-bottom: 1rem;
+    height: fit-content;
 
     @include a.min-width(small) {
-        display: grid;
-        grid-template-columns: 70% 1fr;
-        grid-template-rows: 1fr;
-        grid-template-areas:
-            "img info";
-        padding: 0;
-        height: 100%;
+        flex-direction: row;
+        height: 100vh;
+        overflow: hidden;
     }
+}
 
-    &__image_container {
+.block {
+    display: flex;
+    flex-direction: column;
+    background-color: a.$color-primary;
+    position: relative;
+    height: fit-content;
+
+    @include a.min-width(small) {
+        flex-direction: row;
+        height: calc(100vh - 80px);
+        overflow: hidden;
+    }
+}
+
+.modal_block,
+.block {
+    &__image_wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100%;
-        background-color: grey;
-        grid-area: img;
+        // border: 1px solid black;
+
+        &__image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            font-size: 4rem;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            padding: 2rem 1rem;
+            // background-color: rgb(230, 141, 53);
+            color: white;
+
+            &__img {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                width: 100%;
+                min-height: 50vh;
+                // background-color: rgb(209, 78, 22);
+
+                @include a.min-width(small) {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
     }
 
     &__close {
@@ -34,7 +73,6 @@
         display: flex;
         justify-content: flex-end;
         padding: 1rem;
-        grid-area: close;
 
         &__btn {
             cursor: pointer;
@@ -44,6 +82,7 @@
 
         @include a.min-width(small) {
             display: none;
+            background-color: red;
         }
     }
 
@@ -51,7 +90,6 @@
         display: none;
 
         @include a.min-width(small) {
-            grid-area: re;
             display: inline-block;
             cursor: col-resize;
             position: relative;
@@ -59,12 +97,13 @@
             z-index: 2;
             opacity: 0;
 
+
             &::after {
                 border-left: 1px solid a.$color-secondary;
                 content: "";
                 display: flex;
                 position: relative;
-                width: 1px;
+                width: 5px;
                 height: 100%;
             }
 
@@ -78,13 +117,14 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        padding: 0 1rem;
+        padding: 0 1rem 1rem 1rem;
         margin-top: 1rem;
-        grid-area: info;
         height: 100%;
 
         @include a.min-width(small) {
             margin-top: 0;
+            min-width: 30%;
+            overflow-y: auto;
         }
 
         &__close {
@@ -110,7 +150,6 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            // background-color: rgba(0, 128, 0, 0.219);
             border-bottom: 1px solid a.$color-secondary;
 
             &__title {
@@ -119,9 +158,9 @@
                 -webkit-font-smoothing: antialiased;
             }
 
-            &__description {
-                // border-bottom: 1px solid a.$color-secondary;
-            }
+            // &__description {
+            //     // border-bottom: 1px solid a.$color-secondary;
+            // }
         }
 
         &__metadata {

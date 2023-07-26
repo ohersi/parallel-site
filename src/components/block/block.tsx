@@ -1,6 +1,8 @@
 "use client";
 // Packages
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image'
 import axios from 'axios';
 import useSWR from "swr";
 // REDUX
@@ -19,7 +21,9 @@ import ShareBlockButton from '@/components/button/block/shareBlock.button';
 import ConnectionBlock from '@/components/block/connection.block';
 import UpdateBlockForm from '@/components/form/updateBlock.form';
 // FUNCTIONS
+import { resize } from '@/resources/resize';
 import { timeAgo } from '@/resources/timeAgo';
+import { getBlockData } from '@/resources/data/block/getBlockData';
 // TYPES
 import { BUTTON, FORM, IBlock, IChannel } from '@/utils/types/types';
 // STYLES
@@ -31,27 +35,13 @@ interface BlockProps {
     replaceURL?: (newURL: string) => void;
 }
 
-async function getBlockData(id: number) {
-
-    const res = await axios.get(`http://localhost:3000/api/v1/blocks/${id}`, {
-        headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
-        }
-    });
-
-    console.log('data fetched');
-
-    const data = await res.data as IBlock;
-
-    return data;
-}
-
 const Block = ({ block, pathname, replaceURL }: BlockProps) => {
 
-    const { data, error } = useSWR(`${block.id}`, getBlockData);
+    const sidebarRef = useRef<HTMLDivElement>(null);
+    const resizerRef = useRef<HTMLDivElement>(null);
+    const infoRef = useRef<HTMLDivElement>(null);
+
+    const { data, error } = useSWR(`api/v1/blocks/${block.id}`, () => getBlockData(block.id));
 
     const dispatch = useAppDispatch();
     const loggedInUser = useAppSelector((state) => state.User.user);
@@ -61,16 +51,24 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
     const buttonType = useAppSelector((state) => state.Button.buttonType);
     const blockClicked = useAppSelector((state) => state.Block.blockClicked);
 
+    // Initalize resizable divs once data is loaded
+    useEffect(() => {
+        if (sidebarRef.current && resizerRef.current && infoRef.current) {
+            resize(sidebarRef.current, resizerRef.current, infoRef.current);
+        }
+    }, [data]);
+
+
     if (error) return <div>failed to load</div>
     if (!data) return <div>loading...</div>;
 
     const blocks = data;
-    // console.log(blocks);
+
     let connections = blocks.channels.length;
 
     return (
         <>
-            <div className={styles.block} key={block.id}>
+            <div className={replaceURL && pathname ? styles.modal_block : styles.block} key={block.id}>
                 {
                     replaceURL && pathname ?
                         <div className={styles.block__close}>
@@ -90,9 +88,28 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
                         </div> : null
                 }
 
-                <div className={styles.block__image_container} />
+                <div ref={sidebarRef} className={styles.block__image_wrapper}>
+                    <div className={styles.block__image_wrapper__image}>
+                        <div className={styles.block__image_wrapper__image__img}>
+                            <Image
+                                alt='test'
+                                src={`https://d2w9rnfcy7mm78.cloudfront.net/22787874/original_659280da012bef94901275155344921c.jpg?1690203802?bc=0`}
+                                fill
+                                sizes='100vw'
+                                style={{
+                                    objectFit: 'contain',
+                                    maxWidth: '715px',
+                                    maxHeight: '715px',
+                                    margin: "0 auto",
+                                }}
+                            />
+                        </div>
+                    </div>
+                </div>
 
-                <div className={styles.block__info}>
+                <div ref={resizerRef} className={styles.block__resize}></div>
+
+                <div ref={infoRef} className={styles.block__info}>
                     {
                         replaceURL && pathname ?
                             <div className={styles.block__info__close}>
@@ -124,7 +141,9 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
                         <time dateTime={blocks.date_updated} title={blocks.date_updated}>
                             Last updated {timeAgo(blocks.date_updated)}
                         </time>
+                        <span>
                         <Link href={blocks.source_url}>Source</Link>
+                        </span>
                     </div>
 
                     <div className={styles.block__info__links}>
@@ -159,6 +178,38 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
                                 </div>
                             ))
                         }
+                        <div className={styles.block__info__connections__item} >
+                            <div className={styles.block__info__connections__item__title}>
+                                Test
+                            </div>
+                            <div className={styles.block__info__connections__item__user}>
+                                by Test
+                            </div>
+                        </div>
+                        <div className={styles.block__info__connections__item} >
+                            <div className={styles.block__info__connections__item__title}>
+                                Test
+                            </div>
+                            <div className={styles.block__info__connections__item__user}>
+                                by Test
+                            </div>
+                        </div>
+                        <div className={styles.block__info__connections__item}>
+                            <div className={styles.block__info__connections__item__title}>
+                                Test
+                            </div>
+                            <div className={styles.block__info__connections__item__user}>
+                                by Test
+                            </div>
+                        </div>
+                        <div className={styles.block__info__connections__item}>
+                            <div className={styles.block__info__connections__item__title}>
+                                Test
+                            </div>
+                            <div className={styles.block__info__connections__item__user}>
+                                by Test
+                            </div>
+                        </div>
                     </div>
 
                 </div>

@@ -5,11 +5,11 @@ import Block from '@/components/block/block';
 import { IPageProps } from '@/utils/types/types';
 import { getBlockData } from '@/resources/data/block/getBlockData';
 
-
 // Dynamic Metadata for Pages
-export const generateMetadata = async (props: IPageProps): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: IPageProps): Promise<Metadata> => {
     try {
-        const block = await getBlockData(props);
+        let id = parseInt(params.id);
+        const block = await getBlockData(id);
         return { title: `${block.title} — Parallel` };
     }
     catch (error: any) {
@@ -17,14 +17,13 @@ export const generateMetadata = async (props: IPageProps): Promise<Metadata> => 
     };
 };
 
-const BlockPage = async (props: IPageProps) => {
+const BlockPage = async ({ params }: IPageProps) => {
 
-    const block = await getBlockData(props);
+    let id = parseInt(params.id);
+    const block = await getBlockData(id);
 
     return (
-        <>
-            <Block block={block} />
-        </>
+        <Block block={block} />
     )
 };
 

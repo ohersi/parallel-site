@@ -105,6 +105,17 @@ export interface ISearchResults {
     total_blocks: number;
 };
 
+export interface IResizeData  {
+    tracking: boolean,
+    startCursorScreenX: number | null,
+    imgStartWidth: number | null,
+    imgMaxWidth: number | null,
+    imgMinWidth: number,
+    infoStartWidth: number | null,
+    infoMaxWidth: number | null,
+    infoMinWidth: number
+}
+
 export enum FORM {
     CHANNEL_CREATE = 'CHANNEL_CREATE',
     CHANNEL_UPDATE = 'CHANNEL_UPDATE',
