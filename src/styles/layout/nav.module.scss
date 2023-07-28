@@ -21,11 +21,15 @@
     }
 
     &__logo {
-        // border: 1px solid black;
         display: flex;
         justify-content: center;
         align-items: center;
+        width: 100%;
         height: 100%;
+
+        &__svg {
+            display: block;
+        }
     }
 
     &__menu {

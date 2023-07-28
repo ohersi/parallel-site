@@ -15,6 +15,15 @@
         // border: 1px solid black;
     }
 
+    &__back_btn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 2rem 0 0 2rem;
+        font-size: 3rem;
+        // border: 1px solid black;
+    }
+
     &__right_svg_container {
         display: flex;
         justify-content: center;

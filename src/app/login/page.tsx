@@ -1,5 +1,6 @@
 // "use client";
 // Packages
+import Link from "next/link";
 import { Metadata } from "next";
 // Imports
 import LoginForm from "@/components/form/login.form";
@@ -14,6 +15,9 @@ const LogInPage = async () => {
 
     return (
         <div className={styles.page}>
+            <div className={styles.page__back_btn}>
+                <Link href={'/'}>&#8592;</Link>
+            </div>
             <div className={styles.page__right_svg_container}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="140" height="92" viewBox="0 0 140 92" fill="none">
                     <rect x="0.047914" y="0.375849" width="75" height="75" transform="matrix(0.965926 0.258819 -0.870098 0.492879 66.7347 34.1163)" fill="#FCF9F8" stroke="currentColor" />

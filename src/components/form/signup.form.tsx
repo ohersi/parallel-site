@@ -1,5 +1,6 @@
 "use client"
 // Packages
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import useSWRMutation from 'swr/mutation';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -7,16 +8,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 // Imports
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setUser } from '@/store/userSlice';
-import { UpdateUser } from '@/resources/data/user/updateUser';
 import userValidation from '@/resources/validations/user.validation';
-import { IUserPayload } from '@/utils/types/types';
-import { isEmpty } from '@/resources/isEmpty';
 import { SignUpUser } from '@/resources/data/user/signupUser';
+import { isEmpty } from '@/resources/isEmpty';
+import { IUserPayload } from '@/utils/types/types';
+import styles from '@/styles/components/form/signup.form.module.scss';
 
-/* 
-    Redux store gets reset on page reload or when entering an url,
-    route changes through links or redirects do not reset store
-*/
 
 let userPayload: IUserPayload = {};
 
@@ -29,9 +26,7 @@ const SignUpForm = () => {
         resolver: yupResolver(userValidation.create)
     });
 
-    // Redux
     const { trigger, error: error } = useSWRMutation('api/v1/users/', () => SignUpUser(userPayload));
-
 
     const setUserValues = async (data: FieldValues) => {
 
@@ -63,74 +58,116 @@ const SignUpForm = () => {
     };
 
     return (
-        <>
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.signup}>
 
-                <div>
-                    <label htmlFor="first_name">First Name</label>
-                    <input
-                        className='input'
-                        type="text"
-                        placeholder="First Name"
-                        autoComplete="off"
-                        {...register("first_name")}
-                    />
+            <div className={styles.signup__svg}>
+                <Link href={'/'}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="140" height="92" viewBox="0 0 140 92" fill="none">
+                        <rect x="0.047914" y="0.375849" width="75" height="75" transform="matrix(0.965926 0.258819 -0.870098 0.492879 66.7347 34.1163)" fill="#FCF9F8" stroke="currentColor" />
+                        <rect x="0.047914" y="0.375849" width="75" height="75" transform="matrix(0.965926 0.258819 -0.870098 0.492879 66.7347 17.3205)" fill="#FCF9F8" stroke="currentColor" />
+                        <rect x="0.047914" y="0.375849" width="75" height="75" transform="matrix(0.965926 0.258819 -0.870098 0.492879 66.7347 0.524773)" fill="#FCF9F8" stroke="currentColor" />
+                    </svg>
+                </Link>
+            </div>
+
+            <form
+                className={styles.signup__form}
+                onSubmit={handleSubmit(onSubmit)}>
+
+                <div className={styles.signup__form__item}>
+                    <label
+                        className={styles.signup__form__item__label}
+                        htmlFor="first_name">
+                        First Name
+                    </label>
+                    <span className={styles.signup__form__item__input}>
+                        <input
+                            className='input'
+                            type="text"
+                            autoComplete="off"
+                            {...register("first_name")}
+                        />
+                    </span>
                     <span className='error'>{errors?.first_name?.message?.toString()}</span>
                 </div>
 
-                <div>
-                    <label htmlFor="last_name">Last Name</label>
-                    <input
-                        className='input'
-                        type="text"
-                        placeholder="Last Name"
-                        autoComplete="off"
-                        {...register("last_name", { required: false })}
-                    />
+                <div className={styles.signup__form__item}>
+                    <label
+                        className={styles.signup__form__item__label}
+                        htmlFor="last_name">
+                        Last Name
+                    </label>
+                    <span className={styles.signup__form__item__input}>
+                        <input
+                            className='input'
+                            type="text"
+                            autoComplete="off"
+                            {...register("last_name", { required: false })}
+                        />
+                    </span>
                     <span className='error'>{errors?.last_name?.message?.toString()}</span>
                 </div>
 
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        className='input'
-                        type="email"
-                        placeholder="Email"
-                        autoComplete="off"
-                        {...register("email", { required: false })}
-                    />
+                <div className={styles.signup__form__item}>
+                    <label
+                        className={styles.signup__form__item__label}
+                        htmlFor="email">
+                        Email
+                    </label>
+                    <span className={styles.signup__form__item__input}>
+                        <input
+                            className='input'
+                            type="email"
+                            autoComplete="off"
+                            {...register("email", { required: false })}
+                        />
+                    </span>
                     <span className='error'>{errors?.email?.message?.toString()}</span>
                 </div>
 
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        className='input'
-                        type="password"
-                        placeholder="Password"
-                        {...register("password", { required: false })}
-                    />
+                <div className={styles.signup__form__item}>
+                    <label
+                        className={styles.signup__form__item__label}
+                        htmlFor="password">
+                        Password
+                    </label>
+                    <span className={styles.signup__form__item__input}>
+                        <input
+                            className='input'
+                            type="text"
+                            {...register("password", { required: false })}
+                        />
+                    </span>
                     <span className='error'>{errors?.password?.message?.toString()}</span>
                 </div>
 
-                <div>
-                    <label htmlFor="avatar">Avatar</label>
-                    <input
-                        className='input'
-                        type="url"
-                        placeholder="Avatar"
-                        autoComplete="off"
-                        {...register("avatar", { required: false })}
-                    />
+                <div className={styles.signup__form__item}>
+                    <label
+                        className={styles.signup__form__item__label}
+                        htmlFor="avatar">
+                        Avatar
+                    </label>
+                    <span className={styles.signup__form__item__input}>
+                        <input
+                            className='input'
+                            type="url"
+                            autoComplete="off"
+                            {...register("avatar", { required: false })}
+                        />
+                    </span>
                     <span className='error'>{errors?.avatar?.message?.toString()}</span>
                 </div>
-
-                <button>Submit</button>
+                <div className={styles.signup__form__submit}>
+                    <button className={styles.signup__form__submit__btn}>sign up</button>
+                </div>
             </form>
-            <div>
-                {JSON.stringify(user)}
+            <div className={styles.signup__form__login}>
+                Already have an account?&nbsp;
+                <Link href={'/login'}>
+                    <span className={styles.signup__form__login__link}>Log in here.</span>
+                </Link>
             </div>
-        </>
+        </div>
     );
 };
 

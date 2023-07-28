@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <Nav search={<NavSearch />} logo={<NavLogo />} profile={<NavProfile />} />
+          {/* <Nav search={<NavSearch />} logo={<NavLogo />} profile={<NavProfile />} /> */}
         {children}
         </Providers>
       </body>
