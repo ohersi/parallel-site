@@ -15,7 +15,6 @@
 
     &__logo {
         display: none;
-        // border: 1px solid red;
 
         @include a.min-width(medium) {
             display: flex;
