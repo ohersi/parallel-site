@@ -45,13 +45,15 @@ const NavProfile = () => {
                             </div>
 
                             <div className={styles.nav__menu__dropdown__top}>
-                                <div className={styles.nav__menu__dropdown__top__img_container}>
-                                </div>
+                                <Link href={`/${user.slug}`}>
+                                    <div className={styles.nav__menu__dropdown__top__img_container}>
+                                    </div>
+                                </Link>
                                 <div className={styles.nav__menu__dropdown__top__text_container}>
                                     <span className={styles.nav__menu__dropdown__top__text_container__name}>
-                                        {user.full_name}
+                                        <Link href={`/${user.slug}`}>{user.full_name}</Link>
                                     </span>
-                                    <p>Profile</p>
+                                    <Link href={`/${user.slug}`}> <p>Profile</p></Link>
                                 </div>
                             </div>
 
@@ -70,7 +72,7 @@ const NavProfile = () => {
                                         <Link href={`/settings`}>Settings</Link>
                                     </span>
                                     <span className={styles.nav__menu__dropdown__bottom__section__links}>
-                                        About
+                                        <Link href={`/about`}>About</Link>
                                     </span>
                                     <LogoutButton />
                                 </div>

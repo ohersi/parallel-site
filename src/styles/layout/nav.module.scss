@@ -115,8 +115,10 @@
                     gap: 1rem;
 
                     &__links {
+                        width: fit-content;
                         font-size: 1.7rem;
                         color: inherit;
+                        cursor: pointer;
                     }
                 }
             }
