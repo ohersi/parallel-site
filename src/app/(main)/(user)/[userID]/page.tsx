@@ -41,7 +41,7 @@ const UserPage = async (props: IPageProps) => {
       <Header
         title={<HeaderTitle props={user} />}
         action={<HeaderAction userID={user.id} />}
-        info={<HeaderInfo props={user} params={props.params.userID} />}
+        info={<HeaderInfo props={user} params={props.params} />}
       />
 
       <User user={user} userChannels={userChannels} userBlocks={userBlocks} />

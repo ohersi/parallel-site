@@ -1,15 +1,69 @@
+// Packages
+import { Metadata } from "next";
+// COMPONENTS
+import Header from '@/components/header/header';
+import HeaderTitle from '@/components/header/title.header';
+import HeaderInfo from '@/components/header/info.header';
+import HeaderAction from '@/components/header/header.action';
+import UserGrid from '@/components/user/grid.user';
+// FUNCTIONS
+import { getUserData } from "@/resources/data/user/getUserData";
 import { getUserFollowing } from "@/resources/data/user/getUserFollowing";
-import { IPageProps } from "@/utils/types/types";
+// TYPES
+import { FOLLOW, IPageProps, IUser } from "@/utils/types/types";
+// STYLES
+import styles from '@/styles/pages/follow.page.module.scss';
 
-const UserFollowingPage = async ({ params }: IPageProps) => {
+// Dynamic Metadata for Pages
+export const generateMetadata = async (props: IPageProps): Promise<Metadata> => {
+    try {
+        const user = await getUserData(props) as IUser;
+        return { title: `Following / ${user.full_name} — Parallel` };
+    }
+    catch (error: any) {
+        return { title: `Error — Parallel` };
+    };
+};
 
-    const res = await getUserFollowing(params.userID);
+type IUserFollowing = {
+    following_user: number;
+    followed_user: IUser;
+    date_created: Date;
+}
+
+const UserFollowingPage = async (props: IPageProps) => {
+
+    const userData = await getUserData(props) as IUser;
+    const res: IUserFollowing[] = await getUserFollowing(props.params.userID);
+
+    let arr: IUser[] = [];
+
+    for (const follow of res) {
+        arr.push(follow.followed_user);
+    }
 
     return (
-        <>
-            <div>User Following Page</div>
-            <div>{JSON.stringify(res)}</div>
-        </>
+        <div className={styles.page}>
+
+            <Header
+                title={<HeaderTitle props={userData} />}
+                action={<HeaderAction userID={userData.id} />}
+                info={<HeaderInfo props={userData} params={props.params} type={FOLLOW.USER} />}
+            />
+
+            <div className={styles.page__box}>
+                <div className={styles.page__box__title}>{arr.length} FOLLOWING</div>
+
+                <div className={styles.page__box__grid}>
+                    {
+                        arr.map((user) => (
+                            <UserGrid user={user} />
+                        ))
+                    }
+                </div>
+            </div>
+
+        </div>
     )
 };
 

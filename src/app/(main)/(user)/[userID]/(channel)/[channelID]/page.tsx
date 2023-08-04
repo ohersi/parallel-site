@@ -9,7 +9,7 @@ import HeaderAction from '@/components/header/header.action';
 import ChannelFormModal from '@/components/modal/channelForm.modal';
 import BlockFormModal from '@/components/modal/blockForm.modal';
 import { getChannelData } from '@/resources/data/channel/getChannelData';
-import { IPageProps, IPageResults } from '@/utils/types/types';
+import { IPageProps, IPageResults, FEED } from '@/utils/types/types';
 import styles from '@/styles/pages/channel.page.module.scss';
 
 // // Forces dynamic behavior
@@ -41,11 +41,10 @@ const ChannelPage = async (props: IPageProps) => {
     <div>
       <div className={styles.page}>
 
-
         <Header
           title={<HeaderTitle props={channel} />}
           action={<HeaderAction channelUser={user} />}
-          info={<HeaderInfo props={channel} />}
+          info={<HeaderInfo props={channel} params={props.params} type={FEED.CHANNEL}/>}
         />
 
         <Channel initial={res} />

@@ -4,15 +4,16 @@ import Link from "next/link";
 // Imports
 import { useAppDispatch, useAppSelector } from "@/store";
 import { setViewType, setSortType } from "@/store/filterTypeSlice";
-import { FEED, SORT } from "@/utils/types/types";
+import { FEED, IPageProps, SORT, FOLLOW } from "@/utils/types/types";
 import styles from "@/styles/layout/header.module.scss";
 
 interface IHeaderInfo {
     props: any;
-    params?: string;
+    params?: IPageProps['params'];
+    type?: string;
 };
 
-const HeaderInfo = ({ props, params }: IHeaderInfo) => {
+const HeaderInfo = ({ props, params, type }: IHeaderInfo) => {
 
     const dispatch = useAppDispatch();
     const viewType = useAppSelector((state) => state.Filter.viewType);
@@ -20,9 +21,9 @@ const HeaderInfo = ({ props, params }: IHeaderInfo) => {
 
     return (
         <div className={
-            props.email ?
+            props.email && type !== FOLLOW.USER ?
                 styles.header__grid
-                : typeof props == 'string' ?
+                : typeof props == 'string' && type !== FOLLOW.USER ?
                     styles.header__double
                     : styles.header__single
         }>
@@ -36,20 +37,29 @@ const HeaderInfo = ({ props, params }: IHeaderInfo) => {
                                 <p>{props.description}</p>
                                 : <p>&mdash;</p>
                         }
-                        <div className={styles.header__grid__info__buttons}>
-                            <div className={styles.header__grid__info__buttons__follow}>
-                                <Link href={`/${params}/followers`}>Followers</Link>
-                            </div>
-                            <div className={styles.header__grid__info__buttons__follow}>
-                                <Link href={`/${params}/following`}>Following</Link>
-                            </div>
-                        </div>
+                        {
+                            type === FEED.CHANNEL ?
+                                <div className={styles.header__grid__info__buttons}>
+                                    <div className={styles.header__grid__info__buttons__follow}>
+                                        <Link href={`/${params?.userID}/${params?.channelID}/followers`}>Followers</Link>
+                                    </div>
+                                </div>
+                                :
+                                <div className={styles.header__grid__info__buttons}>
+                                    <div className={styles.header__grid__info__buttons__follow}>
+                                        <Link href={`/${params?.userID}/followers`}>Followers</Link>
+                                    </div>
+                                    <div className={styles.header__grid__info__buttons__follow}>
+                                        <Link href={`/${params?.userID}/following`}>Following</Link>
+                                    </div>
+                                </div>
+                        }
                     </div>
                     : null
             }
 
             {
-                props?.email ?
+                props?.email && type !== FOLLOW.USER ?
                     <div className={styles.header__grid__info}>
                         <div className={styles.header__grid__info__title}>View</div>
 
@@ -108,7 +118,7 @@ const HeaderInfo = ({ props, params }: IHeaderInfo) => {
             }
             {
 
-                props?.email ?
+                props?.email && type !== FOLLOW.USER ?
                     <div className={styles.header__grid__info}>
                         <div className={styles.header__grid__info__title}>Sort</div>
                         <div className={styles.header__grid__info__buttons}>

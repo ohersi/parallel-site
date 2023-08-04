@@ -142,6 +142,10 @@ export enum FEED {
     ALL = 'All',
 }
 
+export enum FOLLOW {
+    USER = 'User',
+}
+
 export enum ACTION {
     CREATED = 'Created',
     FOLLOWED = 'Followed',
