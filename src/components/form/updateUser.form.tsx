@@ -4,25 +4,28 @@ import { useRouter } from 'next/navigation';
 import useSWRMutation from 'swr/mutation';
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-// Imports
-import { useAppDispatch, useAppSelector } from '@/store';
+// REDUX
+import { useAppDispatch } from '@/store';
 import { setUser } from '@/store/userSlice';
+// FUNCTIONS
 import { UpdateUser } from '@/resources/data/user/updateUser';
-import userValidation from '@/resources/validations/user.validation';
-import { IUserPayload } from '@/utils/types/types';
 import { isEmpty } from '@/resources/isEmpty';
-
-/* 
-    Redux store gets reset on page reload or when entering an url,
-    route changes through links or redirects do not reset store
-*/
+// VALIDATIONS
+import userValidation from '@/resources/validations/user.validation';
+// TYPES
+import { IUserPayload } from '@/utils/types/types';
+// STYLES
+import styles from '@/styles/components/form/updateUser.form.module.scss'
 
 let userPayload: IUserPayload = {};
 
-const UpdateUserForm = () => {
+type Props = {
+    user: any
+}
+
+const UpdateUserForm = ({ user }: Props) => {
 
     const dispatch = useAppDispatch();
-    const user = useAppSelector((state) => state.User.user);
 
     const router = useRouter();
 
@@ -66,74 +69,103 @@ const UpdateUserForm = () => {
     };
 
     return (
-        <>
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.settings}>
+            <form
+                className={styles.settings__form}
+                onSubmit={handleSubmit(onSubmit)}>
 
-                <div>
-                    <label htmlFor="first_name">First Name</label>
-                    <input
-                        className='input'
-                        type="text"
-                        placeholder="First Name"
-                        autoComplete="off"
-                        {...register("first_name")}
-                    />
+                <div className={styles.settings__form__item}>
+                    <label
+                        className={styles.settings__form__item__label}
+                        htmlFor="first_name">
+                        First Name
+                    </label>
+                    <span className={styles.settings__form__item__input}>
+                        <input
+                            className='input'
+                            type="text"
+                            autoComplete="off"
+                            defaultValue={user.first_name}
+                            {...register("first_name")}
+                        />
+                    </span>
                     <span className='error'>{errors?.first_name?.message?.toString()}</span>
                 </div>
 
-                <div>
-                    <label htmlFor="last_name">Last Name</label>
-                    <input
-                        className='input'
-                        type="text"
-                        placeholder="Last Name"
-                        autoComplete="off"
-                        {...register("last_name", { required: false })}
-                    />
+                <div className={styles.settings__form__item}>
+                    <label
+                        className={styles.settings__form__item__label}
+                        htmlFor="last_name">
+                        Last Name
+                    </label>
+                    <span className={styles.settings__form__item__input}>
+                        <input
+                            className='input'
+                            type="text"
+                            autoComplete="off"
+                            defaultValue={user.last_name}
+                            {...register("last_name", { required: false })}
+                        />
+                    </span>
                     <span className='error'>{errors?.last_name?.message?.toString()}</span>
                 </div>
 
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        className='input'
-                        type="email"
-                        placeholder="Email"
-                        autoComplete="off"
-                        {...register("email", { required: false })}
-                    />
+                <div className={styles.settings__form__item}>
+                    <label
+                        className={styles.settings__form__item__label}
+                        htmlFor="email">
+                        Email
+                    </label>
+                    <span className={styles.settings__form__item__input}>
+                        <input
+                            className='input'
+                            type="email"
+                            autoComplete="off"
+                            defaultValue={user.email}
+                            {...register("email", { required: false })}
+                        />
+                    </span>
                     <span className='error'>{errors?.email?.message?.toString()}</span>
                 </div>
 
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        className='input'
-                        type="password"
-                        placeholder="Password"
-                        {...register("password", { required: false })}
-                    />
+                <div className={styles.settings__form__item}>
+                    <label
+                        className={styles.settings__form__item__label}
+                        htmlFor="password">
+                        Password
+                    </label>
+                    <span className={styles.settings__form__item__input}>
+                        <input
+                            className='input'
+                            type="password"
+                            {...register("password", { required: false })}
+                        />
+                    </span>
                     <span className='error'>{errors?.password?.message?.toString()}</span>
                 </div>
 
-                <div>
-                    <label htmlFor="avatar">Avatar</label>
-                    <input
-                        className='input'
-                        type="url"
-                        placeholder="Avatar"
-                        autoComplete="off"
-                        {...register("avatar", { required: false })}
-                    />
+                <div className={styles.settings__form__item}>
+                    <label
+                        className={styles.settings__form__item__label}
+                        htmlFor="avatar">
+                        Avatar
+                    </label>
+                    <span className={styles.settings__form__item__input}>
+                        <input
+                            className='input'
+                            type="url"
+                            autoComplete="off"
+                            {...register("avatar", { required: false })}
+                        />
+                    </span>
                     <span className='error'>{errors?.avatar?.message?.toString()}</span>
                 </div>
 
-                <button>Submit</button>
+                <div className={styles.settings__form__submit}>
+                    <button className={styles.settings__form__submit__btn}>update</button>
+                </div>
             </form>
-            <div>
-                {JSON.stringify(user)}
-            </div>
-        </>
+        </div>
     );
 };
 

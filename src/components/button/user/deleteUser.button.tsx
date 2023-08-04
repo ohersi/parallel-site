@@ -5,18 +5,18 @@ import useSWRMutation from 'swr/mutation';
 import { DeleteUser } from '@/resources/data/user/deleteUser';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setIsOpen } from '@/store/modalSlice';
-import Modal from '@/components/modal/modal';
+import styles from '@/styles/components/form/updateUser.form.module.scss'
 
 type Props = {
-    user: any;
+    userID: number;
 };
 
-const DeleteUserButton = ({ user }: Props) => {
+const DeleteUserButton = ({ userID }: Props) => {
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
 
-    const { trigger, error: error } = useSWRMutation(`api/v1/users/${user.id}`, () => DeleteUser(user.id));
+    const { trigger, error: error } = useSWRMutation(`api/v1/users/${userID}`, () => DeleteUser(userID));
 
     const handleClick = async () => {
         await trigger()
@@ -24,22 +24,24 @@ const DeleteUserButton = ({ user }: Props) => {
     };
 
     return (
-        <>
-            {
-                user && user.id ?
-                    <>
-                        <Modal handleClose={() => { dispatch(setIsOpen(!isOpen)) }} isOpen={isOpen}>
-                            <div>
-                                <h4>Do you want to delete your account?</h4>
-                                <button onClick={() => { dispatch(setIsOpen(!isOpen)) }}>Cancel</button>
-                                <button onClick={() => handleClick}>Confirm</button>
-                            </div>
-                        </Modal>
-                        <button onClick={() => { dispatch(setIsOpen(!isOpen)) }}>Delete Account</button>
-                    </>
-                    : null
-            }
-        </>
+        <div className={styles.settings__modal}>
+            <div className={styles.settings__modal__box}>
+                <div className={styles.settings__modal__box__title}>Do you want to delete your account?</div>
+
+                <div className={styles.settings__modal__box__buttons}>
+                    <button
+                        className={styles.settings__modal__box__buttons__btn}
+                        onClick={() => { dispatch(setIsOpen(!isOpen)) }}>
+                        cancel
+                    </button>
+                    <button
+                        className={styles.settings__modal__box__buttons__btn}
+                        onClick={() => { console.log('TESTING') }}>
+                        confirm &nbsp; ✓
+                    </button>
+                </div>
+            </div>
+        </div>
     )
 };
 

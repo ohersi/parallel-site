@@ -15,8 +15,8 @@ const create = yup.object({
 const update = yup.object({
     title: yup.string().optional(),
     description: yup.string().optional(),
-    image_url: yup.string().matches(regMatch, "URL is not valid.").optional(),
-    source_url: yup.string().matches(regMatch, "URL is not valid.").optional(),
+    image_url: yup.string().matches(regMatch, { message: "URL is not valid.", excludeEmptyString: true }).optional(),
+    source_url: yup.string().matches(regMatch, { message: "URL is not valid.", excludeEmptyString: true }).optional(),
 });
 
 const blockValidation = {
