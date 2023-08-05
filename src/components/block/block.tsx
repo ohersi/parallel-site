@@ -142,7 +142,7 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
                             Last updated {timeAgo(blocks.date_updated)}
                         </time>
                         <span>
-                        <Link href={blocks.source_url}>Source</Link>
+                            <Link href={blocks.source_url}>Source</Link>
                         </span>
                     </div>
 
@@ -168,14 +168,16 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
 
                         {
                             blocks.channels.map((channel: IChannel) => (
-                                <div className={styles.block__info__connections__item} key={channel.slug}>
-                                    <div className={styles.block__info__connections__item__title}>
-                                        {channel.title}
+                                <Link href={`${channel.user?.slug}/${channel.slug}`}>
+                                    <div className={styles.block__info__connections__item} key={channel.slug}>
+                                        <div className={styles.block__info__connections__item__title}>
+                                            {channel.title}
+                                        </div>
+                                        <div className={styles.block__info__connections__item__user}>
+                                            by {channel.user?.full_name}
+                                        </div>
                                     </div>
-                                    <div className={styles.block__info__connections__item__user}>
-                                        by {channel.user?.full_name}
-                                    </div>
-                                </div>
+                                </Link>
                             ))
                         }
                         <div className={styles.block__info__connections__item} >

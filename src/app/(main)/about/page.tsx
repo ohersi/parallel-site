@@ -1,5 +1,12 @@
+// Packages
+import { Metadata } from 'next';
 // Imports
 import styles from '@/styles/pages/about.page.module.scss';
+
+export const metadata: Metadata = {
+  title: 'About',
+  description: 'About Page',
+}
 
 const AboutPage = () => {
 
@@ -67,8 +74,8 @@ const AboutPage = () => {
                 className={styles.page__info__section__diagram__svg_container__svg}
                 xmlns="http://www.w3.org/2000/svg" width="78" height="62" viewBox="0 0 78 62" fill="none">
                 <rect x="17.4012" y="1.28915" width="60.07" height="60.07" />
-                <path d="M0.620802 47.005C0.230278 47.3955 0.230278 48.0287 0.620802 48.4192C1.01133 48.8097 1.64449 48.8097 2.03502 48.4192L0.620802 47.005ZM9.80516 37.8206L0.620802 47.005L2.03502 48.4192L11.2194 39.2348L9.80516 37.8206Z" stroke-width="0" />
-                <circle cx="17.9373" cy="29.4737" r="13.5374" stroke-width="2" />
+                <path d="M0.620802 47.005C0.230278 47.3955 0.230278 48.0287 0.620802 48.4192C1.01133 48.8097 1.64449 48.8097 2.03502 48.4192L0.620802 47.005ZM9.80516 37.8206L0.620802 47.005L2.03502 48.4192L11.2194 39.2348L9.80516 37.8206Z" stroke-width="1" />
+                <circle cx="17.9373" cy="29.4737" r="13.5374" stroke-width="1" />
               </svg>
             </div>
 
