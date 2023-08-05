@@ -65,6 +65,8 @@
             &__svg {
                 width: 90px;
                 stroke-width: 6px;
+                fill: a.$color-primary;
+                stroke: a.$color-secondary;
 
                 @include a.min-width(xsmall) {
                     width: 160px;

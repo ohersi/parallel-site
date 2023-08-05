@@ -33,9 +33,9 @@ const HomePage = async () => {
             <svg
               className={styles.page__main__svg_container__svg}
               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 250" fill="none">
-              <rect x="0.047914" y="0.375849" width="207.645" height="207.645" transform="matrix(0.965926 0.258819 -0.870098 0.492879 181.937 92.4198)" fill="#FCF9F8" stroke="#215BDF" />
-              <rect x="0.047914" y="0.375849" width="207.645" height="207.645" transform="matrix(0.965926 0.258819 -0.870098 0.492879 181.937 46.3097)" fill="#FCF9F8" stroke="#215BDF" />
-              <rect x="0.047914" y="0.375849" width="207.645" height="207.645" transform="matrix(0.965926 0.258819 -0.870098 0.492879 181.937 0.199837)" fill="#FCF9F8" stroke="#215BDF" />
+              <rect x="0.047914" y="0.375849" width="207.645" height="207.645" transform="matrix(0.965926 0.258819 -0.870098 0.492879 181.937 92.4198)" />
+              <rect x="0.047914" y="0.375849" width="207.645" height="207.645" transform="matrix(0.965926 0.258819 -0.870098 0.492879 181.937 46.3097)" />
+              <rect x="0.047914" y="0.375849" width="207.645" height="207.645" transform="matrix(0.965926 0.258819 -0.870098 0.492879 181.937 0.199837)" />
             </svg>
           </div>
 

@@ -16,11 +16,17 @@
         justify-content: center;
     }
 
-    &__svg {
+    &__svg_container {
         display: block;
+
 
         @include a.min-width(medium) {
             display: none;
+        }
+
+        &__svg {
+            stroke: a.$color-primary;
+            fill: a.$color-secondary;
         }
     }
 

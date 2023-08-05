@@ -8,14 +8,22 @@
     align-items: center;
     gap: 2rem;
     width: 100%;
-    height: 100%;
     padding: 1rem;
 
-    &__svg {
+    @include a.min-width(medium) {
+        height: 100%;
+    }
+
+    &__svg_container {
         display: block;
 
         @include a.min-width(medium) {
             display: none;
+        }
+
+        &__svg {
+            stroke: a.$color-primary;
+            fill: a.$color-secondary;
         }
     }
 

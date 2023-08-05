@@ -30,6 +30,7 @@
         &__icon {
             &__svg {
                 width: 1rem;
+                fill: a.$color-secondary;
                 @include a.svg-size(a.$block-width);
             }
         }

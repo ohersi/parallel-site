@@ -68,6 +68,8 @@
                 right: -12%;
 
                 &__svg {
+                    stroke: a.$color-secondary;
+                    fill: a.$color-primary;
                     width: 50vw;
                     margin: 0 auto;
                     stroke-width: 2px;
@@ -188,6 +190,8 @@
 
                     &__svg {
                         display: block;
+                        stroke: a.$color-primary;
+                        fill: a.$color-secondary;
                         // margin: 0 auto;
                         // background-color: rgba(255, 0, 0, 0.161);
 

@@ -60,12 +60,14 @@ const SignUpForm = () => {
     return (
         <div className={styles.signup}>
 
-            <div className={styles.signup__svg}>
+            <div className={styles.signup__svg_container}>
                 <Link href={'/'}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="140" height="92" viewBox="0 0 140 92" fill="none">
-                        <rect x="0.047914" y="0.375849" width="75" height="75" transform="matrix(0.965926 0.258819 -0.870098 0.492879 66.7347 34.1163)" fill="#FCF9F8" stroke="currentColor" />
-                        <rect x="0.047914" y="0.375849" width="75" height="75" transform="matrix(0.965926 0.258819 -0.870098 0.492879 66.7347 17.3205)" fill="#FCF9F8" stroke="currentColor" />
-                        <rect x="0.047914" y="0.375849" width="75" height="75" transform="matrix(0.965926 0.258819 -0.870098 0.492879 66.7347 0.524773)" fill="#FCF9F8" stroke="currentColor" />
+                    <svg
+                        className={styles.signup__svg_container__svg}
+                        xmlns="http://www.w3.org/2000/svg" width="140" height="92" viewBox="0 0 140 92" fill="none">
+                        <rect x="0.047914" y="0.375849" width="75" height="75" transform="matrix(0.965926 0.258819 -0.870098 0.492879 66.7347 34.1163)" />
+                        <rect x="0.047914" y="0.375849" width="75" height="75" transform="matrix(0.965926 0.258819 -0.870098 0.492879 66.7347 17.3205)" />
+                        <rect x="0.047914" y="0.375849" width="75" height="75" transform="matrix(0.965926 0.258819 -0.870098 0.492879 66.7347 0.524773)" />
                     </svg>
                 </Link>
             </div>

@@ -1,8 +1,8 @@
+@use '@/styles/utils' as u;
+
 // COLORS //
-$color-primary: rgb(252, 249, 248);
-// $color-secondary: rgb(100, 123, 95);
-$color-secondary: rgb(33, 91, 223);
-// red - #ff3d00
+$color-primary: u.$theme3-primary;
+$color-secondary: u.$theme3-secondary;
 
 // BREAKPOINTS //
 $breakpoint-xsmall: 320px;

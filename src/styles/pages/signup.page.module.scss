@@ -22,8 +22,14 @@
             align-items: center;
         }
 
-        &__svg {
+        &__svg_container {
             width: 90%;
+
+            &__svg {
+                fill: a.$color-primary;
+                stroke: a.$color-secondary;
+                stroke-width: 3px;
+            }
         }
 
         &__text {

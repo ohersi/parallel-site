@@ -1,24 +1,26 @@
 @use '@/styles/abstracts' as a;
 
 .page {
-    margin: 0 auto;
-    padding-top: 1rem;
+
     @include a.grid-width(a.$block-width);
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    padding-bottom: 1rem;
+    margin: 0 auto;
+    padding: 1rem 0;
 
     &__box {
-        padding-top: 3rem;
         display: flex;
         flex-direction: column;
         row-gap: 2rem;
+        padding-top: 5rem;
 
         &__title {
             font-size: 1.5rem;
             text-align: center;
             font-weight: bold;
+            text-decoration: 1px a.$color-secondary underline;
+            text-underline-offset: 1rem;
         }
 
         &__grid {
@@ -27,9 +29,6 @@
             flex-flow: row wrap;
             margin: 2rem 0 0 10px;
             gap: 1rem;
-            // border: 1px solid rgba(255, 208, 0, 0.729);
         }
     }
-
-
 }

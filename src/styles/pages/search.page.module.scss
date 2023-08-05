@@ -21,6 +21,10 @@
         align-items: center;
         gap: 1rem;
         cursor: pointer;
+
+        &__svg {
+            fill: a.$color-secondary;
+        }
     }
 
     &__results {
