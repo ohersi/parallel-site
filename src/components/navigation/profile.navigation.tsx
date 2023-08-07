@@ -6,6 +6,7 @@ import Link from "next/link";
 // Imports
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setIsMenuOpen } from "@/store/menuSlice";
+import NavThemes from "@/components/navigation/themes.navigation";
 import LogoutButton from "@/components/button/user/logOut.button";
 import styles from "@/styles/layout/nav.module.scss";
 
@@ -129,6 +130,10 @@ const NavProfile = () => {
                                         <span className={styles.nav__menu__dropdown__bottom__section__links}>
                                             <Link href={`/about`}>About</Link>
                                         </span>
+                                    </div>
+
+                                    <div className={styles.nav__menu__dropdown__bottom__section}>
+                                            <NavThemes />
                                     </div>
 
                                 </div>

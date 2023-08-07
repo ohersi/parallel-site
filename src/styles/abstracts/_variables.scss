@@ -1,8 +1,8 @@
 @use '@/styles/utils' as u;
 
 // COLORS //
-$color-primary: u.$theme3-primary;
-$color-secondary: u.$theme3-secondary;
+$color-primary: var(--background-color);
+$color-secondary: var(--color);
 
 // BREAKPOINTS //
 $breakpoint-xsmall: 320px;

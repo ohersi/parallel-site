@@ -156,3 +156,12 @@ export enum SORT {
     RECENTLY_UPDATED = 'RECENTLY_UPDATED',
     OLDEST = 'OLDEST',
 }
+
+export enum THEME {
+    DEFAULT = 'default',
+    RED_PINK = 'red-pink',
+    WHITE_BLUE = 'white-blue',
+    BLUE_BLACK = 'blue-black',
+    GREY_BLACK = 'grey-black',
+    BLACK_WHITE = 'black-white',
+}

@@ -10,8 +10,37 @@ body {
     margin: 0;
     padding: 0;
     font-family: u.$base-font;
+
+    --background-color: #{u.$theme_green_white-primary};
+    --color: #{u.$theme_green_white-secondary};
+
     background-color: a.$color-primary;
     color: a.$color-secondary;
+}
+
+body.theme_red-pink {
+    --background-color: #{u.$theme_red_pink-primary};
+    --color: #{u.$theme_red_pink-secondary};
+}
+
+body.theme_white-blue {
+    --background-color: #{u.$theme_white_blue-primary};
+    --color: #{u.$theme_white_blue-secondary};
+}
+
+body.theme_blue-black {
+    --background-color: #{u.$theme_blue_black-primary};
+    --color: #{u.$theme_blue_black-secondary};
+}
+
+body.theme_grey-black {
+    --background-color: #{u.$theme_grey_black-primary};
+    --color: #{u.$theme_grey_black-secondary};
+}
+
+body.theme_black-white {
+    --background-color: #{u.$theme_black_white-primary};
+    --color: #{u.$theme_black_white-secondary};
 }
 
 *,
