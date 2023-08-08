@@ -13,6 +13,32 @@
         margin: 3rem 0;
     }
 
+    &__confirmation {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: Min(400px, 100%);
+        text-align: center;
+        padding: 2rem 0;
+        row-gap: 1rem;
+        border: 1px solid a.$color-secondary;
+
+        &__title {
+            font-style: italic;
+        }
+
+        &__resend {
+            
+            &__btn {
+                color: a.$color-secondary;
+                text-decoration: 1px underline;
+                text-underline-offset: 6px;
+                cursor: pointer;
+            }
+        }
+    }
+
     &__delete {
         display: flex;
         flex-direction: column;

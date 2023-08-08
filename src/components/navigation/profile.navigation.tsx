@@ -33,7 +33,7 @@ const NavProfile = () => {
                             className={styles.nav__menu__profile}
                         >
                             <svg
-                            className={styles.nav__menu__profile__svg}
+                                className={styles.nav__menu__profile__svg}
                                 xmlns="http://www.w3.org/2000/svg" width="25" height="26" viewBox="0 0 25 26" fill="none">
                                 <path d="M17.305 6.02387C17.305 8.67243 15.1579 10.8195 12.5093 10.8195C9.86077 10.8195 7.71368 8.67243 7.71368 6.02387C7.71368 3.3753 9.86077 1.22821 12.5093 1.22821C15.1579 1.22821 17.305 3.3753 17.305 6.02387Z" />
                                 <path d="M24.1995 25.2679C24.1995 23.7327 23.8971 22.2126 23.3096 20.7943C22.7221 19.376 21.861 18.0873 20.7755 17.0017C19.69 15.9162 18.4013 15.0551 16.9829 14.4676C15.5646 13.8801 14.0445 13.5778 12.5093 13.5778C10.9741 13.5778 9.45399 13.8801 8.03568 14.4676C6.61736 15.0551 5.32865 15.9162 4.24312 17.0017C3.15759 18.0873 2.2965 19.376 1.70901 20.7943C1.12153 22.2126 0.819153 23.7327 0.819153 25.2679" />
@@ -97,6 +97,10 @@ const NavProfile = () => {
                                         <Link href={`/about`}>About</Link>
                                     </span>
                                     <LogoutButton />
+                                </div>
+
+                                <div className={styles.nav__menu__dropdown__bottom__section}>
+                                    <NavThemes />
                                 </div>
                             </div>
 

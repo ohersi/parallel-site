@@ -4,13 +4,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import { PURGE } from "redux-persist";
+import { IUser } from "@/utils/types/types";
 
 export interface userState {
-    user: any;
+    user: Partial<IUser>;
 };
 
 const initialState: userState = {
-    user: undefined
+    user: undefined!
 };
 
 const userSlice = createSlice({

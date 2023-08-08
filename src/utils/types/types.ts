@@ -21,7 +21,8 @@ export interface IUser {
     avatar: string;
     enabled: boolean;
     locked: boolean;
-    role: string;
+    role?: string;
+    token?: string;
 };
 
 export interface IChannel {
