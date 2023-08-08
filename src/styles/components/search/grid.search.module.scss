@@ -34,12 +34,17 @@
             font-size: 1.5rem;
             font-weight: bold;
             gap: 2rem;
+            position: relative;
 
             &__image {
-                width: 5rem;
-                height: 5rem;
-                background-color: a.$color-secondary;
+                position: relative;
                 border-radius: 50%;
+                overflow: hidden;
+
+                &__img {
+                    width: 5rem;
+                    height: 5rem;
+                }
             }
         }
     }

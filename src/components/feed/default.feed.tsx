@@ -10,8 +10,6 @@ import { GetDefaultFeed } from "@/resources/data/feed/getDefaultFeed";
 import { IBlock, IChannel, IDefaultFeedResults, FEED, SORT } from "@/utils/types/types";
 import styles from "@/styles/components/feed/default.feed.module.scss";
 
-// TODO: Replace InfiniteScroll packages with custom scroll
-
 interface IDefaultFeed {
     initial: IDefaultFeedResults;
 }
@@ -59,15 +57,13 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
 
     return (
         <div className={styles.feed}>
-
-            {/* <span>Last channelID: {channelLastID ? channelLastID : 'NULL'}</span>
-            <span>Last blockID: {blockLastID ? blockLastID : 'NULL'}</span>
-
-            <span>
-                <button onClick={fetchFeed}>Get More</button>
-            </span> */}
-
-            <div className={styles.feed__grid}>
+            <InfiniteScroll
+                dataLength={feed.length}
+                next={fetchFeed}
+                className={styles.feed__grid}
+                hasMore={channelLastID || blockLastID ? true : false}
+                loader={null}
+            >
                 {
                     feed && viewType == FEED.ALL ?
                         <div className={styles.feed__grid__box}>
@@ -75,7 +71,7 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
                                 sortType == SORT.RECENTLY_UPDATED ?
                                     feed.map((item: any, index) => {
                                         if (item.source_url) {
-                                            // TODO: Replace index with block slug 
+                                            // TODO: Replace index with block id 
                                             return <BlockGrid block={item} key={index} />
 
                                         }
@@ -84,7 +80,7 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
                                     : sortType == SORT.OLDEST ?
                                         feed.slice().reverse().map((item: any, index) => {
                                             if (item.source_url) {
-                                                // TODO: Replace index with block slug 
+                                                // TODO: Replace index with block id 
                                                 return <BlockGrid block={item} key={index} />
 
                                             }
@@ -117,10 +113,12 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
                                         sortType == SORT.RECENTLY_UPDATED ?
                                             feed.map((item: any, index) => {
                                                 if (item.source_url)
+                                                // TODO: Replace index with block id 
                                                     return <BlockGrid block={item} key={index} />
                                             })
                                             : sortType == SORT.OLDEST ?
-                                                feed.slice().reverse().map((item: any, index) => {
+                                                feed.slice().reverse().map
+                                                ((item: any, index) => {
                                                     if (item.source_url)
                                                         return <BlockGrid block={item} key={index} />
                                                 })
@@ -129,7 +127,7 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
                                 </div>
                                 : null
                 }
-            </div>
+            </InfiniteScroll>
         </div>
     )
 };

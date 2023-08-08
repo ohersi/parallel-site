@@ -52,24 +52,19 @@ const Channel = ({ initial }: PageResults) => {
     };
 
     return (
-        <div className={styles.channel}>
+        <InfiniteScroll
+            dataLength={blocks.length}
+            next={fetchBlocks}
+            className={styles.channel}
+            hasMore={lastID ? true : false}
+            loader={null}
+        >
             {
                 loggedInUser && loggedInUser.id == channel.user?.id ?
                     <CreateBlockButton />
                     : null
             }
-
-            {/* <InfiniteScroll
-                dataLength={blocks.length}
-                next={fetchBlocks}
-                hasMore={lastID ? true : false}
-                loader={<h4>Loading...</h4>}
-                endMessage={
-                    <p style={{ textAlign: 'center' }}>
-                        <b>Yay! You have seen it all</b>
-                    </p>
-                }
-            // > */}
+            
             {
                 blocks.map((block: IBlock) => (
                     <BlockGrid
@@ -81,6 +76,7 @@ const Channel = ({ initial }: PageResults) => {
                     />
                 ))
             }
+
             <div className={styles.default_block}>
                 TEST
             </div>
@@ -105,8 +101,7 @@ const Channel = ({ initial }: PageResults) => {
             <div className={styles.default_block}>
                 TEST
             </div>
-            {/* </InfiniteScroll> */}
-        </div>
+        </InfiniteScroll>
     )
 };
 
