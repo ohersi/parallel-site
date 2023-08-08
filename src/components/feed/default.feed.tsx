@@ -60,12 +60,12 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
     return (
         <div className={styles.feed}>
 
-            <span>Last channelID: {channelLastID ? channelLastID : 'NULL'}</span>
+            {/* <span>Last channelID: {channelLastID ? channelLastID : 'NULL'}</span>
             <span>Last blockID: {blockLastID ? blockLastID : 'NULL'}</span>
 
             <span>
                 <button onClick={fetchFeed}>Get More</button>
-            </span>
+            </span> */}
 
             <div className={styles.feed__grid}>
                 {

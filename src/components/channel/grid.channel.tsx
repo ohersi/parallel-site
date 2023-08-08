@@ -2,9 +2,9 @@
 // Packages
 import Link from 'next/link';
 // Imports
-import { IChannel, IUser } from '@/utils/types/types';
-import styles from '@/styles/components/search/grid.search.module.scss';
 import { timeAgo } from '@/resources/timeAgo';
+import { IChannel } from '@/utils/types/types';
+import styles from '@/styles/components/search/grid.search.module.scss';
 
 type IChannelGrid = {
     channel: IChannel

@@ -64,7 +64,9 @@ const HeaderInfo = ({ props, params, type }: IHeaderInfo) => {
                         <div className={styles.header__grid__info__title}>View</div>
 
                         <div className={styles.header__grid__info__buttons}>
-                            <div onClick={() => dispatch(setViewType(FEED.CHANNEL))}>
+                            <div 
+                            className={styles.header__grid__info__buttons__links}
+                            onClick={() => dispatch(setViewType(FEED.CHANNEL))}>
                                 Channels
                                 {
                                     viewType == FEED.CHANNEL ?
@@ -72,7 +74,9 @@ const HeaderInfo = ({ props, params, type }: IHeaderInfo) => {
                                         : null
                                 }
                             </div>
-                            <div onClick={() => dispatch(setViewType(FEED.BLOCK))}>
+                            <div 
+                            className={styles.header__grid__info__buttons__links}
+                            onClick={() => dispatch(setViewType(FEED.BLOCK))}>
                                 Blocks
                                 {
                                     viewType == FEED.BLOCK ?
@@ -88,7 +92,9 @@ const HeaderInfo = ({ props, params, type }: IHeaderInfo) => {
                             <div className={styles.header__double__info__title}>View</div>
 
                             <div className={styles.header__double__info__buttons}>
-                                <div onClick={() => dispatch(setViewType(FEED.ALL))}>
+                                <div
+                                className={styles.header__grid__info__buttons__links} 
+                                onClick={() => dispatch(setViewType(FEED.ALL))}>
                                     All
                                     {
                                         viewType == FEED.ALL ?
@@ -96,7 +102,9 @@ const HeaderInfo = ({ props, params, type }: IHeaderInfo) => {
                                             : null
                                     }
                                 </div>
-                                <div onClick={() => dispatch(setViewType(FEED.CHANNEL))}>
+                                <div
+                                className={styles.header__grid__info__buttons__links} 
+                                onClick={() => dispatch(setViewType(FEED.CHANNEL))}>
                                     Channels
                                     {
                                         viewType == FEED.CHANNEL ?
@@ -104,7 +112,9 @@ const HeaderInfo = ({ props, params, type }: IHeaderInfo) => {
                                             : null
                                     }
                                 </div>
-                                <div onClick={() => dispatch(setViewType(FEED.BLOCK))}>
+                                <div
+                                className={styles.header__grid__info__buttons__links} 
+                                onClick={() => dispatch(setViewType(FEED.BLOCK))}>
                                     Blocks
                                     {
                                         viewType == FEED.BLOCK ?
@@ -122,7 +132,9 @@ const HeaderInfo = ({ props, params, type }: IHeaderInfo) => {
                     <div className={styles.header__grid__info}>
                         <div className={styles.header__grid__info__title}>Sort</div>
                         <div className={styles.header__grid__info__buttons}>
-                            <div onClick={() => dispatch(setSortType(SORT.RECENTLY_UPDATED))}>
+                            <div
+                            className={styles.header__grid__info__buttons__links} 
+                            onClick={() => dispatch(setSortType(SORT.RECENTLY_UPDATED))}>
                                 Recently Updated
                                 {
                                     sortType == SORT.RECENTLY_UPDATED ?
@@ -130,7 +142,9 @@ const HeaderInfo = ({ props, params, type }: IHeaderInfo) => {
                                         : null
                                 }
                             </div>
-                            <div onClick={() => dispatch(setSortType(SORT.OLDEST))}>
+                            <div
+                            className={styles.header__grid__info__buttons__links} 
+                            onClick={() => dispatch(setSortType(SORT.OLDEST))}>
                                 Oldest
                                 {
                                     sortType == SORT.OLDEST ?
@@ -144,7 +158,9 @@ const HeaderInfo = ({ props, params, type }: IHeaderInfo) => {
                         <div className={styles.header__double__info}>
                             <div className={styles.header__double__info__title}>Sort</div>
                             <div className={styles.header__double__info__buttons}>
-                                <div onClick={() => dispatch(setSortType(SORT.RECENTLY_UPDATED))}>
+                                <div 
+                                className={styles.header__double__info__buttons__links}
+                                onClick={() => dispatch(setSortType(SORT.RECENTLY_UPDATED))}>
                                     Recently Updated
                                     {
                                         sortType == SORT.RECENTLY_UPDATED ?
@@ -152,7 +168,9 @@ const HeaderInfo = ({ props, params, type }: IHeaderInfo) => {
                                             : null
                                     }
                                 </div>
-                                <div onClick={() => dispatch(setSortType(SORT.OLDEST))}>
+                                <div
+                                className={styles.header__double__info__buttons__links} 
+                                onClick={() => dispatch(setSortType(SORT.OLDEST))}>
                                     Oldest
                                     {
                                         sortType == SORT.OLDEST ?

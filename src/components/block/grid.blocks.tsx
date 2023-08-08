@@ -2,6 +2,7 @@
 // Packages
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 // REDUX
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setIsOpen } from '@/store/modalSlice';
@@ -71,6 +72,20 @@ const BlockGrid = ({ block, channelID, channelUser, channelTitle }: IBlockGrid) 
                                 <DisconnectBlockButton blockID={block.id} />
                                 : <ConnectBlockButton blockID={block.id} />
                         }
+                    </div>
+                    <div className={styles.channel__blocks__image_img}>
+                        <Image
+                            alt='test'
+                            src={`https://d2w9rnfcy7mm78.cloudfront.net/22787874/original_659280da012bef94901275155344921c.jpg?1690203802?bc=0`}
+                            fill
+                            sizes='100vw'
+                            style={{
+                                objectFit: 'contain',
+                                maxWidth: '315px',
+                                maxHeight: '315px',
+                                margin: "0 auto",
+                            }}
+                        />
                     </div>
                 </div>
 

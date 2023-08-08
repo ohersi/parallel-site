@@ -7,7 +7,9 @@
     padding: 1rem 0 1rem 0;
 
     &__grid {
-        margin: 2rem 0 0 10px;
+        @media (min-width: 330px) {
+            margin: 2rem 0 0 10px;
+        }
 
         &__box {
             box-sizing: border-box;
