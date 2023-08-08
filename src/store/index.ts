@@ -3,6 +3,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { persistReducer, persistStore } from 'redux-persist';
+import expireReducer from "redux-persist-expire";
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 // Imports
@@ -20,7 +21,15 @@ const persistConfig = {
   key: 'root',
   storage,
   blacklist: ['Modal', 'Form', 'Button', 'Filter', 'Search', 'Block', 'Menu', 'Theme'],
-  whitelist: ['User']
+  whitelist: ['User'],
+  transforms: [
+    expireReducer('User', {
+      persistedAtKey: '__persisted_at',
+      expireSeconds: 3600, // 1hr
+      expiredState: undefined,
+      autoExpire: true,
+    })
+  ],
 }
 const rootReducer = combineReducers({
   Modal: modalReducer,
