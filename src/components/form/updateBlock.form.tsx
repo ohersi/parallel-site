@@ -71,6 +71,7 @@ const UpdateBlockForm = ({ block }: IUpdateBlockForm) => {
 
                 <div className={styles.modal__box__close_btn}>
                     <svg
+                        className={styles.modal__box__close_btn__svg}
                         onClick={() => {
                             blockModalOpen ? null : dispatch(setIsOpen(!isOpen));
                             blockModalOpen ? null : dispatch(setBlockClicked(undefined));

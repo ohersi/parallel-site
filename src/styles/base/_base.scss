@@ -13,6 +13,7 @@ body {
 
     --background-color: #{u.$theme_green_white-primary};
     --color: #{u.$theme_green_white-secondary};
+    --bg-transparent: #{u.$theme_green_white-transparent};
 
     background-color: a.$color-primary;
     color: a.$color-secondary;
@@ -21,26 +22,31 @@ body {
 body.theme_red-pink {
     --background-color: #{u.$theme_red_pink-primary};
     --color: #{u.$theme_red_pink-secondary};
+    --bg-transparent: #{u.$theme_red_pink-transparent};
 }
 
 body.theme_white-blue {
     --background-color: #{u.$theme_white_blue-primary};
     --color: #{u.$theme_white_blue-secondary};
+    --bg-transparent: #{u.$theme_white_blue-transparent};
 }
 
 body.theme_blue-black {
     --background-color: #{u.$theme_blue_black-primary};
     --color: #{u.$theme_blue_black-secondary};
+    --bg-transparent: #{u.$theme_blue_black-transparent};
 }
 
 body.theme_grey-black {
     --background-color: #{u.$theme_grey_black-primary};
     --color: #{u.$theme_grey_black-secondary};
+    --bg-transparent: #{u.$theme_grey_black-transparent};
 }
 
 body.theme_black-white {
     --background-color: #{u.$theme_black_white-primary};
     --color: #{u.$theme_black_white-secondary};
+    --bg-transparent: #{u.$theme_black_white-transparent};
 }
 
 *,

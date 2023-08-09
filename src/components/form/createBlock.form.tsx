@@ -69,6 +69,7 @@ const CreateBlockForm = ({ channelID }: ICreateBlockForm) => {
 
                 <div className={styles.modal__box__close_btn}>
                     <svg
+                        className={styles.modal__box__close_btn__svg}
                         onClick={() => {
                             dispatch(setIsOpen(!isOpen));
                             dispatch(setFormType(''));
