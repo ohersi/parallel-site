@@ -15,7 +15,7 @@ export async function GetUserFeed(userID: number) {
             next: { revalidate: 10 },
         })
 
-        if (res.status === 404) {
+        if (!res.ok) {
             return null;
         };
 

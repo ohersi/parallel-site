@@ -148,8 +148,10 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
 
                     <div className={styles.block__info__links}>
                         <span className={styles.block__info__links__title}>Actions</span>
-                        <span>Share</span>
-                        <span>Download</span>
+                        <div className={styles.block__info__links__buttons}>
+                        <ShareBlockButton url={blocks.image_url} />
+                        <DownloadBlockButton url={blocks.source_url}/>
+                        </div>
                     </div>
 
                     {

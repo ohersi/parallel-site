@@ -1,0 +1,15 @@
+@use '@/styles/abstracts' as a;
+
+.loader {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+
+    @media (min-width: 330px) {
+        margin-right: 10px;
+    }
+
+    &__spinner {
+        @include a.spinner;
+    }
+}

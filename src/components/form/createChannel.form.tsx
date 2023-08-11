@@ -1,5 +1,6 @@
 "use client"
 // Packages
+import { useState } from 'react';
 import useSWRMutation from 'swr/mutation';
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -20,6 +21,8 @@ import styles from '@/styles/components/form/createChannel.form.module.scss';
 let channelPayload: IChannelPayload = {};
 
 const CreateChannelForm = () => {
+
+    const [failed, setFailed] = useState<boolean>(false);
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
@@ -43,7 +46,13 @@ const CreateChannelForm = () => {
         await setChannelValues(data).then(async (payload) => {
             try {
                 if (!isEmpty(channelPayload)) {
-                    await trigger();
+                    await trigger()
+                        .then((res: any) => {
+                            if (!res.success) {
+                                setFailed(true);
+                            }
+                        })
+                        .catch((error: any) => console.log(error));
                 }
                 // Reset payload
                 channelPayload = {};

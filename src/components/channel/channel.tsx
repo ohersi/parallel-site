@@ -5,6 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 // Imports
 import { useAppSelector } from "@/store";
 import BlockGrid from "@/components/block/grid.blocks";
+import Loader from '@/components/loader/loader';
 import CreateBlockButton from "@/components/button/block/createBlock.button";
 import { IBlock, IPageResults } from "@/utils/types/types";
 import styles from "@/styles/components/channel.module.scss";
@@ -57,7 +58,7 @@ const Channel = ({ initial }: PageResults) => {
             next={fetchBlocks}
             className={styles.channel}
             hasMore={lastID ? true : false}
-            loader={null}
+            loader={<Loader />}
         >
             {
                 loggedInUser && loggedInUser.id == channel.user?.id ?
@@ -76,7 +77,7 @@ const Channel = ({ initial }: PageResults) => {
                     />
                 ))
             }
-
+{/* 
             <div className={styles.default_block}>
                 TEST
             </div>
@@ -100,7 +101,7 @@ const Channel = ({ initial }: PageResults) => {
             </div>
             <div className={styles.default_block}>
                 TEST
-            </div>
+            </div> */}
         </InfiniteScroll>
     )
 };

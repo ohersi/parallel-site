@@ -1,38 +1,36 @@
 @use '@/styles/abstracts' as a;
 
 .field {
-    &__search {
-         display: flex;
-         border-bottom: 1px solid a.$color-secondary;
-         justify-content: space-between;
-         align-items: center;
-         padding: 0.4rem 0.2rem;
-         min-width: 3rem;
+    display: flex;
+    border-bottom: 1px solid a.$color-secondary;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0.2rem;
+    min-width: 3rem;
 
-         &__type {
-            margin-right: 1rem;
-            color: a.$color-primary;
-            background-color: a.$color-secondary;
-            border-radius: 20px;
-            padding: 0.4rem 0.8rem;
-            font-size: 0.8rem;
-         }
+    &__type {
+        margin-right: 1rem;
+        color: a.$color-primary;
+        background-color: a.$color-secondary;
+        border-radius: 20px;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
 
-         &__input {
-            font-size: 1rem;
-            @include a.font-size(a.$block-width, 1rem, 2.5rem);
-         }
+    &__input {
+        font-size: 1rem;
+        @include a.font-size(a.$block-width, 1rem, 2.5rem);
+    }
 
-         &__input:focus+&__icon {
-            display: none;
-        }
+    &__input:focus+&__icon {
+        display: none;
+    }
 
-        &__icon {
-            &__svg {
-                width: 1rem;
-                fill: a.$color-secondary;
-                @include a.svg-size(a.$block-width);
-            }
+    &__icon {
+        &__svg {
+            width: 1rem;
+            fill: a.$color-secondary;
+            @include a.svg-size(a.$block-width);
         }
     }
 }

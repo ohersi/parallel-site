@@ -3,11 +3,18 @@
 // Imports
 import styles from "@/styles/components/button.module.scss";
 
+interface IDownloadBlockButton {
+    url: string;
+}
 
-const DownloadBlockButton = () => {
+const DownloadBlockButton = ({ url }: IDownloadBlockButton) => {
 
     return (
-        <button className={styles.button}>download</button>
+        <a href={url} rel="noopener noreferrer">
+            <div className={styles.button}>
+                download
+            </div>
+        </a>
     )
 };
 

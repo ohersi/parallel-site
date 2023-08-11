@@ -22,7 +22,7 @@ const HeaderAction = ({ channelUser, userID }: IHeaderAction) => {
 
     let loggedInUserID: number | null = null;
 
-    if (loggedInUser) loggedInUserID = loggedInUser.id;
+    if (loggedInUser && loggedInUser.id !== undefined) loggedInUserID = loggedInUser.id;
     if (!userID) userID = null;
 
     return (

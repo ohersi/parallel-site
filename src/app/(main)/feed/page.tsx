@@ -16,6 +16,7 @@ const FeedPage = async () => {
 
     const cookieStore = cookies();
     const session = cookieStore.has(process.env.SESSION_ID!);
+    console.log(session)
 
     return (
         <div className={styles.page}>

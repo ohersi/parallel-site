@@ -10,19 +10,27 @@ interface IShareBlockButton {
 
 const ShareBlockButton = ({ url }: IShareBlockButton) => {
 
-    // TODO: Onclick copy url to clipboard & change share text to copied
-
     const [copied, setCopied] = useState<boolean>(false);
 
     const handleClick = () => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 4000);
+        navigator.clipboard
+            .writeText(url)
+            .then(() => {
+                setCopied(true);
+                setTimeout(() => setCopied(false), 4000);
+            })
+            .catch((error: any) => console.log(error));
     };
 
     return (
         <button
             className={styles.button}
-            onClick={handleClick}>share
+            onClick={handleClick}>
+            {
+                copied ?
+                    <span>copied!</span>
+                    : <span>share</span>
+            }
         </button>
     )
 };

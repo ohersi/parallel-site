@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useAppSelector } from "@/store";
 import BlockGrid from "@/components/block/grid.blocks";
 import ChannelGrid from "@/components/channel/grid.channel";
+import Loader from '@/components/loader/loader';
 import { GetDefaultFeed } from "@/resources/data/feed/getDefaultFeed";
 import { IBlock, IChannel, IDefaultFeedResults, FEED, SORT } from "@/utils/types/types";
 import styles from "@/styles/components/feed/default.feed.module.scss";
@@ -62,7 +63,7 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
                 next={fetchFeed}
                 className={styles.feed__grid}
                 hasMore={channelLastID || blockLastID ? true : false}
-                loader={null}
+                loader={<Loader />}
             >
                 {
                     feed && viewType == FEED.ALL ?

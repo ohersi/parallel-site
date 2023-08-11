@@ -7,18 +7,18 @@ import Loader from '@/components/loader/loader';
 import styles from '@/styles/pages/channel.page.module.scss';
 
 export default function Loading() {
+    
+    return (
+        <div className={styles.page}>
+            <Header
+                title={<HeaderTitle props={'Loading'} />}
+                action={<HeaderAction />}
+                info={<HeaderInfo props={'Loading'} type={'Loading'} />}
+            />
 
-  return (
-    <div className={styles.page}>
-      <Header
-        title={<HeaderTitle props={'Loading'} />}
-        action={<HeaderAction />}
-        info={<HeaderInfo props={'Loading'} type={'Loading'} />}
-      />
-
-      <div className={styles.page__loading}>
-        <Loader />
-      </div>
-    </div>
-  )
+            <div className={styles.page__loading}>
+                <Loader />
+            </div>
+        </div>
+    )
 }

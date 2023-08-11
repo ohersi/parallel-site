@@ -1,5 +1,6 @@
 "use client"
 // Packages
+import { useState } from 'react';
 import useSWRMutation from 'swr/mutation';
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -24,6 +25,8 @@ interface ICreateBlockForm {
 let blockPayload: IBlockPayload = {};
 
 const CreateBlockForm = ({ channelID }: ICreateBlockForm) => {
+
+    const [failed, setFailed] = useState<boolean>(false);
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
@@ -50,7 +53,13 @@ const CreateBlockForm = ({ channelID }: ICreateBlockForm) => {
         await setBlockValues(data).then(async (payload) => {
             try {
                 if (!isEmpty(blockPayload)) {
-                    await trigger();
+                    await trigger()
+                        .then((res: any) => {
+                            if (!res.success) {
+                                setFailed(true);
+                            }
+                        })
+                        .catch((error: any) => console.log(error));
                 }
                 // Reset payload
                 blockPayload = {};

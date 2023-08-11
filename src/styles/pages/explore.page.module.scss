@@ -1,6 +1,17 @@
-@use '../abstracts' as a;
+@use '@/styles/abstracts' as a;
 
 .page {
     margin: 0 auto;
     @include a.grid-width(a.$block-width);
+
+    &__loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100svh - (350px + 80px));
+
+        &__spinner {
+           @include a.spinner;
+        }
+    }
 }
