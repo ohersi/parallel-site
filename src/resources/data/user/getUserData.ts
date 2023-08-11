@@ -1,20 +1,32 @@
-import { IPageProps } from "@/utils/types/types";
+import { IPageProps, IUser } from "@/utils/types/types";
 
-export async function getUserData({ params }: IPageProps) {
+export async function getUserData({ params }: IPageProps): Promise<IUser | null> {
 
-    const res = await fetch(`http://localhost:3000/api/v1/users/name/${params.userID}`, {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
-        },
-        credentials: 'include',
-        next: { revalidate: 10 },
-    });
+    try {
+        const res = await fetch(`http://localhost:3000/api/v1/users/name/${params.userID}`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
+            },
+            credentials: 'include',
+            next: { revalidate: 10 },
+        });
 
-    const data = await res.json();
+        if (!res.ok) return null;
 
-    return data;
+        if (res.status === 500) {
+            const errorMessage = await res.json();
+            throw new Error(errorMessage.message);
+        }
+
+        const data = await res.json()as IUser;
+
+        return data;
+    }
+    catch (error: any) {
+        throw new Error(error);
+    }
 };

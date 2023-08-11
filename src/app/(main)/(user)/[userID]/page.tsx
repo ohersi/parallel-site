@@ -1,5 +1,6 @@
 // Packages
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 // COMPONENTS
 import User from '@/components/user/user';
 import Header from '@/components/header/header';
@@ -7,20 +8,22 @@ import HeaderInfo from '@/components/header/info.header';
 import HeaderTitle from '@/components/header/title.header';
 import HeaderAction from '@/components/header/header.action';
 import ChannelFormModal from '@/components/modal/channelForm.modal';
-import CreateChannelButton from '@/components/button/channel/createChannel.button';
 // FUNCTIONS
 import { getUserData } from '@/resources/data/user/getUserData';
 import { GetUserChannels } from '@/resources/data/channel/getUserChannels';
 import { GetUserBlocks } from '@/resources/data/block/getUserBlocks';
 // TYPES
-import { IPageProps, IUser } from '@/utils/types/types';
+import { IPageProps } from '@/utils/types/types';
 // STYLES
 import styles from "@/styles/pages/user.page.module.scss";
 
 // Dynamic Metadata for Pages
 export const generateMetadata = async (props: IPageProps): Promise<Metadata> => {
   try {
-    const user = await getUserData(props) as IUser;
+    const user = await getUserData(props);
+
+    if (!user) { notFound() };
+
     return { title: `${user.full_name} — Parallel` };
   }
   catch (error: any) {
@@ -30,7 +33,10 @@ export const generateMetadata = async (props: IPageProps): Promise<Metadata> => 
 
 const UserPage = async (props: IPageProps) => {
 
-  const user = await getUserData(props) as IUser;
+  const user = await getUserData(props);
+
+  if (!user) { notFound() };
+
   let userID = user.id.toString()
   const channels = await GetUserChannels(userID);
   const userBlocks = await GetUserBlocks(userID);

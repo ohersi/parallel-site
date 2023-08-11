@@ -1,19 +1,20 @@
-import { IPageProps } from "@/utils/types/types";
+import { IPageProps, IPageResults } from "@/utils/types/types";
 
-export async function getChannelData({ params: { channelID } }: IPageProps) {
+export async function getChannelData({ params: { channelID } }: IPageProps): Promise<IPageResults | null> {
 
     try {
         const res = await fetch(`http://localhost:3000/api/v1/channels/title/${channelID}?limit=2`, {
             next: { revalidate: 10 },
         });
 
-        if (!res.ok) {
+        if (res.status === 404) return null;
+
+        if (res.status === 500) {
             const errorMessage = await res.json();
             throw new Error(errorMessage.message);
         }
 
-        // Contains Page info and channel data
-        const data = await res.json();
+        const data = await res.json() as IPageResults;
 
         return data;
     }

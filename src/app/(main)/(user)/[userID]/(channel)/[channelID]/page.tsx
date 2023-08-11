@@ -1,5 +1,6 @@
 // Packages
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 // Imports
 import Channel from '@/components/channel/channel';
 import Header from '@/components/header/header';
@@ -9,7 +10,7 @@ import HeaderAction from '@/components/header/header.action';
 import ChannelFormModal from '@/components/modal/channelForm.modal';
 import BlockFormModal from '@/components/modal/blockForm.modal';
 import { getChannelData } from '@/resources/data/channel/getChannelData';
-import { IPageProps, IPageResults, FEED } from '@/utils/types/types';
+import { IPageProps, FEED } from '@/utils/types/types';
 import styles from '@/styles/pages/channel.page.module.scss';
 
 // // Forces dynamic behavior
@@ -20,7 +21,10 @@ import styles from '@/styles/pages/channel.page.module.scss';
 // Dynamic Metadata for Pages
 export const generateMetadata = async (props: IPageProps): Promise<Metadata> => {
   try {
-    const res = await getChannelData(props) as IPageResults;
+    const res = await getChannelData(props);
+
+    if (!res) { notFound() };
+
     const channel = res.data;
 
     return { title: `${channel.title} — Parallel` };
@@ -33,26 +37,27 @@ export const generateMetadata = async (props: IPageProps): Promise<Metadata> => 
 const ChannelPage = async (props: IPageProps) => {
 
   // database fetching
-  const res = await getChannelData(props) as IPageResults;;
+  const res = await getChannelData(props);
+  console.log(res);
+
+  if (!res) { notFound() };
+
   const channel = res.data;
   const user = channel.user;
 
   return (
-    <div>
-      <div className={styles.page}>
+    <div className={styles.page}>
+      <Header
+        title={<HeaderTitle props={channel} />}
+        action={<HeaderAction channelUser={user} />}
+        info={<HeaderInfo props={channel} params={props.params} type={FEED.CHANNEL} />}
+      />
 
-        <Header
-          title={<HeaderTitle props={channel} />}
-          action={<HeaderAction channelUser={user} />}
-          info={<HeaderInfo props={channel} params={props.params} type={FEED.CHANNEL}/>}
-        />
+      <Channel initial={res} />
 
-        <Channel initial={res} />
+      <ChannelFormModal channel={channel} />
 
-        <ChannelFormModal channel={channel} />
-
-        <BlockFormModal channelID={channel.id} />
-      </div>
+      <BlockFormModal channelID={channel.id} />
     </div>
   )
 };

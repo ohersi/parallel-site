@@ -1,0 +1,20 @@
+@use '@/styles/abstracts' as a;
+@use '@/styles/utils' as u;
+
+.page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 3rem;
+    height: calc(100svh - 80px);
+
+    &__title {
+        font-size: 15rem;
+        font-family: u.$secondary-font;
+    }
+
+    &__text {
+        font-size: 2rem;
+    }
+}

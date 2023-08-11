@@ -5,6 +5,7 @@ import { Metadata } from 'next';
 import Header from '@/components/header/header';
 import HeaderTitle from '@/components/header/title.header';
 import UserFeed from '@/components/feed/user.feed';
+import { AuthRequiredException } from '@/lib/exceptions/auth.exception';
 import styles from '@/styles/pages/feed.page.module.scss';
 
 export const metadata: Metadata = {
@@ -16,23 +17,13 @@ const FeedPage = async () => {
 
     const cookieStore = cookies();
     const session = cookieStore.has(process.env.SESSION_ID!);
-    console.log(session)
+
+    if (!session) throw new AuthRequiredException();
 
     return (
         <div className={styles.page}>
-            {
-                session ?
-                    <>
-                        <Header
-                            title={<HeaderTitle props={'Feed'} />}
-                        />
-                        <UserFeed />
-                    </>
-                    :
-                    <div className={styles.page__login}>
-                        Login required!
-                    </div>
-            }
+            <Header title={<HeaderTitle props={'Feed'} />} />
+            <UserFeed />
         </div>
     )
 };
