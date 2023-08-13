@@ -21,12 +21,15 @@ export async function GetDefaultFeed(channel_lastID?: string | null, block_lastI
             cache: 'no-store',
         });
 
-        if (!res.ok) {
+        if (res.status === 404) {
+            return null;
+        };
+
+        if (res.status === 500) {
             const errorMessage = await res.json();
             throw new Error(errorMessage.message);
         }
 
-        // Contains Page info and channel data
         const data = await res.json();
 
         return data as IDefaultFeedResults;

@@ -28,8 +28,8 @@ const User = ({ user, userChannels, userBlocks }: IUserProps) => {
     const viewType = useAppSelector((state) => state.Filter.viewType);
     const sortType = useAppSelector((state) => state.Filter.sortType);
 
-    const channelReverseSorted = userChannels.reverse();
-    const blocksReverseSorted = userBlocks?.reverse();
+    const channelReverseSorted = userChannels.slice().reverse();
+    const blocksReverseSorted = userBlocks?.slice().reverse();
 
     useEffect(() => { dispatch(setViewType(FEED.CHANNEL)) }, []);
 

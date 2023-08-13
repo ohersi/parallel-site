@@ -34,6 +34,8 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
 
                 const data = await GetDefaultFeed(channelLastID, blockLastID, 2);
 
+                if (!data) return;
+
                 // End of blocks but not for channel; update channels & keep blocks on prev lastID
                 if (data.block_lastID == null && data.channel_lastID !== null) {
                     setChannelLastID(data.channel_lastID);

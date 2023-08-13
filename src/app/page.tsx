@@ -9,7 +9,7 @@ import NavSearch from '@/components/navigation/search.navigation';
 import styles from '@/styles/pages/home.page.module.scss';
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: 'Parallel',
   description: 'Home Page',
 }
 

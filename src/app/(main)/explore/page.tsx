@@ -1,5 +1,6 @@
 // Packages
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 // Imports
 import Header from "@/components/header/header";
 import HeaderAction from "@/components/header/header.action";
@@ -18,11 +19,13 @@ const ExplorePage = async () => {
 
     const feedData = await GetDefaultFeed(undefined, undefined, 2);
 
+    if (!feedData) { notFound() };
+
     return (
         <div className={styles.page}>
-            
+
             <Header
-                title={<HeaderTitle props={'Explore'}/>}
+                title={<HeaderTitle props={'Explore'} />}
                 action={<HeaderAction />}
                 info={<HeaderInfo props={'Explore'} />}
             />

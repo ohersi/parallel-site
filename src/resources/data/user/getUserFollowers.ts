@@ -12,9 +12,15 @@ export async function getUserFollowers(slug: string) {
             next: { revalidate: 10 },
         });
 
+
         if (res.status === 404) {
             return null;
         };
+
+        if (res.status === 500) {
+            const errorMessage = await res.json();
+            throw new Error(errorMessage.message);
+        }
 
         const data = await res.json();
 

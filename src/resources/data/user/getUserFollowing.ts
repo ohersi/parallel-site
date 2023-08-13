@@ -16,6 +16,11 @@ export async function getUserFollowing(slug: string) {
             return null;
         };
 
+        if (res.status === 500) {
+            const errorMessage = await res.json();
+            throw new Error(errorMessage.message);
+        }
+
         const data = await res.json();
 
         return data;

@@ -60,12 +60,10 @@ const SearchPage = () => {
         }
     };
 
-    // console.log(`users: ${users?.success} + channels ${channels?.success} + blocks ${blocks?.success}`);
-
     return (
         <div className={styles.page}>
 
-            <SearchField handleClick={handleClick} setLoading={setLoading} setSearchWord={setSearchWord}/>
+            <SearchField handleClick={handleClick} setLoading={setLoading} setSearchWord={setSearchWord} />
 
             <button
                 className={styles.page__filter}
@@ -83,7 +81,7 @@ const SearchPage = () => {
                     <SearchSelection />
                     : null
             }
-            
+
             {
                 loading ?
                     <div className={styles.page__loading}>
@@ -96,11 +94,15 @@ const SearchPage = () => {
                                 <div className={styles.page__results__text}>
                                     {users?.length || channels?.length || blocks?.length} RESULTS FOR [{searchType}] `{searchWord}`
                                 </div>
-                                : userError || channelError || blockError ?
+                                : users === null || channels === null || blocks === null && searchWord ?
                                     <div className={styles.page__results__text}>
                                         No results for {searchWord}
                                     </div>
-                                    : null
+                                    : userError || channelError || blockError ?
+                                        <div className={styles.page__results__text}>
+                                            Failed to fetch
+                                        </div>
+                                        : null
                         }
                         {
                             users && !userError ?

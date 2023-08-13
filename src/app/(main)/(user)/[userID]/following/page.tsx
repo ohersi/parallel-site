@@ -1,5 +1,6 @@
 // Packages
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 // COMPONENTS
 import Header from '@/components/header/header';
 import HeaderTitle from '@/components/header/title.header';
@@ -17,7 +18,10 @@ import styles from '@/styles/pages/follow.page.module.scss';
 // Dynamic Metadata for Pages
 export const generateMetadata = async (props: IPageProps): Promise<Metadata> => {
     try {
-        const user = await getUserData(props) as IUser;
+        const user = await getUserData(props);
+
+        if (!user) { notFound() };
+
         return { title: `Following / ${user.full_name} — Parallel` };
     }
     catch (error: any) {
@@ -33,7 +37,10 @@ type IUserFollowing = {
 
 const UserFollowingPage = async (props: IPageProps) => {
 
-    const userData = await getUserData(props) as IUser;
+    const userData = await getUserData(props);
+
+    if (!userData) { notFound() };
+
     const res: IUserFollowing[] = await getUserFollowing(props.params.userID);
 
     let arr: IUser[] = [];
