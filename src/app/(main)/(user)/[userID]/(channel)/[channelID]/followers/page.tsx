@@ -1,5 +1,6 @@
 // Packages
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 // COMPONENTS
 import Header from '@/components/header/header';
 import HeaderTitle from '@/components/header/title.header';
@@ -18,6 +19,9 @@ import styles from '@/styles/pages/follow.page.module.scss';
 export const generateMetadata = async (props: IPageProps): Promise<Metadata> => {
     try {
         const res = await getChannelData(props) as IPageResults;
+
+        if (!res) { notFound() };
+
         const channel = res.data;
 
         return { title: `Followers / ${channel.title}  — Parallel` };
@@ -27,16 +31,12 @@ export const generateMetadata = async (props: IPageProps): Promise<Metadata> => 
     };
 };
 
-type IChannelFollowers = {
-    user: IUser;
-    followed_channel: number;
-    date_created: Date;
-}
-
 const ChannelFollowersPage = async (props: IPageProps) => {
 
     const channelData = await getChannelData(props) as IPageResults;
-    const res: IChannelFollowers[] = await getChannelFollowers(props.params.channelID);
+    const res = await getChannelFollowers(props.params.channelID);
+
+    if (!res || !channelData) { notFound() };
 
     const channel = channelData.data;
     const user = channel.user;

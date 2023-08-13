@@ -1,3 +1,5 @@
+import { IChannelFollowers } from "@/utils/types/types";
+
 export async function getChannelFollowers(slug: string) {
     try {
         const res = await fetch(`http://localhost:3000/api/v1/channels/${slug}/followers`, {
@@ -12,11 +14,14 @@ export async function getChannelFollowers(slug: string) {
             next: { revalidate: 10 },
         });
 
-        if (res.status === 404) {
-            return null;
-        };
+        if (res.status === 404) return null;
 
-        const data = await res.json();
+        if (res.status === 500) {
+            const errorMessage = await res.json();
+            throw new Error(errorMessage.message);
+        }
+
+        const data = await res.json() as IChannelFollowers[];
 
         return data;
     }

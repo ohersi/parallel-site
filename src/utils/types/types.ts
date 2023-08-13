@@ -106,7 +106,7 @@ export interface ISearchResults {
     total_blocks: number;
 };
 
-export interface IResizeData  {
+export interface IResizeData {
     tracking: boolean,
     startCursorScreenX: number | null,
     imgStartWidth: number | null,
@@ -115,6 +115,12 @@ export interface IResizeData  {
     infoStartWidth: number | null,
     infoMaxWidth: number | null,
     infoMinWidth: number
+}
+
+export interface IChannelFollowers {
+    user: IUser,
+    followed_channel: number,
+    date_created: Date
 }
 
 export enum FORM {
