@@ -64,7 +64,7 @@ const UserFollowersPage = async (props: IPageProps) => {
         <div className={styles.page__box__grid}>
           {
             arr.map((user) => (
-              <UserGrid user={user} />
+              <UserGrid user={user} key={user.id}/>
             ))
           }
         </div>

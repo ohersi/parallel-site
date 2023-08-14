@@ -33,7 +33,7 @@ const ConnectionBlock = ({ blockID }: IConnectionBlock) => {
     const blockModalOpen = useAppSelector((state) => state.Modal.isBlockModalOpen);
     const buttonType = useAppSelector((state) => state.Button.buttonType);
 
-    const { data } = useSWR(user ? `/api/v1/users/${user.id}/channels` : null, () => user ? GetUserChannels(user.id) : () => { });
+    const { data } = useSWR(user.id ? `/api/v1/users/${user.id}/channels` : null, () => user.id ? GetUserChannels(user.id.toString()) : () => { });
 
     const { trigger, error: error } = useSWRMutation(`api/v1/blocks/${blockID}/connect?channel`, () => ConnectBlock(blockID, channelClicked));
 

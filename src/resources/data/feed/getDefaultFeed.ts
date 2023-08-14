@@ -18,7 +18,7 @@ export async function GetDefaultFeed(channel_lastID?: string | null, block_lastI
                 "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
             },
             credentials: 'include',
-            cache: 'no-store',
+            next: { revalidate: 0 },
         });
 
         if (res.status === 404) {

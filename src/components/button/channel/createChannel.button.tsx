@@ -15,7 +15,7 @@ const CreateChannelButton = ({ userID }: ICreateChannelButton) => {
 
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
-    const loggedInUser: IUser = useAppSelector((state) => state.User.user);
+    const loggedInUser = useAppSelector((state) => state.User.user);
 
     return (
         <>

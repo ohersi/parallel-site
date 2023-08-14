@@ -108,7 +108,7 @@ const LoginForm = () => {
                 </div>
             </form>
             <div className={styles.login__form__signup}>
-                Don't have an account?&nbsp;
+                Don&apos;t have an account?&nbsp;
                 <Link href={'/signup'}>
                     <span className={styles.login__form__signup__link}>Sign up here.</span>
                 </Link>

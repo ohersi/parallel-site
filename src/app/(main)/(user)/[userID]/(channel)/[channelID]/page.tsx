@@ -38,7 +38,6 @@ const ChannelPage = async (props: IPageProps) => {
 
   // database fetching
   const res = await getChannelData(props);
-  console.log(res);
 
   if (!res) { notFound() };
 

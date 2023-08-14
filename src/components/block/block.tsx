@@ -170,8 +170,8 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
 
                         {
                             blocks.channels.map((channel: IChannel) => (
-                                <Link href={`${channel.user?.slug}/${channel.slug}`}>
-                                    <div className={styles.block__info__connections__item} key={channel.slug}>
+                                <Link href={`${channel.user?.slug}/${channel.slug}`} key={channel.slug}>
+                                    <div className={styles.block__info__connections__item}>
                                         <div className={styles.block__info__connections__item__title}>
                                             {channel.title}
                                         </div>

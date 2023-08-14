@@ -1,9 +1,7 @@
 import { IBlockPayload } from "@/utils/types/types";
 
 export async function CreateBlock(payload: IBlockPayload, channelID: number) {
-
-    console.log(`BlockPayload: ${JSON.stringify(payload)} + channelID: ${channelID}`);
-
+    
     try {
         const res = await fetch(`http://localhost:3000/api/v1/channels/${channelID}/add`, {
             method: 'POST',
