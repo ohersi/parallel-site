@@ -1,6 +1,7 @@
 import { IChannelPayload } from "@/utils/types/types";
 
 export async function UpdateChannel(payload: IChannelPayload, channelID: number) {
+
     try {
         const res = await fetch(`http://localhost:3000/api/v1/channels/${channelID}/update`, {
             method: 'PUT',
@@ -14,8 +15,14 @@ export async function UpdateChannel(payload: IChannelPayload, channelID: number)
             credentials: 'include',
             cache: 'no-store',
         });
-        
+
+        if (res.status === 500) {
+            const errorMessage = await res.json();
+            throw new Error(errorMessage.message);
+        }
+
         const data = await res.json();
+
         const updatedChannel = data.updated;
 
         return updatedChannel;

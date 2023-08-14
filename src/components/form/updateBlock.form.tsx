@@ -50,18 +50,14 @@ const UpdateBlockForm = ({ block }: IUpdateBlockForm) => {
     const onSubmit = async (data: FieldValues) => {
 
         await setBlockValues(data).then(async (payload) => {
-            try {
-                if (!isEmpty(blockPayload)) {
-                    console.log(blockPayload);
-                    await trigger();
-                }
-                // Reset payload
-                blockPayload = {};
+
+            if (!isEmpty(blockPayload)) {
+                console.log(blockPayload);
+                await trigger()
+                    .catch((error: any) => console.log(error));
             }
-            catch (error: any) {
-                // TODO: Setup error handling
-                console.log(error);
-            }
+            // Reset payload
+            blockPayload = {};
         });
     };
 

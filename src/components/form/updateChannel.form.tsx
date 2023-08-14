@@ -36,7 +36,7 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
         resolver: yupResolver(channelValidation.update)
     });
 
-    const { trigger, error: error } = useSWRMutation(`api/v1/channels/${channel.id}/update`, () => UpdateChannel(channelPayload, channel.id));
+    const { trigger, error: error } = useSWRMutation(`api/v1/channels/update`, () => UpdateChannel(channelPayload, channel.id));
 
     const setChannelValues = async (data: FieldValues) => {
 
@@ -50,17 +50,13 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
     const onSubmit = async (data: FieldValues) => {
 
         await setChannelValues(data).then(async (payload) => {
-            try {
-                if (!isEmpty(channelPayload)) {
-                    await trigger();
-                }
-                // Reset payload
-                channelPayload = {};
+
+            if (!isEmpty(channelPayload)) {
+                await trigger()
+                    .catch((error: any) => console.log(error));
             }
-            catch (error: any) {
-                // TODO: Setup error handling
-                console.log(error);
-            }
+            // Reset payload
+            channelPayload = {};
         });
     };
 

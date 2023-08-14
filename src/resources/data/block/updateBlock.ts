@@ -2,8 +2,6 @@ import { IBlockPayload } from "@/utils/types/types";
 
 export async function UpdateBlock(payload: IBlockPayload, blockID: number) {
 
-    console.log(`BlockPayload: ${JSON.stringify(payload)} + blockID: ${blockID}`);
-
     try {
         const res = await fetch(`http://localhost:3000/api/v1/blocks/${blockID}/update`, {
             method: 'PUT',
@@ -18,10 +16,16 @@ export async function UpdateBlock(payload: IBlockPayload, blockID: number) {
             cache: 'no-store',
         });
 
-    const data = await res.json();
-    const updatedBlock = data.updated;
+        if (res.status === 500) {
+            const errorMessage = await res.json();
+            throw new Error(errorMessage.message);
+        }
 
-    return updatedBlock;
+        const data = await res.json();
+
+        const updatedBlock = data.updated;
+
+        return updatedBlock;
     }
     catch (error: any) {
         throw new Error(error);
