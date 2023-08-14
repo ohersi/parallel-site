@@ -3,7 +3,7 @@ import YupPassword from 'yup-password';
 
 YupPassword(yup);
 
-const regMatch = /^((http|https):\/\/)?(www.)?(?!.*(http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+(\/)?.([\w\?[a-zA-Z-_%\/@?]+)*([^\/\w\?[a-zA-Z0-9_-]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/;
+const imgMatch = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+(?:png|jpg|jpeg|gif|svg)+$/;
 
 // Create user
 const create = yup.object({
@@ -11,7 +11,7 @@ const create = yup.object({
     last_name: yup.string().required().max(30),
     email: yup.string().email().lowercase().required(),
     password: yup.string().password(),
-    avatar: yup.string().matches(regMatch, "URL is not valid.").required(),
+    avatar: yup.string().matches(imgMatch, "URL is not valid.").required(),
 });
 
 // Update user
@@ -36,7 +36,7 @@ const update = yup.object({
             // Valid if 0 or greater than 8
             return val.length === 0 || val.length >= 8;
         }),
-    avatar: yup.string().matches(regMatch, { message: "URL is not valid.", excludeEmptyString: true }).optional(),
+    avatar: yup.string().matches(imgMatch, { message: "URL is not valid.", excludeEmptyString: true }).optional(),
 })
 
 // Login user
