@@ -98,7 +98,6 @@ const CreateChannelForm = () => {
                             <input
                                 className='input'
                                 type="text"
-                                placeholder="Title"
                                 autoComplete="off"
                                 {...register("title", { required: true })}
                             />
@@ -116,7 +115,6 @@ const CreateChannelForm = () => {
                             <input
                                 className='input'
                                 type="text"
-                                placeholder="Description"
                                 autoComplete="off"
                                 {...register("description", { required: true })}
                             />

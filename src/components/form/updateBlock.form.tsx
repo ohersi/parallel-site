@@ -39,10 +39,10 @@ const UpdateBlockForm = ({ block }: IUpdateBlockForm) => {
 
     const setBlockValues = async (data: FieldValues) => {
 
-        if (data.title) blockPayload.title = data.title;
-        if (data.description) blockPayload.description = data.description;
-        if (data.image_url) blockPayload.image_url = data.image_url;
-        if (data.source_url) blockPayload.source_url = data.source_url;
+        if (data.title && data.title !== block.title) blockPayload.title = data.title;
+        if (data.description && data.description !== block.description) blockPayload.description = data.description;
+        if (data.image_url && data.image_url !== block.image_url) blockPayload.image_url = data.image_url;
+        if (data.source_url && data.source_url !== block.source_url) blockPayload.source_url = data.source_url;
 
         return blockPayload;
     };
@@ -52,6 +52,7 @@ const UpdateBlockForm = ({ block }: IUpdateBlockForm) => {
         await setBlockValues(data).then(async (payload) => {
             try {
                 if (!isEmpty(blockPayload)) {
+                    console.log(blockPayload);
                     await trigger();
                 }
                 // Reset payload

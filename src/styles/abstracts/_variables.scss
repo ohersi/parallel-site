@@ -16,10 +16,10 @@ $breakpoint-extra-large: 1300px;
 $block-width: 315px;
 
 // FORM MODAL //
-$createChannel-height: 60%;
+$createChannel-height: 400px;
 $createBlock-height: 580px;
 $updateChannel-height: 100%;
-$updateBlock-height: 80%;
+$updateBlock-height: Min(550px, 90%);
 
 $createBlock-margin-top: 2rem;
 $createChannel-margin-top: 2rem;

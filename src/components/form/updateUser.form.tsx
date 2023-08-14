@@ -36,16 +36,17 @@ const UpdateUserForm = ({ user }: Props) => {
     // Redux
     const { trigger, error: error } = useSWRMutation('api/v1/users/update', () => UpdateUser(userPayload));
 
-
     const setUserValues = async (data: FieldValues) => {
 
-        if (data.first_name) userPayload.first_name = data.first_name;
-        if (data.last_name) userPayload.last_name = data.last_name;
-        if (data.email) userPayload.email = data.email;
-        if (data.password) userPayload.password = data.password;
-        if (data.avatar) userPayload.avatar = data.avatar;
+        if (data.first_name && data.first_name !== user.first_name) userPayload.first_name = data.first_name;
 
-        console.log(`userpayload: ${JSON.stringify(userPayload)}`);
+        if (data.last_name && data.last_name !== user.last_name) userPayload.last_name = data.last_name;
+
+        if (data.email && data.email !== user.email) userPayload.email = data.email;
+
+        if (data.password) userPayload.password = data.password;
+
+        if (data.avatar) userPayload.avatar = data.avatar;
 
         return userPayload;
     };
@@ -55,6 +56,7 @@ const UpdateUserForm = ({ user }: Props) => {
         await setUserValues(data).then(async (payload) => {
             try {
                 if (!isEmpty(userPayload)) {
+                    console.log(userPayload);
                     const res = await trigger();
                     dispatch(setUser(res));
                 }
@@ -153,7 +155,7 @@ const UpdateUserForm = ({ user }: Props) => {
                     <span className={styles.settings__form__item__input}>
                         <input
                             className='input'
-                            type="url"
+                            type="text"
                             autoComplete="off"
                             {...register("avatar", { required: false })}
                         />

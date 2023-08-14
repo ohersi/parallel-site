@@ -40,8 +40,9 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
 
     const setChannelValues = async (data: FieldValues) => {
 
-        if (data.title) channelPayload.title = data.title;
-        if (data.description) channelPayload.description = data.description;
+        if (data.title && data.title !== channel.title) channelPayload.title = data.title;
+
+        if (data.description && data.description !== channel.description) channelPayload.description = data.description;
 
         return channelPayload;
     };
@@ -69,7 +70,7 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
             <div className={styles.modal__box}>
                 <div className={styles.modal__box__close_btn}>
                     <svg
-                    className={styles.modal__box__close_btn__svg}
+                        className={styles.modal__box__close_btn__svg}
                         onClick={() => {
                             dispatch(setIsOpen(!isOpen));
                             dispatch(setFormType(''));
@@ -79,9 +80,9 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
                         <line x1="1.25901" y1="14.5445" x2="15.3756" y2="0.427954" stroke="currentColor" />
                     </svg>
                 </div>
-                
+
                 <span className={styles.modal__box__title}>Update Channel</span>
-                
+
 
                 <form
                     className={styles.modal__box__form}
@@ -127,7 +128,7 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
                 </form>
 
                 <div className={styles.modal__delete}>
-                <span className={styles.modal__box__title}>Delete Channel</span>
+                    <span className={styles.modal__box__title}>Delete Channel</span>
                     <DeleteChannelButton channelID={channel.id} />
                 </div>
             </div>
