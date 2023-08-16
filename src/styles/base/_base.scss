@@ -17,6 +17,8 @@ body {
 
     background-color: a.$color-primary;
     color: a.$color-secondary;
+
+    @include a.scrollbar(a.$color-secondary, a.$color-primary);
 }
 
 body.theme_red-pink {

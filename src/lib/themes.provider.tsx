@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 // Imports
 import { useAppSelector } from '@/store';
+import { THEME } from '@/utils/types/types';
 
 export default function ThemesProvider({ children }: { children: React.ReactNode }) {
 
@@ -14,7 +15,7 @@ export default function ThemesProvider({ children }: { children: React.ReactNode
 
         element.className = '';
 
-        if (currentTheme) element.classList.add(`theme_${currentTheme}`);
+        if (currentTheme && currentTheme !== THEME.DEFAULT) element.classList.add(`theme_${currentTheme}`);
 
     }, [])
 
