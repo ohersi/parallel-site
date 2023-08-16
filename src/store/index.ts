@@ -20,8 +20,8 @@ import themeSliceReducer from "@/store/themeSlice";
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['Modal', 'Form', 'Button', 'Filter', 'Search', 'Block', 'Menu', 'Theme'],
-  whitelist: ['User'],
+  blacklist: ['Modal', 'Form', 'Button', 'Filter', 'Search', 'Block', 'Menu'],
+  whitelist: ['User', 'Theme'],
   transforms: [
     expireReducer('User', {
       persistedAtKey: '__persisted_at',
