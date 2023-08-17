@@ -17,18 +17,12 @@ const UnfollowUserButton = ({ userID, mutate, url }: IUnfollowUserButton) => {
   const { trigger, error: error } = useSWRMutation(`api/v1/users/unfollow/user/${userID}`, () => UnfollowUser(userID));
 
   const handleClick = async () => {
-    try {
-      await trigger().then((success) => {
-        if (success) {
-          // Rerender HeaderAction component
-          mutate(url)
-        }
+    await trigger()
+      .then((res) => {
+        // Rerender HeaderAction component
+        if (res?.success) mutate(url);
       })
-    }
-    catch (error: any) {
-      // TODO: Setup error handling
-      console.log(error);
-    }
+      .catch((error: any) => console.log(error));
   };
 
   return (

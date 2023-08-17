@@ -42,18 +42,14 @@ const SignUpForm = () => {
     const onSubmit = async (data: FieldValues) => {
 
         await setUserValues(data).then(async (payload) => {
-            try {
-                if (!isEmpty(userPayload)) {
-                    const res = await trigger();
-                    dispatch(setUser(res));
-                }
-                // Reset payload
-                userPayload = {};
+
+            if (!isEmpty(userPayload)) {
+                await trigger()
+                    .then((res) => dispatch(setUser(res)))
+                    .catch((error: any) => console.log(error));
             }
-            catch (error: any) {
-                // TODO: Setup error handling
-                console.log(error);
-            }
+            // Reset payload
+            userPayload = {};
         });
     };
 

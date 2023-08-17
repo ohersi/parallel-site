@@ -1,5 +1,4 @@
 export async function FollowChannel(id: number) {
-    console.log(`following channel: ${id}`)
     try {
         const res = await fetch(`http://localhost:3000/api/v1/users/follow/channel/${id}`, {
             method: 'POST',
@@ -14,12 +13,15 @@ export async function FollowChannel(id: number) {
         });
 
         if (res.status === 404) {
-            return null;
-        };
+            return { success: false };
+        }
 
-        const data = await res.json();
+        if (res.status === 500) {
+            const errorMessage = await res.json();
+            throw new Error(errorMessage.message);
+        }
 
-        return data;
+        return { success: true };
     }
     catch (error: any) {
         throw new Error(error);

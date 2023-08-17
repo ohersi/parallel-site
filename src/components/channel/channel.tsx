@@ -14,8 +14,6 @@ type PageResults = {
     initial: IPageResults;
 }
 
-// TODO: Replace InfiniteScroll packages with custom scroll
-
 const Channel = ({ initial }: PageResults) => {
 
     const loggedInUser = useAppSelector((state) => state.User.user);

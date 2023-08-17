@@ -15,7 +15,10 @@ export async function SignUpUser(payload: IUserPayload) {
             cache: 'no-store',
         });
 
-        console.log('data fetched');
+        if (res.status === 500) {
+            const errorMessage = await res.json();
+            throw new Error(errorMessage.message);
+        }
 
         const data = await res.json();
 

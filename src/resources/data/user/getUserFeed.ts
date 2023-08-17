@@ -12,7 +12,8 @@ export async function GetUserFeed(userID: number) {
                 "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
             },
             credentials: 'include',
-            next: { revalidate: 10 },
+            cache: 'force-cache',
+            next: { revalidate: 600 }, // Revalidate every 10mins
         })
 
         if (!res.ok) {

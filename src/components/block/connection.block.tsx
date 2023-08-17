@@ -42,11 +42,9 @@ const ConnectionBlock = ({ blockID }: IConnectionBlock) => {
     const handleClick = async (channelID: number) => {
 
         channelClicked = channelID;
-        console.log(`channelClicked: ${channelClicked}`)
 
         await trigger()
             .then((res) => {
-                console.log(res)
                 if (res) {
                     if (typeof channelClicked === 'number') {
                         let obj = { [channelClicked]: res.success };
@@ -56,11 +54,9 @@ const ConnectionBlock = ({ blockID }: IConnectionBlock) => {
                         }))
                     }
                 }
-                // TODO: Disable connect if success replace with checkmark
             })
             .finally(() => channelClicked = undefined);
     }
-    console.log(connected);
 
     return (
         <div className={styles.modal}>

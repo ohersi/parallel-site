@@ -3,9 +3,7 @@ export async function LogInUser(email: string, password: string) {
     const payload = {
         email: email,
         password: password,
-    };
-
-    console.log(`Payload: ${JSON.stringify(payload)}`);
+    }
 
     try {
         const res = await fetch('http://localhost:3000/api/v1/users/login', {
@@ -21,7 +19,10 @@ export async function LogInUser(email: string, password: string) {
             cache: 'no-store',
         });
 
-        console.log('data fetched');
+        if (res.status === 500) {
+            const errorMessage = await res.json();
+            throw new Error(errorMessage.message);
+        }
 
         const data = res.json();
 

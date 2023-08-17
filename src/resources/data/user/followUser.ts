@@ -13,10 +13,15 @@ export async function FollowUser(id: number) {
         });
 
         if (res.status === 404) {
-           return { success: false }
-        };
+            return { success: false };
+        }
 
-        return { success: true }
+        if (res.status === 500) {
+            const errorMessage = await res.json();
+            throw new Error(errorMessage.message);
+        }
+
+        return { success: true };
     }
     catch (error: any) {
         throw new Error(error);

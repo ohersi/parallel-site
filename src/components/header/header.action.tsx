@@ -1,20 +1,15 @@
 "use client";
-// Packages
-import Link from 'next/link';
 // Imports
 import { useAppSelector } from '@/store';
 import EditChannelButton from '@/components/button/channel/editChannel.button';
 import UserFollowMergedButton from '@/components/button/user/userFollowsMerged.button';
 import ChannelFollowMergedButton from '@/components/button/channel/channelFollowsMerged.button';
 import CreateChannelButton from '@/components/button/channel/createChannel.button';
-import styles from "@/styles/layout/header.module.scss";
 
 interface IHeaderAction {
     channelUser?: any; // user from channel page
     userID?: number | null | undefined;  // user id from user page
 }
-
-// TODO: Fix flicker for follow buttons when componenting is first loaded
 
 const HeaderAction = ({ channelUser, userID }: IHeaderAction) => {
 

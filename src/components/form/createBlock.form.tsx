@@ -51,23 +51,18 @@ const CreateBlockForm = ({ channelID }: ICreateBlockForm) => {
     const onSubmit = async (data: FieldValues) => {
 
         await setBlockValues(data).then(async (payload) => {
-            try {
-                if (!isEmpty(blockPayload)) {
-                    await trigger()
-                        .then((res: any) => {
-                            if (!res.success) {
-                                setFailed(true);
-                            }
-                        })
-                        .catch((error: any) => console.log(error));
-                }
-                // Reset payload
-                blockPayload = {};
+
+            if (!isEmpty(blockPayload)) {
+                await trigger()
+                    .then((res) => {
+                        if (!res?.success) {
+                            setFailed(true);
+                        }
+                    })
+                    .catch((error: any) => console.log(error));
             }
-            catch (error: any) {
-                // TODO: Setup error handling
-                console.log(error);
-            }
+            // Reset payload
+            blockPayload = {};
         });
     };
 

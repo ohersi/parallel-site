@@ -38,15 +38,10 @@ const LoginForm = () => {
         await setUserValues(data).then(async () => {
             await trigger()
                 .then((res) => {
-                    if (res.error) {
-                        // TODO: Setup error handling
-                        console.log(res);
-                    }
-                    else {
-                        dispatch(setUser(res));
-                        router.push('/feed');
-                    }
-                });
+                    dispatch(setUser(res));
+                    router.push('/feed');
+                })
+                .catch((error: any) => console.log(error));
         });
     };
 

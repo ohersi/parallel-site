@@ -17,25 +17,19 @@ const UnfollowChannelButton = ({ channelID, mutate, url }: Props) => {
     const { trigger, error: error } = useSWRMutation(`api/v1/users/unfollow/channel/${channelID}`, () => UnfollowChannel(channelID));
 
     const handleClick = async () => {
-        try {
-            await trigger().then((success) => {
-                if (success) {
-                    // Rerender HeaderAction component
-                    mutate(url)
-                }
+        await trigger()
+            .then((res) => {
+                // Rerender HeaderAction component
+                if (res?.success) mutate(url);
             })
-        }
-        catch (error: any) {
-            // TODO: Setup error handling
-            console.log(error);
-        }
-    };
+            .catch((error: any) => console.log(error));
+    }
 
     return (
         <button className={styles.button} onClick={handleClick}>
             unfollow
         </button>
     )
-}
+};
 
 export default UnfollowChannelButton;
