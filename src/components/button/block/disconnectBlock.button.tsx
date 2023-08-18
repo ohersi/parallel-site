@@ -24,7 +24,6 @@ const DisconnectBlockButton = ({ blockID }: IDisconnectBlockButton) => {
                     dispatch(setIsOpen(!isOpen));
                     dispatch(setButtonType(BUTTON.BLOCK_CONNECTION_DELETE));
                     dispatch(setBlockClicked(blockID));
-                    console.log(`removing connection b/w block [${blockID}] to channel`)
                 }}
             >disconnect
             </button>

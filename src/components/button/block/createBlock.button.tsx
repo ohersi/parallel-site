@@ -14,7 +14,7 @@ const CreateBlockButton = () => {
 
     return (
         <div
-            onClick={() => { { dispatch(setIsOpen(!isOpen)); dispatch(setFormType(FORM.BLOCK_CREATE)); console.log('create block clicked') } }}
+            onClick={() => { { dispatch(setIsOpen(!isOpen)); dispatch(setFormType(FORM.BLOCK_CREATE)); } }}
             className={styles.default_block}
         >
             Add Block

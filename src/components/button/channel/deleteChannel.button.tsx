@@ -44,8 +44,7 @@ const DeleteChannelButton = ({ channelID }: Props) => {
                             </button>
                             <button
                                 className={styles.modal__delete__container__buttons__btn}
-                                // onClick={() => handleClick}>
-                                onClick={() => console.log('testing delete channel btn!')}>
+                                onClick={handleClick}>
                                 confirm &nbsp; ✓
                             </button>
                         </div>

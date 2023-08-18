@@ -56,8 +56,7 @@ const RemoveConnectionBlock = ({
                     </button>
                     <button
                         className={styles.modal__box__button__confirm}
-                        // onClick={() => handleClick}
-                        onClick={() => { console.log('testing remove connection!') }}>
+                        onClick={handleClick}>
                         confirm
                     </button>
                 </div>

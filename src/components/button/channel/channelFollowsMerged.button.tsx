@@ -12,7 +12,6 @@ type Props = {
 const ChannelFollowMergedButton = ({ channelID, loggedInUserID }: Props) => {
 
     const { followChannel, error, mutate, url } = CheckIfUserFollowsChannel(channelID, loggedInUserID);
-    console.log(`followChannel: ${JSON.stringify(followChannel)}`);
 
     return (
         <>

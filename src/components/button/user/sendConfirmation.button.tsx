@@ -17,10 +17,7 @@ const SendConfirmationButton = () => {
         setError(false);
         await trigger()
             .then((res: any) => {
-                if (!res.success) {
-                    setError(true);
-                }
-                console.log(res.message);
+                if (!res.success) setError(true);
             })
             .catch((error: any) => console.log(error));
     }

@@ -30,7 +30,7 @@ const DeleteBlockButton = ({ blockID }: Props) => {
                 <div>
                     <h4>Do you want to delete Block?</h4>
                     <button onClick={() => { dispatch(setIsOpen(!isOpen)) }}>Cancel</button>
-                    <button onClick={() => handleClick}>Confirm</button>
+                    <button onClick={handleClick}>Confirm</button>
                 </div>
             </Modal>
             <button onClick={() => { dispatch(setIsOpen(!isOpen)) }}>Delete Block</button>

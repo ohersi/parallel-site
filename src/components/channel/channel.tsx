@@ -30,8 +30,6 @@ const Channel = ({ initial }: PageResults) => {
 
         if (!fetching.current && lastID) {
 
-            console.log('fetching more blocks');
-
             try {
                 fetching.current = true;
 
@@ -63,7 +61,7 @@ const Channel = ({ initial }: PageResults) => {
                     <CreateBlockButton />
                     : null
             }
-            
+
             {
                 blocks.map((block: IBlock) => (
                     <BlockGrid
@@ -75,31 +73,6 @@ const Channel = ({ initial }: PageResults) => {
                     />
                 ))
             }
-{/* 
-            <div className={styles.default_block}>
-                TEST
-            </div>
-            <div className={styles.default_block}>
-                TEST
-            </div>
-            <div className={styles.default_block}>
-                TEST
-            </div>
-            <div className={styles.default_block}>
-                TEST
-            </div>
-            <div className={styles.default_block}>
-                TEST
-            </div>
-            <div className={styles.default_block}>
-                TEST
-            </div>
-            <div className={styles.default_block}>
-                TEST
-            </div>
-            <div className={styles.default_block}>
-                TEST
-            </div> */}
         </InfiniteScroll>
     )
 };

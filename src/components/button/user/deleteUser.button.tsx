@@ -36,7 +36,7 @@ const DeleteUserButton = ({ userID }: Props) => {
                     </button>
                     <button
                         className={styles.settings__modal__box__buttons__btn}
-                        onClick={() => { console.log('TESTING') }}>
+                        onClick={handleClick}>
                         confirm &nbsp; ✓
                     </button>
                 </div>

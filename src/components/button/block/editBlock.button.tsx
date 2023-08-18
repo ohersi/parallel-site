@@ -25,7 +25,6 @@ const EditBlockButton = ({ blockID }: IEditBlockButton) => {
                     blockModalOpen ? null : dispatch(setIsOpen(!isOpen));
                     dispatch(setFormType(FORM.BLOCK_UPDATE));
                     dispatch(setBlockClicked(blockID));
-                    console.log('update block clicked')
                 }
             }}
             className={styles.button}

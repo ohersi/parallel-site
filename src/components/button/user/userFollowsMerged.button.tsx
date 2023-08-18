@@ -12,7 +12,6 @@ type Props = {
 const UserFollowMergedButton = ({ userID, loggedInUserID }: Props) => {
 
     const { followUser, error, mutate, url } = CheckIfUserFollowsUser(userID, loggedInUserID);
-    console.log(`followUser: ${JSON.stringify(followUser)}`);
 
     return (
         <>

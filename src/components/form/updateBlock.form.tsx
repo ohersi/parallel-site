@@ -52,7 +52,6 @@ const UpdateBlockForm = ({ block }: IUpdateBlockForm) => {
         await setBlockValues(data).then(async (payload) => {
 
             if (!isEmpty(blockPayload)) {
-                console.log(blockPayload);
                 await trigger()
                     .catch((error: any) => console.log(error));
             }

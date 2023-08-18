@@ -3,7 +3,7 @@
 import { setIsOpen } from '@/store/modalSlice';
 import { setFormType } from '@/store/formTypeSlice';
 import { useAppDispatch, useAppSelector } from '@/store';
-import { FORM, IUser } from '@/utils/types/types';
+import { FORM } from '@/utils/types/types';
 import styles from '@/styles/components/button.module.scss';
 
 interface ICreateChannelButton {
@@ -26,7 +26,6 @@ const CreateChannelButton = ({ userID }: ICreateChannelButton) => {
                         onClick={() => {
                             dispatch(setIsOpen(!isOpen));
                             dispatch(setFormType(FORM.CHANNEL_CREATE));
-                            console.log('create channel clicked')
                         }}>
                         + create channel
                     </button>
