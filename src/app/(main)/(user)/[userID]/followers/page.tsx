@@ -11,7 +11,7 @@ import UserGrid from '@/components/user/grid.user';
 import { getUserData } from "@/resources/data/user/getUserData";
 import { getUserFollowers } from "@/resources/data/user/getUserFollowers"
 // TYPES
-import { FOLLOW, IPageProps, IUser } from "@/utils/types/types";
+import { FOLLOW, IPageProps, IUser, IUserFollowers } from "@/utils/types/types";
 // STYLES
 import styles from '@/styles/pages/follow.page.module.scss';
 
@@ -28,12 +28,6 @@ export const generateMetadata = async (props: IPageProps): Promise<Metadata> => 
     return { title: `Error — Parallel` };
   };
 };
-
-type IUserFollowers = {
-  following_user: IUser;
-  followed_user: number;
-  date_created: Date;
-}
 
 const UserFollowersPage = async (props: IPageProps) => {
 

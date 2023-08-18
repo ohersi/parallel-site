@@ -1,21 +1,13 @@
 // Packages
 import Link from "next/link";
 // Imports
+import { isChannel, isUser } from "@/resources/helper/checkType";
 import { IChannel, IUser } from "@/utils/types/types";
 import styles from "@/styles/layout/header.module.scss";
 
 interface IHeaderTitle {
     props: IChannel | IUser | string;
 };
-
-// type guard fn to check if props is instance of IChannel
-function isChannel(channel: any): channel is IChannel {
-    return (channel as IChannel).user !== undefined;
-}
-
-function isUser(user: any): user is IUser {
-    return (user as IUser).full_name !== undefined;
-}
 
 const HeaderTitle = ({ props }: IHeaderTitle) => {
     return (

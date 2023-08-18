@@ -19,6 +19,8 @@ export interface IUser {
     full_name: string;
     email: string;
     avatar: string;
+    following_count: number;
+    follower_count: number;
     enabled: boolean;
     locked: boolean;
     role?: string;
@@ -30,6 +32,7 @@ export interface IChannel {
     title: string;
     description: string;
     slug: string;
+    follower_count: number;
     date_created: string;
     date_updated: string;
     blocks: IBlock[];
@@ -121,6 +124,24 @@ export interface IChannelFollowers {
     user: IUser,
     followed_channel: number,
     date_created: Date
+}
+
+export interface IUserFollowing {
+    following_user: number;
+    followed_user: IUser;
+    date_created: Date;
+}
+
+export interface IUserFollowers {
+    following_user: IUser;
+    followed_user: number;
+    date_created: Date;
+}
+
+export interface IUserChannelFollowing {
+    user: number;
+    followed_channel: IChannel;
+    date_created: Date;
 }
 
 export enum FORM {

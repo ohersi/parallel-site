@@ -16,6 +16,7 @@ interface IHeaderInfo {
 const HeaderInfo = ({ props, params, type }: IHeaderInfo) => {
 
     const dispatch = useAppDispatch();
+
     const viewType = useAppSelector((state) => state.Filter.viewType);
     const sortType = useAppSelector((state) => state.Filter.sortType);
 
@@ -41,16 +42,22 @@ const HeaderInfo = ({ props, params, type }: IHeaderInfo) => {
                             type === FEED.CHANNEL ?
                                 <div className={styles.header__grid__info__buttons}>
                                     <div className={styles.header__grid__info__buttons__follow}>
-                                        <Link href={`/${params?.userID}/${params?.channelID}/followers`}>Followers</Link>
+                                        <Link href={`/${params?.userID}/${params?.channelID}/followers`}>
+                                        {props.follower_count} Followers
+                                        </Link>
                                     </div>
                                 </div>
                                 :
                                 <div className={styles.header__grid__info__buttons}>
                                     <div className={styles.header__grid__info__buttons__follow}>
-                                        <Link href={`/${params?.userID}/followers`}>Followers</Link>
+                                        <Link href={`/${params?.userID}/followers`}>
+                                            {props.follower_count} Followers
+                                        </Link>
                                     </div>
                                     <div className={styles.header__grid__info__buttons__follow}>
-                                        <Link href={`/${params?.userID}/following`}>Following</Link>
+                                        <Link href={`/${params?.userID}/following`}>
+                                        {props.following_count} Following
+                                        </Link>
                                     </div>
                                 </div>
                         }

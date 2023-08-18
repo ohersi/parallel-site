@@ -7,11 +7,14 @@ import HeaderTitle from '@/components/header/title.header';
 import HeaderInfo from '@/components/header/info.header';
 import HeaderAction from '@/components/header/header.action';
 import UserGrid from '@/components/user/grid.user';
+import ChannelGrid from "@/components/channel/grid.channel";
 // FUNCTIONS
 import { getUserData } from "@/resources/data/user/getUserData";
 import { getUserFollowing } from "@/resources/data/user/getUserFollowing";
+import { GetAllChannelsUserFollows } from "@/resources/data/channel/getAllChannelsUserFollows";
+import { isChannel, isUserChannelFollowing, isUserFollowing } from "@/resources/helper/checkType";
 // TYPES
-import { FOLLOW, IPageProps, IUser } from "@/utils/types/types";
+import { FOLLOW, IChannel, IPageProps, IUser, IUserChannelFollowing, IUserFollowing } from "@/utils/types/types";
 // STYLES
 import styles from '@/styles/pages/follow.page.module.scss';
 
@@ -29,24 +32,38 @@ export const generateMetadata = async (props: IPageProps): Promise<Metadata> => 
     };
 };
 
-type IUserFollowing = {
-    following_user: number;
-    followed_user: IUser;
-    date_created: Date;
-}
-
 const UserFollowingPage = async (props: IPageProps) => {
 
     const userData = await getUserData(props);
 
     if (!userData) { notFound() };
 
-    const res: IUserFollowing[] = await getUserFollowing(props.params.userID);
+    const followedUsers = await getUserFollowing(props.params.userID);
+    const followedChannels = await GetAllChannelsUserFollows(props.params.userID);
 
-    let arr: IUser[] = [];
+    // Sort by most recently followed
+    const combined: Array<IUserFollowing | IUserChannelFollowing> = followedUsers.concat(followedChannels);
 
-    for (const follow of res) {
-        arr.push(follow.followed_user);
+    const sortedFollowList = combined.sort((n1, n2) => {
+        if (n1.date_created > n2.date_created) {
+            return -1;
+        }
+        if (n1.date_created < n2.date_created) {
+            return 1;
+        }
+        return 0;
+    })
+
+    // New list of just channels & user data
+    let list: (IUser | IChannel)[] = [];
+
+    for (const item of sortedFollowList) {
+        if (isUserFollowing(item)) {
+            list.push(item.followed_user);
+        }
+        if (isUserChannelFollowing(item)) {
+            list.push(item.followed_channel);
+        }
     }
 
     return (
@@ -59,13 +76,16 @@ const UserFollowingPage = async (props: IPageProps) => {
             />
 
             <div className={styles.page__box}>
-                <div className={styles.page__box__title}>{arr.length} FOLLOWING</div>
+                <div className={styles.page__box__title}>{list.length} FOLLOWING</div>
 
                 <div className={styles.page__box__grid}>
                     {
-                        arr.map((user) => (
-                            <UserGrid user={user} key={user.id}/>
-                        ))
+                        list.map((res) => {
+                            if (isChannel(res)) {
+                                return <ChannelGrid channel={res} key={res.slug} />
+                            }
+                            return <UserGrid user={res} key={res.id} />
+                        })
                     }
                 </div>
             </div>
