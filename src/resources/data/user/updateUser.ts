@@ -1,9 +1,6 @@
 import { IUserPayload } from "@/utils/types/types";
 
 export async function UpdateUser(payload: IUserPayload) {
-
-    // console.log(`Payload: ${JSON.stringify(payload)}`);
-
     try {
         const res = await fetch('http://localhost:3000/api/v1/users/update', {
             method: 'PUT',

@@ -1,7 +1,5 @@
 export async function ConnectBlock(blockID: number, channelID: number | undefined) {
 
-    console.log(`blockID: ${blockID} + channelID: ${channelID}`);
-
     if (!channelID) return { success: false };
 
     try {

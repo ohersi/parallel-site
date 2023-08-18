@@ -1,9 +1,7 @@
 import { IChannelPayload } from "@/utils/types/types";
 
 export async function CreateChannel(payload: IChannelPayload) {
-
-    console.log(`ChannelPayload: ${JSON.stringify(payload)}`);
-
+    
     try {
         const res = await fetch(`http://localhost:3000/api/v1/channels/`, {
             method: 'POST',

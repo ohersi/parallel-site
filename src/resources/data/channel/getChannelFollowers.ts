@@ -11,7 +11,7 @@ export async function getChannelFollowers(slug: string) {
                 "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
             },
             credentials: 'include',
-            next: { revalidate: 10 },
+            next: { revalidate: 900 }, // Revalidate every 15mins
         });
 
         if (res.status === 404) return null;

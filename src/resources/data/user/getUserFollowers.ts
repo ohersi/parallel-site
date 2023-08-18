@@ -9,7 +9,7 @@ export async function getUserFollowers(slug: string) {
                 "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
             },
             credentials: 'include',
-            next: { revalidate: 10 },
+            next: { revalidate: 900 }, // Revalidate every 15mins
         });
 
 

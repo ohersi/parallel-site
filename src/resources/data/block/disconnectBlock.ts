@@ -1,7 +1,5 @@
 export async function DisconnectBlock(blockID: number, channelID: number) {
-
-    console.log(`blockID: ${blockID} + channelID: ${channelID}`);
-
+    
     try {
         const res = await fetch(`http://localhost:3000/api/v1/blocks/${blockID}/disconnect?channel=${channelID}`, {
             method: 'DELETE',
