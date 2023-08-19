@@ -9,7 +9,7 @@ export async function getUserFollowing(slug: string) {
                 "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
             },
             credentials: 'include',
-            next: { revalidate: 900 }, // Revalidate every 15mins
+            next: { revalidate: 60 }, // Revalidate every min
         });
 
         if (res.status === 404) {

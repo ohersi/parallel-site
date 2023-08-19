@@ -4,7 +4,7 @@ export async function getChannelData({ params: { channelID } }: IPageProps): Pro
 
     try {
         const res = await fetch(`http://localhost:3000/api/v1/channels/title/${channelID}?limit=2`, {
-            next: { revalidate: 10 },
+            next: { revalidate: 30 },
         });
 
         if (res.status === 404) return null;

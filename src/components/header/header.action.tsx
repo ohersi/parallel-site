@@ -5,13 +5,15 @@ import EditChannelButton from '@/components/button/channel/editChannel.button';
 import UserFollowMergedButton from '@/components/button/user/userFollowsMerged.button';
 import ChannelFollowMergedButton from '@/components/button/channel/channelFollowsMerged.button';
 import CreateChannelButton from '@/components/button/channel/createChannel.button';
+import { IChannel } from '@/utils/types/types';
 
 interface IHeaderAction {
     channelUser?: any; // user from channel page
+    channel?: IChannel;
     userID?: number | null | undefined;  // user id from user page
 }
 
-const HeaderAction = ({ channelUser, userID }: IHeaderAction) => {
+const HeaderAction = ({ channelUser, channel, userID }: IHeaderAction) => {
 
     const loggedInUser = useAppSelector((state) => state.User.user);
 
@@ -23,13 +25,13 @@ const HeaderAction = ({ channelUser, userID }: IHeaderAction) => {
     return (
         <>
             {
-                loggedInUser && channelUser && channelUser.id == loggedInUser.id ?
+                loggedInUser && channelUser && channel && channelUser.id == loggedInUser.id ?
 
                     <EditChannelButton />
 
-                    : loggedInUser && channelUser && channelUser.id !== loggedInUser.id ?
+                    : loggedInUser && channelUser && channel && channelUser.id !== loggedInUser.id ?
 
-                        <ChannelFollowMergedButton channelID={channelUser.id} loggedInUserID={loggedInUserID} />
+                        <ChannelFollowMergedButton channelID={channel.id} loggedInUserID={loggedInUserID} />
 
                         : loggedInUser && userID && loggedInUser.id !== userID ?
 

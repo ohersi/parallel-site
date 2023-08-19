@@ -42,13 +42,12 @@ const ChannelPage = async (props: IPageProps) => {
   if (!res) { notFound() };
 
   const channel = res.data;
-  const user = channel.user;
 
   return (
     <div className={styles.page}>
       <Header
         title={<HeaderTitle props={channel} />}
-        action={<HeaderAction channelUser={user} />}
+        action={<HeaderAction channelUser={channel.user} channel={channel}/>}
         info={<HeaderInfo props={channel} params={props.params} type={FEED.CHANNEL} />}
       />
 
