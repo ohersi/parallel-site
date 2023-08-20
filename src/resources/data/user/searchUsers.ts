@@ -3,7 +3,14 @@ import { IUser } from "@/utils/types/types";
 export async function searchUsers(input: string) {
     try {
         const res = await fetch(`http://localhost:3000/api/v1/search/users?name=${input}`, {
-            next: { revalidate: 30 },
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
+            },
+            next: { revalidate: 60 },
         });
 
         if (res.status === 404) {

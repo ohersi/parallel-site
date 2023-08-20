@@ -4,7 +4,14 @@ export async function getChannelData({ params: { channelID } }: IPageProps): Pro
 
     try {
         const res = await fetch(`http://localhost:3000/api/v1/channels/title/${channelID}?limit=2`, {
-            next: { revalidate: 30 },
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
+            },
+            next: { revalidate: 60 },
         });
 
         if (res.status === 404) return null;

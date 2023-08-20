@@ -149,8 +149,8 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
                     <div className={styles.block__info__links}>
                         <span className={styles.block__info__links__title}>Actions</span>
                         <div className={styles.block__info__links__buttons}>
-                        <ShareBlockButton url={blocks.image_url} />
-                        <DownloadBlockButton url={blocks.source_url}/>
+                            <ShareBlockButton url={blocks.image_url} />
+                            <DownloadBlockButton url={blocks.source_url} />
                         </div>
                     </div>
 
@@ -182,38 +182,6 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
                                 </Link>
                             ))
                         }
-                        <div className={styles.block__info__connections__item} >
-                            <div className={styles.block__info__connections__item__title}>
-                                Test
-                            </div>
-                            <div className={styles.block__info__connections__item__user}>
-                                by Test
-                            </div>
-                        </div>
-                        <div className={styles.block__info__connections__item} >
-                            <div className={styles.block__info__connections__item__title}>
-                                Test
-                            </div>
-                            <div className={styles.block__info__connections__item__user}>
-                                by Test
-                            </div>
-                        </div>
-                        <div className={styles.block__info__connections__item}>
-                            <div className={styles.block__info__connections__item__title}>
-                                Test
-                            </div>
-                            <div className={styles.block__info__connections__item__user}>
-                                by Test
-                            </div>
-                        </div>
-                        <div className={styles.block__info__connections__item}>
-                            <div className={styles.block__info__connections__item__title}>
-                                Test
-                            </div>
-                            <div className={styles.block__info__connections__item__user}>
-                                by Test
-                            </div>
-                        </div>
                     </div>
 
                 </div>

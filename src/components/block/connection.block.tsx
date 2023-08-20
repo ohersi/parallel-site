@@ -130,36 +130,7 @@ const ConnectionBlock = ({ blockID }: IConnectionBlock) => {
                                     ))
                                 : null
                         }
-                        {/* <div className={styles.modal__channel__list__item}>
-                        <h4>Channel 1</h4>
-                        <button
-                            className={styles.modal__channel__list__item__btn}>
-                            connect &nbsp; →
-                        </button>
                     </div>
-                    <div className={styles.modal__channel__list__item}>
-                        <h4>Channel 1</h4>
-                        <button
-                            className={styles.modal__channel__list__item__btn}>
-                            connect &nbsp; →
-                        </button>
-                    </div>
-                    <div className={styles.modal__channel__list__item}>
-                        <h4>Channel 1</h4>
-                        <button
-                            className={styles.modal__channel__list__item__btn}>
-                            connect &nbsp; →
-                        </button>
-                    </div>
-                    <div className={styles.modal__channel__list__item}>
-                        <h4>Channel 1</h4>
-                        <button
-                            className={styles.modal__channel__list__item__btn}>
-                            connect &nbsp; →
-                        </button>
-                    </div> */}
-                    </div>
-
                 </div>
             </div>
         </div>

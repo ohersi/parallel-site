@@ -11,7 +11,7 @@ export async function getBlockData(id: number) {
                 "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
                 "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
             },
-            next: { revalidate: 900 }, // Revalidate every 15mins
+            next: { revalidate: 300 }, // Revalidate every 5mins
         });
 
         if (res.status === 404) return null;

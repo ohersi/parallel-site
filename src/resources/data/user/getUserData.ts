@@ -12,7 +12,7 @@ export async function getUserData({ params }: IPageProps): Promise<IUser | null>
                 "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
             },
             credentials: 'include',
-            next: { revalidate: 900 }, // Revalidate every 15mins
+            next: { revalidate: 300 }, // Revalidate every 5mins
         });
 
         if (!res.ok) return null;
