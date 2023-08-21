@@ -16,23 +16,30 @@ const UserGrid = ({ user }: IUserGrid) => {
         <div className={styles.block__user}>
             <Link href={`${user.slug}`}>
                 <div className={styles.block__user__box}>
-                    <div className={styles.block__user__box__image}>
-                        <div className={styles.block__user__box__image__img}>
-                            <Image
-                                alt='test'
-                                src={`https://d2w9rnfcy7mm78.cloudfront.net/22787874/original_659280da012bef94901275155344921c.jpg?1690203802?bc=0`}
-                                fill
-                                sizes='100vw'
-                                style={{
-                                    objectFit: 'contain',
-                                    maxWidth: '5rem',
-                                    maxHeight: '5rem',
-                                    margin: "0 auto",
-                                }}
-                            />
-                        </div>
-                    </div>
                     <div>{user.full_name}</div>
+                    <div className={styles.block__user__box__image}>
+                        {
+                            user.avatar ?
+                                <div className={styles.block__user__box__image__img}>
+                                    <Image
+                                        alt='test'
+                                        src={user.avatar}
+                                        fill
+                                        sizes='100vw'
+                                        style={{
+                                            objectFit: 'contain',
+                                            maxWidth: '140px',
+                                            maxHeight: '140px',
+                                            margin: "0 auto",
+                                        }}
+                                    />
+                                </div>
+                                :
+                                <div className={styles.block__user__box__image__default}>
+                                    {`${user.first_name.charAt(0).toUpperCase()} ${user.last_name.charAt(0).toUpperCase()}`}
+                                </div>
+                        }
+                    </div>
                 </div>
             </Link>
         </div>

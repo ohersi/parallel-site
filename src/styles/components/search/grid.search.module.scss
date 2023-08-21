@@ -42,8 +42,20 @@
                 overflow: hidden;
 
                 &__img {
-                    width: 5rem;
-                    height: 5rem;
+                    width: Min(140px, 100vw);
+                    height: Min(140px, 100vw);
+                }
+
+                &__default {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: a.$color-secondary;
+                    color: a.$color-primary;
+                    font-size: clamp(2.5rem, 2.5rem + 5.3333vw, 2.8rem);
+                    border-radius: 50%;
+                    width: Min(140px, 100vw);
+                    height: Min(140px, 100vw);
                 }
             }
         }

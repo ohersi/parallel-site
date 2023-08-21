@@ -76,7 +76,7 @@ const BlockGrid = ({ block, channelID, channelUser, channelTitle }: IBlockGrid) 
                     <div className={styles.channel__blocks__image_img}>
                         <Image
                             alt='test'
-                            src={block.image_url == 'image_url' ? `https://d2w9rnfcy7mm78.cloudfront.net/22787874/original_659280da012bef94901275155344921c.jpg?1690203802?bc=0` : block.image_url}
+                            src={block.image_url}
                             fill
                             sizes='100vw'
                             style={{
