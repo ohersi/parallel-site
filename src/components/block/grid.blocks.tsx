@@ -1,8 +1,9 @@
 "use client";
 // Packages
 import { useEffect } from 'react';
-import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { useInView } from 'react-intersection-observer';
 // REDUX
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setIsOpen } from '@/store/modalSlice';
@@ -54,6 +55,11 @@ const BlockGrid = ({ block, channelID, channelUser, channelTitle }: IBlockGrid) 
         }
     }, [])
 
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        threshold: 0.5
+    })
+
     return (
         <>
             <div
@@ -73,7 +79,7 @@ const BlockGrid = ({ block, channelID, channelUser, channelTitle }: IBlockGrid) 
                                 : <ConnectBlockButton blockID={block.id} />
                         }
                     </div>
-                    <div className={styles.channel__blocks__image_img}>
+                    <div ref={ref} className={styles.channel__blocks__image_img}>
                         <Image
                             alt='test'
                             src={block.image_url}
@@ -84,6 +90,8 @@ const BlockGrid = ({ block, channelID, channelUser, channelTitle }: IBlockGrid) 
                                 maxWidth: '315px',
                                 maxHeight: '315px',
                                 margin: "0 auto",
+                                opacity: inView ? 1 : 0,
+                                transition: 'opacity 0.4s cubic-bezier(0.3, 0.2, 0.2, 0.8)'
                             }}
                         />
                     </div>
