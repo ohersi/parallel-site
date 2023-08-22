@@ -2,10 +2,8 @@
 
 export default function Error({ error, reset }: { error: Error; reset: () => void }) {
 
-    /* error.message to avoid is omitted  in production builds to avoid leaking sensitive details.
- TODO: Change it to fit error passed in
-*/
-
+    // error.message to avoid is omitted  in production builds to avoid leaking sensitive details.
+    
     return (
         <div>
             <h2>Something went wrong!</h2>
