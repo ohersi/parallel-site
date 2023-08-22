@@ -15,7 +15,7 @@ export async function SignUpUser(payload: IUserPayload) {
             cache: 'no-store',
         });
 
-        if (res.status === 500) {
+        if (!res.ok) {
             const errorMessage = await res.json();
             throw new Error(errorMessage.message);
         }
