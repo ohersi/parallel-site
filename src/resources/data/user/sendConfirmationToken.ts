@@ -12,13 +12,11 @@ export const sendConfirmationToken = async () => {
             cache: 'no-store',
         });
 
-        const data = await res.json();
-
         if (!res.ok) {
-            return { success: false, message: data };
+            return { success: false };
         }
 
-        return { success: true, message: data };
+        return { success: true };
     }
     catch (error: any) {
         throw new Error(error);

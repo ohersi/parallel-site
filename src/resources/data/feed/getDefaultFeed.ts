@@ -1,13 +1,23 @@
 import { IDefaultFeedResults } from "@/utils/types/types";
 
-export async function GetDefaultFeed(channel_lastID?: string | null, block_lastID?: string | null, limit?: number) {
+export async function GetDefaultFeed(channel_lastID?: string | null | undefined, block_lastID?: string | null | undefined, limit?: number) {
 
-    let channelParams = channel_lastID ? `channel_lastID=${channel_lastID}&` : '';
-    let blockParams = block_lastID ? `block_lastID=${block_lastID}&` : '';
+    let channelParams = channel_lastID ?
+        `channel_lastID=${channel_lastID}&`
+        : channel_lastID === null ?
+            'channel_lastID=null&'
+            : '';
+
+    let blockParams = block_lastID ?
+        `block_lastID=${block_lastID}&`
+        : block_lastID === null ?
+            'block_lastID=null&'
+            : '';
+            
     let limitParams = limit ? `limit=${limit}&` : '';
 
     const url = `http://localhost:3000/api/v1/feed?` + limitParams + channelParams + blockParams;
-    
+
     try {
         const res = await fetch(url, {
             method: 'GET',

@@ -36,20 +36,8 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
 
                 if (!data) return;
 
-                // End of blocks but not for channel; update channels & keep blocks on prev lastID
-                if (data.block_lastID == null && data.channel_lastID !== null) {
-                    setChannelLastID(data.channel_lastID);
-                }
-                // End of channels but not for blocks; update blocks & keep channels on prev lastID
-                else if (data.channel_lastID == null && data.block_lastID !== null) {
-                    setBlockLastID(data.block_lastID);
-                }
-                // If both come back as null means end of entire list; set state as normal
-                else {
-                    setChannelLastID(data.channel_lastID);
-                    setBlockLastID(data.block_lastID);
-                }
-
+                setChannelLastID(data.channel_lastID);
+                setBlockLastID(data.block_lastID);
                 setPages((prev) => [...prev, data.data]);
             }
             finally {
@@ -74,7 +62,6 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
                                 sortType == SORT.RECENTLY_UPDATED ?
                                     feed.map((item: any, index) => {
                                         if (item.source_url) {
-                                            // TODO: Replace index with block id 
                                             return <BlockGrid block={item} key={index} />
 
                                         }
@@ -83,7 +70,6 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
                                     : sortType == SORT.OLDEST ?
                                         feed.slice().reverse().map((item: any, index) => {
                                             if (item.source_url) {
-                                                // TODO: Replace index with block id 
                                                 return <BlockGrid block={item} key={index} />
 
                                             }
@@ -116,15 +102,14 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
                                         sortType == SORT.RECENTLY_UPDATED ?
                                             feed.map((item: any, index) => {
                                                 if (item.source_url)
-                                                // TODO: Replace index with block id 
                                                     return <BlockGrid block={item} key={index} />
                                             })
                                             : sortType == SORT.OLDEST ?
                                                 feed.slice().reverse().map
-                                                ((item: any, index) => {
-                                                    if (item.source_url)
-                                                        return <BlockGrid block={item} key={index} />
-                                                })
+                                                    ((item: any, index) => {
+                                                        if (item.source_url)
+                                                            return <BlockGrid block={item} key={index} />
+                                                    })
                                                 : null
                                     }
                                 </div>

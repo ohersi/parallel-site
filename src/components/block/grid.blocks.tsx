@@ -91,7 +91,7 @@ const BlockGrid = ({ block, channelID, channelUser, channelTitle }: IBlockGrid) 
 
                 <div className={styles.channel__blocks__info}>
                     <div className={channelUser ? styles.channel__blocks__info__title__hidden : styles.channel__blocks__info__title}>
-                        #{block.id} - {block.title}
+                        {block.title}
                     </div>
                     {
                         channelUser ?

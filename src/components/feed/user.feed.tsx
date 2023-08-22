@@ -13,11 +13,10 @@ import Loader from "@/components/loader/loader";
 import { GetUserFeed } from "@/resources/data/user/getUserFeed";
 import { timeAgo } from "@/resources/timeAgo";
 // TYPES
-import { ICombinedObj, FEED, ACTION, IBlock, IChannel, IUser, IUserFeedResults } from "@/utils/types/types";
+import { ICombinedObj, FEED, ACTION, IChannel, IUser } from "@/utils/types/types";
 // STYLES
 import styles from "@/styles/components/feed/user.feed.module.scss";
 
-// TODO: Force component refresh when logged out
 const UserFeed = () => {
 
     const loggedInUser = useAppSelector((state) => state.User.user);
