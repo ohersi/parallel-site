@@ -27,7 +27,7 @@ const UserGrid = ({ user }: IUserGrid) => {
                                         fill
                                         sizes='100vw'
                                         style={{
-                                            objectFit: 'contain',
+                                            objectFit: 'cover',
                                             maxWidth: '140px',
                                             maxHeight: '140px',
                                             margin: "0 auto",

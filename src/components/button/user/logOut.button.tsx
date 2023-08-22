@@ -25,7 +25,7 @@ const LogoutButton = () => {
         trigger().then((success) => {
             if (success) {
                 dispatch(setIsMenuOpen(false));
-                router.refresh();
+                router.replace('/');
             }
         })
     };

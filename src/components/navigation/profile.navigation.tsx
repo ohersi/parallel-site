@@ -64,7 +64,7 @@ const NavProfile = () => {
                                                         fill
                                                         sizes='100vw'
                                                         style={{
-                                                            objectFit: 'contain',
+                                                            objectFit: 'cover',
                                                             maxWidth: '80px',
                                                             maxHeight: '80px',
                                                             margin: "0 auto",
