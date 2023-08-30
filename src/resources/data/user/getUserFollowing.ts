@@ -1,6 +1,6 @@
 export async function getUserFollowing(slug: string) {
     try {
-        const res = await fetch(`http://localhost:3000/api/v1/users/${slug}/friends`, {
+        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/${slug}/friends`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

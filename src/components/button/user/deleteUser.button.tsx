@@ -20,7 +20,15 @@ const DeleteUserButton = ({ userID }: Props) => {
 
     const handleClick = async () => {
         await trigger()
-            .then(() => dispatch(setIsOpen(!isOpen)));
+            .then((res) => {
+                if (res?.success) {
+                    dispatch(setIsOpen(!isOpen));
+                }
+                else {
+                    //TODO: Return error and try again
+                }
+            }
+            );
     };
 
     return (

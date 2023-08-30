@@ -1,22 +1,22 @@
 export async function DeleteChannel(id: number) {
-    console.log(`channelID: ${id}`)
-    // try {
-    //     const res = await fetch(`http://localhost:3000/api/v1/channels/${id}`, {
-    //         method: 'DELETE',
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Access-Control-Allow-Origin": "*",
-    //             "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-    //             "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
-    //         },
-    //         credentials: 'include',
-    //         cache: 'no-store',
-    //     });
+    try {
+        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/channels/${id}`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
+            },
+            credentials: 'include',
+            cache: 'no-store',
+        });
 
-    //     const data = await res.json();
-    //     console.log(JSON.stringify(data));
-    // }
-    // catch (error: any) {
-    //     throw new Error(error);
-    // }
+        if (!res.ok) return { success: false };
+
+        return { success: true };
+    }
+    catch (error: any) {
+        throw new Error(error);
+    }
 };

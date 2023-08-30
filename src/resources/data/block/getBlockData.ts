@@ -1,9 +1,8 @@
 import { IBlock } from "@/utils/types/types";
 
 export async function getBlockData(id: number) {
-
     try {
-        const res = await fetch(`http://localhost:3000/api/v1/blocks/${id}`, {
+        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/blocks/${id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

@@ -3,7 +3,7 @@ import useSWRMutation from 'swr/mutation';
 
 export function LogOutUser() {
 
-    const externalURL = 'http://localhost:3000/api/v1/users/logout';
+    const externalURL = `http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/logout`;
     const internalURL = '/api/logout';
 
     // destroy session on redis

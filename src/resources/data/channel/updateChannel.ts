@@ -1,9 +1,8 @@
 import { IChannelPayload } from "@/utils/types/types";
 
 export async function UpdateChannel(payload: IChannelPayload, channelID: number) {
-
     try {
-        const res = await fetch(`http://localhost:3000/api/v1/channels/${channelID}/update`, {
+        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/channels/${channelID}/update`, {
             method: 'PUT',
             body: JSON.stringify(payload),
             headers: {

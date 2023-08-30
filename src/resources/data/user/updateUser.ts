@@ -2,7 +2,7 @@ import { IUserPayload } from "@/utils/types/types";
 
 export async function UpdateUser(payload: IUserPayload) {
     try {
-        const res = await fetch('http://localhost:3000/api/v1/users/update', {
+        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/update`, {
             method: 'PUT',
             body: JSON.stringify(payload),
             headers: {

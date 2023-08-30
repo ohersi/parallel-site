@@ -24,9 +24,14 @@ const DeleteChannelButton = ({ channelID }: Props) => {
 
     const handleClick = async () => {
         await trigger()
-            .then(() => {
-                setClicked('');
-                dispatch(setIsOpen(!isOpen));
+            .then((res) => {
+                if (res?.success) {
+                    setClicked('');
+                    dispatch(setIsOpen(!isOpen));
+                }
+                else {
+                    //TODO: Return error and try again
+                }
             })
     };
 

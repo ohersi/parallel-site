@@ -2,7 +2,7 @@ import { IBlock } from "@/utils/types/types";
 
 export async function searchBlocks(input: string) {
     try {
-        const res = await fetch(`http://localhost:3000/api/v1/search/blocks?title=${input}`, {
+        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/search/blocks?title=${input}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

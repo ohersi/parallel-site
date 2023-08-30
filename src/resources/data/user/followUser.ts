@@ -1,6 +1,6 @@
 export async function FollowUser(id: number) {
     try {
-        const res = await fetch(`http://localhost:3000/api/v1/users/follow/user/${id}`, {
+        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/follow/user/${id}`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

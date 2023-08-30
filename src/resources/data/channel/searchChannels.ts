@@ -2,7 +2,7 @@ import { IChannel } from "@/utils/types/types";
 
 export async function searchChannels(input: string) {
     try {
-        const res = await fetch(`http://localhost:3000/api/v1/search/channels?title=${input}`, {
+        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/search/channels?title=${input}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

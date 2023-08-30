@@ -1,6 +1,6 @@
 export async function FollowChannel(id: number) {
     try {
-        const res = await fetch(`http://localhost:3000/api/v1/users/follow/channel/${id}`, {
+        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/follow/channel/${id}`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

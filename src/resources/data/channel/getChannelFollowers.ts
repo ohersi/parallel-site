@@ -2,7 +2,7 @@ import { IChannelFollowers } from "@/utils/types/types";
 
 export async function getChannelFollowers(slug: string) {
     try {
-        const res = await fetch(`http://localhost:3000/api/v1/channels/${slug}/followers`, {
+        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/channels/${slug}/followers`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

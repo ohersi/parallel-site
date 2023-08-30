@@ -1,9 +1,8 @@
 import { IUserPayload } from "@/utils/types/types";
 
 export async function SignUpUser(payload: IUserPayload) {
-
     try {
-        const res = await fetch('http://localhost:3000/api/v1/users/', {
+        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/`, {
             method: 'POST',
             body: JSON.stringify(payload),
             headers: {

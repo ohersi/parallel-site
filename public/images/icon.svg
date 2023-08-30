@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="16" height="16"><svg width="16" height="16" viewBox="0 0 384 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="0.862453" y="6.76528" width="190.645" height="190.645" transform="matrix(0.965926 0.258819 -0.870098 0.492879 188.153 95.9937)" fill="#171717" stroke="#FBF2EF" stroke-width="18"></rect>
-<rect x="0.862453" y="6.76528" width="190.645" height="190.645" transform="matrix(0.965926 0.258819 -0.870098 0.492879 188.153 49.8836)" fill="#171717" stroke="#FBF2EF" stroke-width="18"></rect>
-<rect x="0.862453" y="6.76528" width="190.645" height="190.645" transform="matrix(0.965926 0.258819 -0.870098 0.492879 188.153 3.77373)" fill="#171717" stroke="#FBF2EF" stroke-width="18"></rect>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="32" height="32"><svg width="32" height="32" viewBox="0 0 333 237" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M48.406 162.875L0.928345 189.77L175.107 236.441L332.005 147.563L284.528 134.842L175.107 196.825L48.406 162.875Z" fill="#171717"></path>
+<path d="M48.4061 112.829L0.928467 139.723L175.107 186.394L332.005 97.5167L284.528 84.7951L175.107 146.778L48.4061 112.829Z" fill="#171717"></path>
+<rect width="180.323" height="180.323" transform="matrix(0.965926 0.258819 -0.870098 0.492879 157.827 0.799072)" fill="#171717"></rect>
 </svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
 @media (prefers-color-scheme: dark) { :root { filter: none; } }
 </style></svg>

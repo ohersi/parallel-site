@@ -9,7 +9,7 @@ export function CheckIfUserFollowsUser(userID: number | null, loggedInUserID: nu
         empty = true
     }
 
-    const url = `http://localhost:3000/api/v1/users/connection/${userID}`;
+    const url = `http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/connection/${userID}`;
 
     const fetcher = (url: any) => fetch(url, {
         method: 'GET',
