@@ -1,16 +1,15 @@
 "use client"
 // Packages
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import useSWRMutation from 'swr/mutation';
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // Imports
 import { useAppDispatch, useAppSelector } from '@/store';
 import { setUser } from '@/store/userSlice';
-import userValidation from '@/resources/validations/user.validation';
 import { SignUpUser } from '@/resources/data/user/signupUser';
 import { isEmpty } from '@/resources/isEmpty';
+import userValidation from '@/resources/validations/user.validation';
 import { IUserPayload } from '@/utils/types/types';
 import styles from '@/styles/components/form/signup.form.module.scss';
 
@@ -29,7 +28,6 @@ const SignUpForm = () => {
     const { trigger, error: error } = useSWRMutation('api/v1/users/', () => SignUpUser(userPayload));
 
     const setUserValues = async (data: FieldValues) => {
-
         if (data.first_name) userPayload.first_name = data.first_name;
         if (data.last_name) userPayload.last_name = data.last_name;
         if (data.email) userPayload.email = data.email;
@@ -132,11 +130,27 @@ const SignUpForm = () => {
                     <span className={styles.signup__form__item__input}>
                         <input
                             className='input'
-                            type="text"
+                            type="password"
                             {...register("password", { required: false })}
                         />
                     </span>
                     <span className='error'>{errors?.password?.message?.toString()}</span>
+                </div>
+
+                <div className={styles.signup__form__item}>
+                    <label
+                        className={styles.signup__form__item__label}
+                        htmlFor="confirmPassword">
+                        Confirm Password
+                    </label>
+                    <span className={styles.signup__form__item__input}>
+                        <input
+                            className='input'
+                            type="password"
+                            {...register("confirmPassword", { required: false })}
+                        />
+                    </span>
+                    <span className='error'>{errors?.confirmPassword?.message?.toString()}</span>
                 </div>
 
                 <div className={styles.signup__form__item}>

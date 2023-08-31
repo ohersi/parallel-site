@@ -17,6 +17,7 @@ import Modal from '@/components/modal/modal';
 import EditBlockButton from '@/components/button/block/editBlock.button';
 import ConnectBlockButton from '@/components/button/block/connectBlock.button';
 import DownloadBlockButton from '@/components/button/block/downloadBlock.button';
+import SearchBlockButton from '@/components/button/block/searchBlock.button';
 import ShareBlockButton from '@/components/button/block/shareBlock.button';
 import ConnectionBlock from '@/components/block/connection.block';
 import UpdateBlockForm from '@/components/form/updateBlock.form';
@@ -151,6 +152,7 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
                         <div className={styles.block__info__links__buttons}>
                             <ShareBlockButton url={blocks.image_url} />
                             <DownloadBlockButton url={blocks.source_url} />
+                            <SearchBlockButton url={blocks.image_url} />
                         </div>
                     </div>
 

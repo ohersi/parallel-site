@@ -29,6 +29,19 @@ button {
     appearance: none;
 }
 
+// For Google Chrome
+::-webkit-scrollbar {
+    width: auto;
+}
+
+::-webkit-scrollbar-thumb {
+    background:  v.$color-secondary;
+}
+
+::-webkit-scrollbar-track {
+    background:  v.$color-primary;
+}
+
 textarea {
     resize: vertical;
     min-height: 1.5rem;

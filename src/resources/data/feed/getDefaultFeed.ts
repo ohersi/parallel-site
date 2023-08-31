@@ -27,7 +27,6 @@ export async function GetDefaultFeed(channel_lastID?: string | null | undefined,
                 "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
                 "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
             },
-            credentials: 'include',
             next: { revalidate: 0 },
         });
 

@@ -11,7 +11,7 @@ export async function LogInUser(email: string, password: string) {
             body: JSON.stringify(payload),
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
+                'Access-Control-Allow-Credentials': "true",
                 "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
                 "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
             },
@@ -19,7 +19,7 @@ export async function LogInUser(email: string, password: string) {
             cache: 'no-store',
         });
 
-        if (res.status === 500) {
+        if (!res.ok) {
             const errorMessage = await res.json();
             throw new Error(errorMessage.message);
         }

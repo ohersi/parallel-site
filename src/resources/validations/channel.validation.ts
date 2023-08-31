@@ -2,8 +2,8 @@ import * as yup from 'yup';
 
 // Create channel
 const create = yup.object({
-    title: yup.string().required().max(80),
-    description: yup.string().required().max(200),
+    title: yup.string().required("Enter title").max(80),
+    description: yup.string().required("Enter description").max(200),
 });
 
 // Update channel

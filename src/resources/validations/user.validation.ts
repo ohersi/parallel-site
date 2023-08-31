@@ -7,10 +7,11 @@ const imgMatch = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&
 
 // Create user
 const create = yup.object({
-    first_name: yup.string().required().max(30),
-    last_name: yup.string().required().max(30),
-    email: yup.string().email().lowercase().required(),
+    first_name: yup.string().required("Enter first name").max(30),
+    last_name: yup.string().required("Enter last name").max(30),
+    email: yup.string().email().lowercase().required("Enter email address"),
     password: yup.string().password(),
+    confirmPassword: yup.string().required("Enter password").oneOf([yup.ref("password")], "Password does not match"),
     avatar: yup.string().matches(imgMatch, "URL is not valid.").required(),
 });
 
@@ -41,8 +42,8 @@ const update = yup.object({
 
 // Login user
 const login = yup.object({
-    email: yup.string().email().lowercase().required(),
-    password: yup.string().required(),
+    email: yup.string().email().lowercase().required("Enter email address"),
+    password: yup.string().required("Enter password"),
 });
 
 const userValidation = {
