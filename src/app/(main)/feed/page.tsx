@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const FeedPage = async () => {
 
     const cookieStore = cookies();
-    const session = cookieStore.has(process.env.SESSION_ID!);
+    const session = cookieStore.has(process.env.NEXT_PUBLIC_SESSION_ID!);
 
     if (!session) redirect('/login');
 
