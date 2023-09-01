@@ -9,6 +9,12 @@ export function LogOutUser() {
     // destroy session on redis
     const fetcher = (externalURL: any) => fetch(externalURL, {
         method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            'Access-Control-Allow-Credentials': "true",
+            "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
+        },
         credentials: 'include',
         cache: 'no-store'
     })

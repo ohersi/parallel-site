@@ -6,11 +6,9 @@ export async function getUserData({ params }: IPageProps): Promise<IUser | null>
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
                 "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token, Authorization, Accept,charset,boundary,Content-Length"
             },
-            credentials: 'include',
             next: { revalidate: 300 }, // Revalidate every 5mins
         });
 
