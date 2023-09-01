@@ -1,6 +1,6 @@
 export async function GetUserChannels(id: string) {
     try {
-        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/${id}/channels?limit=3`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/${id}/channels?limit=3`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

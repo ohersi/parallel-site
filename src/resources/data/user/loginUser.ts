@@ -6,7 +6,7 @@ export async function LogInUser(email: string, password: string) {
     }
 
     try {
-        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/login`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/login`, {
             method: 'POST',
             body: JSON.stringify(payload),
             headers: {

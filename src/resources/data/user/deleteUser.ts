@@ -1,6 +1,6 @@
 export async function DeleteUser(id: number) {
     try {
-        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/${id}`, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",

@@ -2,7 +2,7 @@ import { IBlockPayload } from "@/utils/types/types";
 
 export async function CreateBlock(payload: IBlockPayload, channelID: number) {
     try {
-        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/channels/${channelID}/add`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/channels/${channelID}/add`, {
             method: 'POST',
             body: JSON.stringify(payload),
             headers: {

@@ -9,7 +9,7 @@ export function CheckIfUserFollowsChannel(channelID: number | null, loggedInUser
         empty = true;
     }
 
-    const url = `http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/channels/connection/${channelID}`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/channels/connection/${channelID}`;
 
     const fetcher = (url: any) => fetch(url, {
         method: 'GET',

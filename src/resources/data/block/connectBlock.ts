@@ -3,7 +3,7 @@ export async function ConnectBlock(blockID: number, channelID: number | undefine
     if (!channelID) return { success: false };
 
     try {
-        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/blocks/${blockID}/connect?channel=${channelID}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/blocks/${blockID}/connect?channel=${channelID}`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

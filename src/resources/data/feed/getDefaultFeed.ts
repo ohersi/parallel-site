@@ -16,7 +16,7 @@ export async function GetDefaultFeed(channel_lastID?: string | null | undefined,
             
     let limitParams = limit ? `limit=${limit}&` : '';
 
-    const url = `http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/feed?` + limitParams + channelParams + blockParams;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/feed?` + limitParams + channelParams + blockParams;
 
     try {
         const res = await fetch(url, {

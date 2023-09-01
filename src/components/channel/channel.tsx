@@ -34,7 +34,7 @@ const Channel = ({ initial }: PageResults) => {
                 fetching.current = true;
 
                 const response = await fetch(
-                    `http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/channels/title/${channel.slug}?last_id=${lastID}&limit=2`
+                    `${process.env.NEXT_PUBLIC_API_URL}/api/v1/channels/title/${channel.slug}?last_id=${lastID}&limit=2`
                 );
                 const data = await response.json() as IPageResults;
 

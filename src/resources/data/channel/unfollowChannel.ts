@@ -1,6 +1,6 @@
 export async function UnfollowChannel(id: number) {
     try {
-        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/unfollow/channel/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/unfollow/channel/${id}`, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",

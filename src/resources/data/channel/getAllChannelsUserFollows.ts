@@ -1,6 +1,6 @@
 export async function GetAllChannelsUserFollows(slug: string) {
     try {
-        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/${slug}/following`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/${slug}/following`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

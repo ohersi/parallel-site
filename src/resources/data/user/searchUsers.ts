@@ -2,7 +2,7 @@ import { IUser } from "@/utils/types/types";
 
 export async function searchUsers(input: string) {
     try {
-        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/search/users?name=${input}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/search/users?name=${input}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

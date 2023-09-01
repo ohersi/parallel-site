@@ -2,7 +2,7 @@ import { IPageProps, IUser } from "@/utils/types/types";
 
 export async function getUserData({ params }: IPageProps): Promise<IUser | null> {
     try {
-        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/name/${params.userID}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/name/${params.userID}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

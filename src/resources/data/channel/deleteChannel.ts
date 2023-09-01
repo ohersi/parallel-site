@@ -1,6 +1,6 @@
 export async function DeleteChannel(id: number) {
     try {
-        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/channels/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/channels/${id}`, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",

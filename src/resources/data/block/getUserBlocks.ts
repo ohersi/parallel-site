@@ -2,7 +2,7 @@ import { IBlock } from "@/utils/types/types";
 
 export async function GetUserBlocks(id: string) {
     try {
-        const res = await fetch(`http://${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/${id}/blocks`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/${id}/blocks`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
