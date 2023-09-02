@@ -1,7 +1,7 @@
 // Packages
-import { cookies } from 'next/headers';
 import { Metadata } from 'next';
-import { redirect } from 'next/navigation'
+import { redirect } from 'next/navigation';
+import { getCookies } from 'next-client-cookies/server';
 // Imports
 import Header from '@/components/header/header';
 import HeaderTitle from '@/components/header/title.header';
@@ -15,8 +15,9 @@ export const metadata: Metadata = {
 
 const FeedPage = async () => {
 
-    const cookieStore = cookies();
-    const session = cookieStore.has(process.env.NEXT_PUBLIC_SESSION_ID!);
+    const cookieStore = getCookies();
+    const session = cookieStore.get(process.env.NEXT_PUBLIC_SESSION_ID!);
+    console.log(session);
 
     if (!session) redirect('/login');
 

@@ -1,8 +1,10 @@
 // Packages
 import { Metadata } from 'next';
+import { cookies } from 'next/headers';
 // Imports
 import '@/styles/base/globals.scss';
 import Providers from '@/lib/providers';
+import { ClientCookiesProvider } from '@/lib/cookies.provider';
 import "@/utils/env";
 
 export const metadata: Metadata = {
@@ -27,7 +29,9 @@ export default function RootLayout({
 
       <body>
         <Providers>
-          {children}
+          <ClientCookiesProvider value={cookies().getAll()}>
+            {children}
+          </ClientCookiesProvider>
         </Providers>
       </body>
     </html>
