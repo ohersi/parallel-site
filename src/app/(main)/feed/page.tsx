@@ -1,6 +1,5 @@
 "use client";
 // Packages
-import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 // Imports
 import { useAppSelector } from '@/store';
@@ -8,11 +7,6 @@ import Header from '@/components/header/header';
 import HeaderTitle from '@/components/header/title.header';
 import UserFeed from '@/components/feed/user.feed';
 import styles from '@/styles/pages/feed.page.module.scss';
-
-export const metadata: Metadata = {
-    title: 'Feed',
-    description: 'Feed Page',
-}
 
 const FeedPage = async () => {
 
