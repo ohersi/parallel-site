@@ -16,19 +16,26 @@ import searchSliceReducer from "@/store/searchSlice";
 import blockClickedSliceReducer from "@/store/blockClickedSlice";
 import menuSliceReducer from "@/store/menuSlice";
 import themeSliceReducer from "@/store/themeSlice";
+import sessionSliceReducer from "@/store/sessionSlice";
 
 const persistConfig = {
   key: 'root',
   storage,
   blacklist: ['Modal', 'Form', 'Button', 'Filter', 'Search', 'Block', 'Menu'],
-  whitelist: ['User', 'Theme'],
+  whitelist: ['User', 'Theme', 'Session'],
   transforms: [
     expireReducer('User', {
       persistedAtKey: '__persisted_at',
       expireSeconds: 3600, // 1hr
       expiredState: undefined,
       autoExpire: true,
-    })
+    }),
+    expireReducer('Session', {
+      persistedAtKey: '__persisted_at',
+      expireSeconds: 3600, // 1hr
+      expiredState: false,
+      autoExpire: true,
+    }),
   ],
 }
 const rootReducer = combineReducers({
@@ -41,6 +48,7 @@ const rootReducer = combineReducers({
   Block: blockClickedSliceReducer,
   Menu: menuSliceReducer,
   Theme: themeSliceReducer,
+  Session: sessionSliceReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

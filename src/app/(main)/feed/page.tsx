@@ -1,8 +1,9 @@
+"use client";
 // Packages
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import { getCookies } from 'next-client-cookies/server';
 // Imports
+import { useAppSelector } from '@/store';
 import Header from '@/components/header/header';
 import HeaderTitle from '@/components/header/title.header';
 import UserFeed from '@/components/feed/user.feed';
@@ -15,9 +16,7 @@ export const metadata: Metadata = {
 
 const FeedPage = async () => {
 
-    const cookieStore = getCookies();
-    const session = cookieStore.get(process.env.NEXT_PUBLIC_SESSION_ID!);
-    console.log(session);
+    const session = useAppSelector((state) => state.Session.session);
 
     if (!session) redirect('/login');
 

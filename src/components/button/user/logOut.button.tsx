@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 // Imports
 import { persistor, useAppDispatch } from "@/store";
 import { setIsMenuOpen } from "@/store/menuSlice";
+import { setSession } from "@/store/sessionSlice";
 import { LogOutUser } from "@/resources/data/user/logoutUser";
 import styles from '@/styles/layout/nav.module.scss';
 
@@ -20,11 +21,12 @@ const LogoutButton = () => {
         e.preventDefault();
 
         await persistor.purge(); // Clear storage
-        
+
         // Clear cookie
         trigger().then((success) => {
             if (success) {
                 dispatch(setIsMenuOpen(false));
+                dispatch(setSession(false));
                 router.replace('/');
             }
         })

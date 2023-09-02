@@ -7,8 +7,9 @@ import useSWRMutation from 'swr/mutation';
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // Imports
-import { useAppDispatch, useAppSelector } from '@/store';
+import { useAppDispatch } from '@/store';
 import { setUser } from '@/store/userSlice';
+import { setSession } from '@/store/sessionSlice';
 import { LogInUser } from '@/resources/data/user/loginUser';
 import userValidation from '@/resources/validations/user.validation';
 import styles from '@/styles/components/form/login.form.module.scss';
@@ -39,6 +40,7 @@ const LoginForm = () => {
             await trigger()
                 .then((res) => {
                     dispatch(setUser(res));
+                    dispatch(setSession(true));
                     router.push('/feed');
                 })
                 .catch((error: any) => console.log(error));
