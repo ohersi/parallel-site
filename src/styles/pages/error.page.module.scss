@@ -1,12 +1,22 @@
+@use '@/styles/abstracts' as a;
 @use '@/styles/utils' as u;
 
 .error {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    gap: 3rem;
     height: calc(100vh - 80px);
     width: 100%;
-    font-size: 4rem;
+    padding: 1rem;
+    font-size: clamp(2rem, 0rem + 16vw, 4rem);
     font-family: u.$secondary-font;
+
+    &__button {
+        @include a.button;
+        border-radius: 5rem;
+        padding: 0.5rem clamp(1.5rem, -1.5rem + 24vw, 3rem);
+    }
 }
