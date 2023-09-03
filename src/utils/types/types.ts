@@ -41,6 +41,7 @@ export interface IChannel {
 
 export interface IBlock {
     id: number;
+    unique_id: string;
     user: number;
     title: string;
     description: string;

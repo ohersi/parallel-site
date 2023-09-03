@@ -60,17 +60,16 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
                         <div className={styles.feed__grid__box}>
                             {
                                 sortType == SORT.RECENTLY_UPDATED ?
-                                    feed.map((item: any, index) => {
+                                    feed.map((item: any) => {
                                         if (item.source_url) {
-                                            return <BlockGrid block={item} key={index} />
-
+                                            return <BlockGrid block={item} key={item.unique_id} />
                                         }
                                         return <ChannelGrid channel={item} key={item.slug} />
                                     })
                                     : sortType == SORT.OLDEST ?
-                                        feed.slice().reverse().map((item: any, index) => {
+                                        feed.slice().reverse().map((item: any) => {
                                             if (item.source_url) {
-                                                return <BlockGrid block={item} key={index} />
+                                                return <BlockGrid block={item} key={item.unique_id} />
 
                                             }
                                             return <ChannelGrid channel={item} key={item.slug} />
@@ -100,15 +99,15 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
                                 <div className={styles.feed__grid__box}>
                                     {
                                         sortType == SORT.RECENTLY_UPDATED ?
-                                            feed.map((item: any, index) => {
+                                            feed.map((item: IBlock) => {
                                                 if (item.source_url)
-                                                    return <BlockGrid block={item} key={index} />
+                                                    return <BlockGrid block={item} key={item.unique_id} />
                                             })
                                             : sortType == SORT.OLDEST ?
                                                 feed.slice().reverse().map
-                                                    ((item: any, index) => {
+                                                    ((item: IBlock) => {
                                                         if (item.source_url)
-                                                            return <BlockGrid block={item} key={index} />
+                                                            return <BlockGrid block={item} key={item.unique_id} />
                                                     })
                                                 : null
                                     }
