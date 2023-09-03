@@ -1,7 +1,6 @@
 import { IBlockPayload } from "@/utils/types/types";
 
 export async function UpdateBlock(payload: IBlockPayload, blockID: number) {
-
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/blocks/${blockID}/update`, {
             method: 'PUT',
@@ -16,16 +15,11 @@ export async function UpdateBlock(payload: IBlockPayload, blockID: number) {
             cache: 'no-store',
         });
 
-        if (res.status === 500) {
-            const errorMessage = await res.json();
-            throw new Error(errorMessage.message);
+        if (!res.ok) {
+            return { success: false };
         }
 
-        const data = await res.json();
-
-        const updatedBlock = data.updated;
-
-        return updatedBlock;
+        return { success: true };
     }
     catch (error: any) {
         throw new Error(error);

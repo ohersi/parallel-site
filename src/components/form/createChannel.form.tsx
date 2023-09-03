@@ -43,14 +43,16 @@ const CreateChannelForm = () => {
 
     const onSubmit = async (data: FieldValues) => {
 
-        await setChannelValues(data).then(async (payload) => {
+        await setChannelValues(data).then(async () => {
 
             if (!isEmpty(channelPayload)) {
                 await trigger()
                     .then((res) => {
-                        if (!res?.success) {
-                            setFailed(true);
+                        if (res?.success) {
+                            dispatch(setIsOpen(!isOpen));
+                            dispatch(setFormType(''));
                         }
+                        else setFailed(true);
                     })
                     .catch((error: any) => console.log(error));
             }
@@ -118,7 +120,11 @@ const CreateChannelForm = () => {
                     </div>
 
                     <div className={styles.modal__box__form__submit}>
-                        <button className={styles.modal__box__form__submit__btn}>create</button>
+                        <button
+                            onClick={() => setFailed(false)}
+                            className={styles.modal__box__form__submit__btn}>
+                            {failed ? 'try again' : 'create'}
+                        </button>
                     </div>
                 </form>
             </div>

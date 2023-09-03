@@ -1,5 +1,6 @@
 "use client"
 // Packages
+import { useState } from 'react';
 import useSWRMutation from 'swr/mutation';
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -26,6 +27,8 @@ let blockPayload: IBlockPayload = {};
 
 const UpdateBlockForm = ({ block }: IUpdateBlockForm) => {
 
+    const [failed, setFailed] = useState<boolean>(false);
+
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
     const formType = useAppSelector((state) => state.Form.formType);
@@ -49,10 +52,18 @@ const UpdateBlockForm = ({ block }: IUpdateBlockForm) => {
 
     const onSubmit = async (data: FieldValues) => {
 
-        await setBlockValues(data).then(async (payload) => {
+        await setBlockValues(data).then(async () => {
 
             if (!isEmpty(blockPayload)) {
                 await trigger()
+                    .then((res) => {
+                        if (res?.success) {
+                            blockModalOpen ? null : dispatch(setIsOpen(!isOpen));
+                            blockModalOpen ? null : dispatch(setBlockClicked(undefined));
+                            dispatch(setFormType(''));
+                        }
+                        else setFailed(true);
+                    })
                     .catch((error: any) => console.log(error));
             }
             // Reset payload
@@ -163,7 +174,11 @@ const UpdateBlockForm = ({ block }: IUpdateBlockForm) => {
                     </div>
 
                     <div className={styles.modal__box__form__submit}>
-                        <button className={styles.modal__box__form__submit__btn}>update</button>
+                        <button
+                            onClick={() => setFailed(false)}
+                            className={styles.modal__box__form__submit__btn}>
+                            {failed ? 'try again' : 'save changes'}
+                        </button>
                     </div>
                 </form>
             </div>

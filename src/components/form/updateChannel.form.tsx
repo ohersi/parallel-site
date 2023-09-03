@@ -1,5 +1,6 @@
 "use client"
 // Packages
+import { useState } from 'react';
 import useSWRMutation from 'swr/mutation';
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -27,10 +28,10 @@ let channelPayload: IChannelPayload = {};
 
 const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
 
+    const [failed, setFailed] = useState<boolean>(false);
+
     const dispatch = useAppDispatch();
     const isOpen = useAppSelector((state) => state.Modal.isOpen);
-    const formType = useAppSelector((state) => state.Form.formType);
-
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(channelValidation.update)
@@ -49,10 +50,17 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
 
     const onSubmit = async (data: FieldValues) => {
 
-        await setChannelValues(data).then(async (payload) => {
+        await setChannelValues(data).then(async () => {
 
             if (!isEmpty(channelPayload)) {
                 await trigger()
+                    .then((res) => {
+                        if (res?.success) {
+                            dispatch(setIsOpen(!isOpen));
+                            dispatch(setFormType(''));
+                        }
+                        else setFailed(true);
+                    })
                     .catch((error: any) => console.log(error));
             }
             // Reset payload
@@ -119,7 +127,11 @@ const UpdateChannelForm = ({ channel }: IUpdateChannelForm) => {
                     </div>
 
                     <div className={styles.modal__box__form__submit}>
-                        <button className={styles.modal__box__form__submit__btn}>save changes</button>
+                        <button
+                            onClick={() => setFailed(false)}
+                            className={styles.modal__box__form__submit__btn}>
+                            {failed ? 'try again' : 'save changes'}
+                        </button>
                     </div>
                 </form>
 

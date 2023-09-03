@@ -15,16 +15,11 @@ export async function UpdateChannel(payload: IChannelPayload, channelID: number)
             cache: 'no-store',
         });
 
-        if (res.status === 500) {
-            const errorMessage = await res.json();
-            throw new Error(errorMessage.message);
+        if (!res.ok) {
+            return { success: false };
         }
 
-        const data = await res.json();
-
-        const updatedChannel = data.updated;
-
-        return updatedChannel;
+        return { success: true };
     }
     catch (error: any) {
         throw new Error(error);

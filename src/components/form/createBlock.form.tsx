@@ -50,14 +50,16 @@ const CreateBlockForm = ({ channelID }: ICreateBlockForm) => {
 
     const onSubmit = async (data: FieldValues) => {
 
-        await setBlockValues(data).then(async (payload) => {
+        await setBlockValues(data).then(async () => {
 
             if (!isEmpty(blockPayload)) {
                 await trigger()
                     .then((res) => {
-                        if (!res?.success) {
-                            setFailed(true);
+                        if (res?.success) {
+                            dispatch(setIsOpen(!isOpen));
+                            dispatch(setFormType(''));
                         }
+                        else setFailed(true);
                     })
                     .catch((error: any) => console.log(error));
             }
@@ -159,7 +161,11 @@ const CreateBlockForm = ({ channelID }: ICreateBlockForm) => {
                         <span className='error'>{errors?.source_url?.message?.toString()}</span>
                     </div>
                     <div className={styles.modal__box__form__submit}>
-                        <button className={styles.modal__box__form__submit__btn}>create</button>
+                        <button
+                            onClick={() => setFailed(false)}
+                            className={styles.modal__box__form__submit__btn}>
+                            {failed ? 'try again' : 'create'}
+                        </button>
                     </div>
                 </form>
             </div>

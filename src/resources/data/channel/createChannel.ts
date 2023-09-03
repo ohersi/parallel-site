@@ -15,10 +15,10 @@ export async function CreateChannel(payload: IChannelPayload) {
             cache: 'no-store',
         });
 
-            if (!res.ok) {
-                return { success: false };
-            }
-            return { success: true };
+        if (!res.ok) {
+            return { success: false };
+        }
+        return { success: true };
     }
     catch (error: any) {
         throw new Error(error);
