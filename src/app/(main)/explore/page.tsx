@@ -15,6 +15,8 @@ export const metadata: Metadata = {
     description: 'Explore Page',
 }
 
+export const revalidate = 0;
+
 const ExplorePage = async () => {
 
     const feedData = await GetDefaultFeed('empty', 'empty', 2);
