@@ -1,14 +1,14 @@
 import { IDefaultFeedResults } from "@/utils/types/types";
 
-export async function GetDefaultFeed(channel_lastID?: string | null | undefined, block_lastID?: string | null | undefined, limit?: number) {
+export async function GetDefaultFeed(channel_lastID?: string | null, block_lastID?: string | null, limit?: number) {
 
-    let channelParams = channel_lastID ?
+    let channelParams = channel_lastID && channel_lastID !== 'empty' ?
         `channel_lastID=${channel_lastID}&`
         : channel_lastID === null ?
             'channel_lastID=null&'
             : '';
 
-    let blockParams = block_lastID ?
+    let blockParams = block_lastID && channel_lastID !== 'empty' ?
         `block_lastID=${block_lastID}&`
         : block_lastID === null ?
             'block_lastID=null&'

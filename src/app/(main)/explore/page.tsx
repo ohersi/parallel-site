@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const ExplorePage = async () => {
 
-    const feedData = await GetDefaultFeed(undefined, undefined, 2);
+    const feedData = await GetDefaultFeed('empty', 'empty', 2);
 
     if (!feedData) { notFound() };
 
