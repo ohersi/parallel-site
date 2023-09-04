@@ -4,6 +4,7 @@ export interface IPageProps {
         slug: string;
         userID: string;
         channelID: string;
+        token: string;
     }
     searchParams?: {
         limit?: string;
