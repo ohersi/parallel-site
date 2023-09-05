@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image'
-import axios from 'axios';
 import useSWR from "swr";
 // REDUX
 import { useAppDispatch, useAppSelector } from '@/store';
@@ -14,13 +13,15 @@ import { setButtonType } from '@/store/buttonTypeSlice';
 import { setBlockClicked } from '@/store/blockClickedSlice';
 // COMPONENTS
 import Modal from '@/components/modal/modal';
+import ErrorBlock from '@/components/block/error.block';
+import LoadingBlock from '@/components/block/loading.block';
+import UpdateBlockForm from '@/components/form/updateBlock.form';
+import ConnectionBlock from '@/components/block/connection.block';
 import EditBlockButton from '@/components/button/block/editBlock.button';
 import ConnectBlockButton from '@/components/button/block/connectBlock.button';
 import DownloadBlockButton from '@/components/button/block/downloadBlock.button';
 import SearchBlockButton from '@/components/button/block/searchBlock.button';
 import ShareBlockButton from '@/components/button/block/shareBlock.button';
-import ConnectionBlock from '@/components/block/connection.block';
-import UpdateBlockForm from '@/components/form/updateBlock.form';
 // FUNCTIONS
 import { resize } from '@/resources/resize';
 import { timeAgo } from '@/resources/timeAgo';
@@ -42,7 +43,7 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
     const resizerRef = useRef<HTMLDivElement>(null);
     const infoRef = useRef<HTMLDivElement>(null);
 
-    const { data, error } = useSWR(`api/v1/blocks/${block.id}`, () => getBlockData(block.id));
+    const { data, error, mutate } = useSWR(`api/v1/blocks/${block.id}`, () => getBlockData(block.id));
 
     const dispatch = useAppDispatch();
     const loggedInUser = useAppSelector((state) => state.User.user);
@@ -59,9 +60,8 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
         }
     }, [data]);
 
-
-    if (error) return <div>failed to load</div>
-    if (!data) return <div>loading...</div>;
+    if (error) return <ErrorBlock replaceURL={replaceURL} pathname={pathname} mutate={mutate} />
+    if (!data) return <LoadingBlock replaceURL={replaceURL} pathname={pathname} />
 
     const blocks = data;
 

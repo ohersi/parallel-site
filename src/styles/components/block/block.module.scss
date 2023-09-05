@@ -2,11 +2,47 @@
 @use '@/styles/utils' as u;
 
 .page {
-    &__loading {
+    &__loading,
+    &__error,
+    &__modal_loading,
+    &__modal_error {
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 1rem;
+        background-color: a.$color-primary;
+    }
+
+    &__loading,
+    &__error {
         height: calc(100svh - 80px);
+    }
+
+    &__modal_loading,
+    &__modal_error {
+        height: 100svh;
+    }
+
+    &__error,
+    &__modal_error {
+        gap: 3rem;
+        flex-direction: column;
+
+        &__text {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+            font-family: u.$secondary-font;
+            font-size: clamp(2rem, 0rem + 16vw, 4rem);
+            text-align: center;
+        }
+
+        &__button {
+            @include a.button;
+            border-radius: 5rem;
+            padding: 0.5rem clamp(1.5rem, -1.5rem + 24vw, 3rem);
+            font-size: 2rem;
+        }
     }
 }
 
