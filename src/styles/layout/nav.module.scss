@@ -57,22 +57,21 @@
 
         &__dropdown {
             background-color: a.$color-primary;
-            border-left: 1px solid a.$color-secondary;
             display: flex;
             flex-direction: column;
             position: absolute;
             top: 0;
             right: 0;
             width: 100%;
-            min-height: 100vh;
-            max-height: 100vh;
-            padding: 1rem 2rem;
-            padding-top: 2rem;
+            height: 100vh; //fallback
+            height: 100svh;
+            padding: 2rem;
             gap: 3rem;
             overflow-y: auto;
 
             @include a.min-width(small) {
                 width: min(450px, 100%);
+                border-left: 1px solid a.$color-secondary;
             }
 
             &__close {

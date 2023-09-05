@@ -23,8 +23,10 @@
             flex-direction: column;
             position: relative;
 
-            #{$m}:hover & {
-                visibility: hidden;
+            @media (hover: hover) {
+                #{$m}:hover & {
+                    visibility: hidden;
+                }
             }
 
             &__title {
@@ -58,8 +60,10 @@
             margin: 0 auto;
             z-index: -1;
 
-            #{$m}:hover & {
-                visibility: hidden;
+            @media (hover: hover) {
+                #{$m}:hover & {
+                    visibility: hidden;
+                }
             }
 
             &__svg {
