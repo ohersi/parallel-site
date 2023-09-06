@@ -8,7 +8,7 @@
     align-items: center;
     gap: 2rem;
     width: 100%;
-    padding: 1rem;
+    padding: 3rem 1rem;
 
     @include a.min-width(medium) {
         height: 100%;

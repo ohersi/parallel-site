@@ -20,6 +20,7 @@ const LoginForm = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [failed, setFailed] = useState<boolean>(false);
 
     const dispatch = useAppDispatch();
 
@@ -36,6 +37,8 @@ const LoginForm = () => {
 
     const onSubmit = async (data: FieldValues) => {
 
+        setFailed(false);
+
         await setUserValues(data).then(async () => {
             await trigger()
                 .then((res) => {
@@ -43,7 +46,7 @@ const LoginForm = () => {
                     dispatch(setSession(true));
                     router.push('/feed');
                 })
-                .catch((error: any) => console.log(error));
+                .catch((error: any) => setFailed(true));
         });
     };
 
@@ -99,6 +102,14 @@ const LoginForm = () => {
                     </span>
                     <span className='error'>{errors?.password?.message?.toString()}</span>
                 </div>
+
+                {
+                    failed ?
+                        <div className={styles.login__form__failed_text}>
+                            Invalid email or password
+                        </div>
+                        : null
+                }
 
                 <div className={styles.login__form__submit}>
                     <button className={styles.login__form__submit__btn}>login</button>
