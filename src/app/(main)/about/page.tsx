@@ -17,10 +17,11 @@ const AboutPage = () => {
         <div className={styles.page__about__left}>
           <div className={styles.page__about__left__title}>ABOUT</div>
           <div className={styles.page__about__left__text}>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis molestias quaerat dolorem!
+            Parallel is a space for collective thought and collaboration.
             <br />
             <br />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis veniam veritatis at iusto accusamus dolorem tempora quos nisi tenetur omnis debitis, eaque blanditiis maxime doloribus! Aperiam!
+            <br />
+            Share and develop ideas collectively by curating valuable information, create evolving collections to organize your thoughts, and establish connections between your ideas and others in the community.
           </div>
         </div>
 
@@ -59,7 +60,7 @@ const AboutPage = () => {
 
           </div>
           <div className={styles.page__info__section__text}>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta cum sed debitis quam, veniam officia minus.
+            Start with one or many, each piece is a fragment of a whole. Use your insight to find the patterns they create.
           </div>
         </div>
 
@@ -81,7 +82,7 @@ const AboutPage = () => {
 
           </div>
           <div className={styles.page__info__section__text}>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error sequi molestiae dolor eaque quisquam ipsam.
+            Search for other ideas by following the threads that tie them together, any one of them can lead to inspiration or discovery.
           </div>
         </div>
 
@@ -104,7 +105,7 @@ const AboutPage = () => {
 
           </div>
           <div className={styles.page__info__section__text}>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus pariatur vitae officia labore cum odit temporibus, at eum.
+            Create channels, share ideas with others, and add their ideas to expand your collection.
           </div>
         </div>
 

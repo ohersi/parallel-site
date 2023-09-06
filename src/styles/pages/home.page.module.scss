@@ -17,6 +17,10 @@
         // border: 1px solid black;
         position: relative;
 
+        @media (hover: none) {
+            bottom: 5%;
+        }
+
         &__logo {
             display: flex;
             align-items: center;
