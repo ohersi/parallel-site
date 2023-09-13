@@ -1,12 +1,15 @@
 "use client"
 // Packages
+import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import useSWRMutation from 'swr/mutation';
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // Imports
-import { useAppDispatch, useAppSelector } from '@/store';
+import { useAppDispatch } from '@/store';
 import { setUser } from '@/store/userSlice';
+import { setSession } from '@/store/sessionSlice';
 import { SignUpUser } from '@/resources/data/user/signupUser';
 import { isEmpty } from '@/resources/isEmpty';
 import userValidation from '@/resources/validations/user.validation';
@@ -18,8 +21,11 @@ let userPayload: IUserPayload = {};
 
 const SignUpForm = () => {
 
+    const router = useRouter();
+
     const dispatch = useAppDispatch();
-    const user = useAppSelector((state) => state.User.user);
+
+    const [failed, setFailed] = useState<boolean>(false);
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(userValidation.create)
@@ -43,8 +49,13 @@ const SignUpForm = () => {
 
             if (!isEmpty(userPayload)) {
                 await trigger()
-                    .then((res) => dispatch(setUser(res)))
-                    .catch((error: any) => console.log(error));
+                    .then((res) => {
+                        dispatch(setUser(res));
+                        dispatch(setSession(true));
+                        router.push('/feed');
+                    }
+                    )
+                    .catch((error: any) => { setFailed(true); console.log(error) });
             }
             // Reset payload
             userPayload = {};
@@ -169,6 +180,15 @@ const SignUpForm = () => {
                     </span>
                     <span className='error'>{errors?.avatar?.message?.toString()}</span>
                 </div>
+
+                {
+                    failed ?
+                        <div className={styles.login__form__failed_text}>
+                            Error, please try again
+                        </div>
+                        : null
+                }
+
                 <div className={styles.signup__form__submit}>
                     <button className={styles.signup__form__submit__btn}>sign up</button>
                 </div>
