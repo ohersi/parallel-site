@@ -45,6 +45,8 @@ const SignUpForm = () => {
 
     const onSubmit = async (data: FieldValues) => {
 
+        setFailed(false);
+
         await setUserValues(data).then(async (payload) => {
 
             if (!isEmpty(userPayload)) {
