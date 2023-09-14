@@ -28,9 +28,6 @@ const User = ({ user, userChannels, userBlocks }: IUserProps) => {
     const viewType = useAppSelector((state) => state.Filter.viewType);
     const sortType = useAppSelector((state) => state.Filter.sortType);
 
-    const channelReverseSorted = userChannels.slice().reverse();
-    const blocksReverseSorted = userBlocks?.slice().reverse();
-
     useEffect(() => { dispatch(setViewType(FEED.CHANNEL)) }, []);
 
     return (
@@ -87,7 +84,7 @@ const User = ({ user, userChannels, userBlocks }: IUserProps) => {
                                 ))
                                 :
                                 sortType == SORT.OLDEST ?
-                                    channelReverseSorted.map((data: Data) => (
+                                    userChannels.slice().reverse().map((data: Data) => (
                                         <div
                                             className={styles.grid__box__row}
                                             key={data.channel.id}
@@ -147,7 +144,7 @@ const User = ({ user, userChannels, userBlocks }: IUserProps) => {
                                             key={block.id} />
                                     ))
                                     : sortType == SORT.OLDEST ?
-                                        blocksReverseSorted?.map((block: IBlock) => (
+                                        userBlocks.slice().reverse().map((block: IBlock) => (
                                             <BlockGrid
                                                 block={block}
                                                 channelUser={user.full_name}
