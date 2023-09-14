@@ -3,7 +3,7 @@ import YupPassword from 'yup-password';
 
 YupPassword(yup);
 
-const imgMatch = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+(?:png|jpg|jpeg|gif|svg)+$/;
+const imgMatch = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!%\$&'\(\)\*\+,;=.]+(?:png|jpg|jpeg|gif|svg)+$/i;
 
 // Create user
 const create = yup.object({
