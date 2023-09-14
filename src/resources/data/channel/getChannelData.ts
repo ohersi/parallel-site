@@ -2,7 +2,7 @@ import { IPageProps, IPageResults } from "@/utils/types/types";
 
 export async function getChannelData({ params: { channelID } }: IPageProps): Promise<IPageResults | null> {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/channels/title/${channelID}?limit=2`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/channels/title/${channelID}?limit=10`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
