@@ -76,7 +76,9 @@ const User = ({ user, userChannels, userBlocks }: IUserProps) => {
                                         {
                                             data.total_blocks && data.total_blocks > 4 ?
                                                 <div className={styles.grid__box__row__info}>
-                                                    <span>+{data.total_blocks - 4} more blocks</span>
+                                                    <span>
+                                                        +{data.total_blocks - 4} more {(data.total_blocks - 4) === 1 ? 'block' : 'blocks'}
+                                                    </span>
                                                 </div>
                                                 : null
                                         }
@@ -121,9 +123,11 @@ const User = ({ user, userChannels, userBlocks }: IUserProps) => {
                                                     : null
                                             }
                                             {
-                                                data.total_blocks ?
+                                                data.total_blocks && data.total_blocks > 4 ?
                                                     <div className={styles.grid__box__row__info}>
-                                                        <span>+{data.total_blocks} more blocks</span>
+                                                        <span>
+                                                            +{data.total_blocks - 4} more {(data.total_blocks - 4) === 1 ? 'block' : 'blocks'}
+                                                        </span>
                                                     </div>
                                                     : null
                                             }

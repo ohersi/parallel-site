@@ -23,7 +23,7 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
 
     const [channelLastID, setChannelLastID] = useState(initial.channel_lastID);
     const [blockLastID, setBlockLastID] = useState<string | null>(initial.block_lastID);
-    const [pages, setPages] = useState<(IChannel & IBlock)[]>([initial.data]);
+    const [pages, setPages] = useState<Array<IChannel & IBlock>>(initial.data);
 
     const feed = pages.flatMap((page) => page);
 
@@ -38,7 +38,19 @@ const DefaultFeed = ({ initial }: IDefaultFeed) => {
 
                 setChannelLastID(data.channel_lastID);
                 setBlockLastID(data.block_lastID);
-                setPages((prev) => [...prev, data.data]);
+
+                // Sort new feed items into old batch
+                const sortedFeed = data.data.sort((n1, n2) => {
+                    if (n1.date_updated > n2.date_updated) {
+                        return -1;
+                    }
+                    if (n1.date_updated < n2.date_updated) {
+                        return 1;
+                    }
+                    return 0;
+                });
+
+                setPages((prev) => [...prev, ...sortedFeed]);
             }
             finally {
                 fetching.current = false;

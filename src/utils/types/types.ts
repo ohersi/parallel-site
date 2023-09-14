@@ -90,7 +90,7 @@ export interface IDefaultFeedResults {
     block_total: number;
     channel_lastID: string | null;
     block_lastID: string | null;
-    data: IChannel & IBlock;
+    data: Array<IChannel & IBlock>;
 }
 
 export interface IUserFeedResults {
