@@ -41,13 +41,15 @@ const BlockGrid = ({ block, channelID, channelUserID, channelUserName, channelTi
     const blockClicked = useAppSelector((state) => state.Block.blockClicked);
 
     const findID = (block: IBlock) => {
-        for (const channel of block.channels) {
-            let channelUser = channel.user as IUser;
-            if (user && channelUser.id === user.id) return channelUser.id;
+        if (user && block && block.channels.length) {
+            for (const channel of block.channels) {
+                let channelUser = channel.user as IUser;
+                if (channelUser.id === user.id) return channelUser.id;
+            }
         }
     };
 
-    const checkBlockAndChannelOwnerConnection = channelUserID ? channelUserID : findID(block); 
+    const checkBlockAndChannelOwnerConnection = channelUserID ? channelUserID : findID(block);
 
     const replaceURL = (newURL: string) => {
         window.history.replaceState({
