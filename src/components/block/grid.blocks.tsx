@@ -20,6 +20,7 @@ import DisconnectBlockButton from '@/components/button/block/disconnectBlock.but
 import { BUTTON, IBlock, IUser } from "@/utils/types/types";
 // STYLES
 import styles from "@/styles/components/channel.module.scss";
+import { isUser } from '@/resources/helper/checkType';
 
 interface IBlockGrid {
     block: IBlock;
@@ -43,8 +44,8 @@ const BlockGrid = ({ block, channelID, channelUserID, channelUserName, channelTi
     const findID = (block: IBlock) => {
         if (user && block && block.channels.length) {
             for (const channel of block.channels) {
-                let channelUser = channel.user as IUser;
-                if (channelUser.id === user.id) return channelUser.id;
+                let channelUser = isUser(channel.user) ? channel.user.id : channel.user;
+                if (channelUser && channelUser === user.id) return channelUser;
             }
         }
     };
