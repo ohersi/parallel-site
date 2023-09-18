@@ -3,7 +3,7 @@
 import Link from 'next/link';
 // Imports
 import { timeAgo } from '@/resources/timeAgo';
-import { IChannel } from '@/utils/types/types';
+import { IChannel, IUser } from '@/utils/types/types';
 import styles from '@/styles/components/search/grid.search.module.scss';
 
 type IChannelGrid = {
@@ -12,13 +12,15 @@ type IChannelGrid = {
 
 const ChannelGrid = ({ channel }: IChannelGrid) => {
 
+    let channelUser = channel.user as IUser | undefined;
+
     return (
         <div className={styles.block__channel}>
-            <Link href={`${channel.user?.slug}/${channel.slug}`}>
+            <Link href={`${channelUser?.slug}/${channel.slug}`}>
                 <div className={styles.block__channel__box}>
                     <div className={styles.block__channel__box__title}>{channel.title}</div>
                     <div className={styles.block__channel__box__info}>
-                        <span>by {channel.user?.full_name}</span>
+                        <span>by {channelUser?.full_name}</span>
                         <span>{timeAgo(channel.date_updated)}</span>
                     </div>
                 </div>

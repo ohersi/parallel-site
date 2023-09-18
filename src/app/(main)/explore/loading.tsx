@@ -6,9 +6,10 @@ import HeaderAction from '@/components/header/header.action';
 import styles from "@/styles/pages/explore.page.module.scss";
 
 export default function Loading() {
+    // FOUC 
     return (
         <div className={styles.page}>
-            <Header
+            {/* <Header
                 title={<HeaderTitle props={'Explore'} />}
                 action={<HeaderAction />}
                 info={<HeaderInfo props={'Explore'} />}
@@ -21,7 +22,7 @@ export default function Loading() {
                     <div></div>
                     <div></div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 };

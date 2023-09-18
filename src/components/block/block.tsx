@@ -27,7 +27,7 @@ import { resize } from '@/resources/resize';
 import { timeAgo } from '@/resources/timeAgo';
 import { getBlockData } from '@/resources/data/block/getBlockData';
 // TYPES
-import { BUTTON, FORM, IBlock, IChannel } from '@/utils/types/types';
+import { BUTTON, FORM, IBlock, IChannel, IUser } from '@/utils/types/types';
 // STYLES
 import styles from '@/styles/components/block/block.module.scss';
 
@@ -171,18 +171,19 @@ const Block = ({ block, pathname, replaceURL }: BlockProps) => {
                         </div>
 
                         {
-                            blocks.channels.map((channel: IChannel) => (
-                                <Link href={`${channel.user?.slug}/${channel.slug}`} key={channel.slug}>
+                            blocks.channels.map((channel: IChannel) => {
+                                let channelUser = channel.user as IUser | undefined;
+                                return <Link href={`${channelUser?.slug}/${channel.slug}`} key={channel.slug}>
                                     <div className={styles.block__info__connections__item}>
                                         <div className={styles.block__info__connections__item__title}>
                                             {channel.title}
                                         </div>
                                         <div className={styles.block__info__connections__item__user}>
-                                            by {channel.user?.full_name}
+                                            by {channelUser?.full_name}
                                         </div>
                                     </div>
                                 </Link>
-                            ))
+                            })
                         }
                     </div>
 

@@ -68,6 +68,7 @@ const UserFeed = () => {
                         if (item.data_type === FEED.CHANNEL) {
                             // Can follow / create channel
                             const channel = item.data as IChannel;
+                            let channelUser = channel.user as IUser | undefined;
                             let timestamp = timeAgo(item.timestamp);
                             return <div className={styles.feed__section} key={item.timestamp}>
 
@@ -88,7 +89,7 @@ const UserFeed = () => {
                                             {(item.action_type).toLocaleLowerCase()}&nbsp;
                                         </span>
                                         <span className={styles.feed__section__item__text__highlight}>
-                                            <Link href={`/${channel.user?.slug}/${channel.slug}`}>
+                                            <Link href={`/${channelUser?.slug}/${channel.slug}`}>
                                                 {channel.title}
                                             </Link>
                                         </span>
@@ -101,6 +102,7 @@ const UserFeed = () => {
                         if (item.data_type === FEED.BLOCK) {
                             // Can connect block
                             const obj = item.data as ICombinedObj;
+                            let channelUser = obj.channel.user as IUser | undefined;
                             let timestamp = timeAgo(item.timestamp);
 
                             if (item.action_type === ACTION.CREATED) {
@@ -154,7 +156,7 @@ const UserFeed = () => {
                                                 {(item.action_type).toLocaleLowerCase()} a block to&nbsp;
                                             </span>
                                             <span className={styles.feed__section__item__text__highlight}>
-                                                <Link href={`/${obj.channel.user?.slug}/${obj.channel.slug}`}>
+                                                <Link href={`/${channelUser?.slug}/${obj.channel.slug}`}>
                                                     {obj.channel.title}
                                                 </Link>
                                             </span>

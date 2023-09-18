@@ -7,7 +7,7 @@ import { useAppSelector } from "@/store";
 import BlockGrid from "@/components/block/grid.blocks";
 import Loader from '@/components/loader/loader';
 import CreateBlockButton from "@/components/button/block/createBlock.button";
-import { IBlock, IPageResults } from "@/utils/types/types";
+import { IBlock, IPageResults, IUser } from "@/utils/types/types";
 import styles from "@/styles/components/channel.module.scss";
 
 type PageResults = {
@@ -24,6 +24,7 @@ const Channel = ({ initial }: PageResults) => {
     const [lastID, setLastID] = useState(initial.last_id);
 
     const channel = initial.data;
+    let channelUser = channel.user as IUser;
     const blocks = pages.flatMap((page) => page);
 
     const fetchBlocks = async () => {
@@ -60,21 +61,22 @@ const Channel = ({ initial }: PageResults) => {
             loader={<Loader />}
         >
             {
-                loggedInUser && loggedInUser.id == channel.user?.id ?
+                loggedInUser && loggedInUser.id == channelUser.id ?
                     <CreateBlockButton />
                     : null
             }
 
             {
-                blocks.map((block: IBlock) => (
-                    <BlockGrid
+                blocks.map((block: IBlock) => {
+                    return <BlockGrid
                         block={block}
                         channelID={channel.id}
-                        channelUser={channel.user?.full_name}
+                        channelUserID={channelUser.id}
+                        channelUserName={channelUser.full_name}
                         channelTitle={channel.title}
                         key={block.id}
                     />
-                ))
+                })
             }
         </InfiniteScroll>
     )

@@ -17,18 +17,19 @@ import RemoveConnectionBlock from '@/components/block/removeConnection.block';
 import ConnectBlockButton from '@/components/button/block/connectBlock.button';
 import DisconnectBlockButton from '@/components/button/block/disconnectBlock.button';
 // TYPES
-import { BUTTON, IBlock } from "@/utils/types/types";
+import { BUTTON, IBlock, IUser } from "@/utils/types/types";
 // STYLES
 import styles from "@/styles/components/channel.module.scss";
 
 interface IBlockGrid {
     block: IBlock;
     channelID?: number;
-    channelUser?: string;
+    channelUserID?: number | undefined;
+    channelUserName?: string;
     channelTitle?: string;
 };
 
-const BlockGrid = ({ block, channelID, channelUser, channelTitle }: IBlockGrid) => {
+const BlockGrid = ({ block, channelID, channelUserID, channelUserName, channelTitle }: IBlockGrid) => {
 
     const pathname = usePathname();
 
@@ -38,6 +39,15 @@ const BlockGrid = ({ block, channelID, channelUser, channelTitle }: IBlockGrid) 
     const blockModalOpen = useAppSelector((state) => state.Modal.isBlockModalOpen);
     const buttonType = useAppSelector((state) => state.Button.buttonType);
     const blockClicked = useAppSelector((state) => state.Block.blockClicked);
+
+    const findID = (block: IBlock) => {
+        for (const channel of block.channels) {
+            let channelUser = channel.user as IUser;
+            if (user && channelUser.id === user.id) return channelUser.id;
+        }
+    };
+
+    const checkBlockAndChannelOwnerConnection = channelUserID ? channelUserID : findID(block); 
 
     const replaceURL = (newURL: string) => {
         window.history.replaceState({
@@ -74,7 +84,7 @@ const BlockGrid = ({ block, channelID, channelUser, channelTitle }: IBlockGrid) 
                 <div className={styles.channel__blocks__image}>
                     <div className={styles.channel__blocks__image__overlay}>
                         {
-                            user && user.id == block.user ?
+                            user && checkBlockAndChannelOwnerConnection ?
                                 <DisconnectBlockButton blockID={block.id} />
                                 : <ConnectBlockButton blockID={block.id} />
                         }
@@ -98,13 +108,13 @@ const BlockGrid = ({ block, channelID, channelUser, channelTitle }: IBlockGrid) 
                 </div>
 
                 <div className={styles.channel__blocks__info}>
-                    <div className={channelUser ? styles.channel__blocks__info__title__hidden : styles.channel__blocks__info__title}>
+                    <div className={channelUserName ? styles.channel__blocks__info__title__hidden : styles.channel__blocks__info__title}>
                         {block.title}
                     </div>
                     {
-                        channelUser ?
+                        channelUserName ?
                             <div className={styles.channel__blocks__info__metadata}>
-                                Connected by {channelUser}
+                                Connected by {channelUserName}
                             </div>
                             : null
                     }

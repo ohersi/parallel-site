@@ -24,6 +24,8 @@ interface IUserProps {
 
 const User = ({ user, userChannels, userBlocks }: IUserProps) => {
 
+    // console.log(userBlocks);
+
     const dispatch = useAppDispatch();
     const viewType = useAppSelector((state) => state.Filter.viewType);
     const sortType = useAppSelector((state) => state.Filter.sortType);
@@ -65,7 +67,8 @@ const User = ({ user, userChannels, userBlocks }: IUserProps) => {
                                                             <BlockGrid
                                                                 block={block}
                                                                 channelID={data.channel.id}
-                                                                channelUser={user.full_name}
+                                                                channelUserID={data.channel.user ? data.channel.user as number : undefined}
+                                                                channelUserName={user.full_name}
                                                                 channelTitle={data.channel.title}
                                                                 key={block.id} />
                                                         ))
@@ -114,7 +117,8 @@ const User = ({ user, userChannels, userBlocks }: IUserProps) => {
                                                                 <BlockGrid
                                                                     block={block}
                                                                     channelID={data.channel.id}
-                                                                    channelUser={user.full_name}
+                                                                    channelUserID={data.channel.user ? data.channel.user as number : undefined}
+                                                                    channelUserName={user.full_name}
                                                                     channelTitle={data.channel.title}
                                                                     key={block.id} />
                                                             ))
@@ -144,14 +148,14 @@ const User = ({ user, userChannels, userBlocks }: IUserProps) => {
                                     userBlocks.map((block: IBlock) => (
                                         <BlockGrid
                                             block={block}
-                                            channelUser={user.full_name}
+                                            channelUserName={user.full_name}
                                             key={block.id} />
                                     ))
                                     : sortType == SORT.OLDEST ?
                                         userBlocks.slice().reverse().map((block: IBlock) => (
                                             <BlockGrid
                                                 block={block}
-                                                channelUser={user.full_name}
+                                                channelUserName={user.full_name}
                                                 key={block.id} />
                                         ))
                                         : null

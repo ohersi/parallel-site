@@ -37,7 +37,7 @@ export interface IChannel {
     date_created: string;
     date_updated: string;
     blocks: IBlock[];
-    user?: IUser;
+    user?: IUser | number;
 };
 
 export interface IBlock {

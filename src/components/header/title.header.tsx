@@ -10,6 +10,9 @@ interface IHeaderTitle {
 };
 
 const HeaderTitle = ({ props }: IHeaderTitle) => {
+
+    let channelUser = isChannel(props) ? props.user as IUser : undefined;
+
     return (
         <>
 
@@ -21,12 +24,12 @@ const HeaderTitle = ({ props }: IHeaderTitle) => {
                             <Link href={'/'}>
                                 <span className={styles.header__top__title_container__item}>Parallel</span>
                             </Link>
-                            <Link href={`/${props.user?.slug}`}>
-                                <span className={styles.header__top__title_container__item}>{props.user?.full_name}</span>
+                            <Link href={`/${channelUser?.slug}`}>
+                                <span className={styles.header__top__title_container__item}>{channelUser?.full_name}</span>
                             </Link>
                         </div>
 
-                        <Link href={`/${props.user?.slug}/${props.slug}`}>
+                        <Link href={`/${channelUser?.slug}/${props.slug}`}>
                             <span className={styles.header__top__title_container__item__title}>{props.title}</span>
                         </Link>
                     </div>
