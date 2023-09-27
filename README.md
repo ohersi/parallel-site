@@ -22,7 +22,7 @@ A social media website.
 
 ##### API
 
-- [Built a REST API using Express.js](https://github.com/ohersi/parallel-app) | parallel-app
+- [Built a REST API using Express.js](https://github.com/ohersi/parallel-app) | [Docs](https://api.para-llel.app/docs/)
 
 
 ## Run Locally
