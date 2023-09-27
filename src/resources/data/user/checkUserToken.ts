@@ -1,6 +1,6 @@
 export async function CheckUserToken(token: string) {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/registration/check?token=${token}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/registration/check?token=${token}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

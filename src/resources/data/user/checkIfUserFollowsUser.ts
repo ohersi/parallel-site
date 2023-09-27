@@ -9,7 +9,7 @@ export function CheckIfUserFollowsUser(userID: number | null, loggedInUserID: nu
         empty = true
     }
 
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/connection/${userID}`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/user/connection/${userID}`;
 
     const fetcher = (url: any) => fetch(url, {
         method: 'GET',

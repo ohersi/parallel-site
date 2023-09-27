@@ -2,7 +2,7 @@ import { IUserFeedResults } from "@/utils/types/types";
 
 export async function GetUserFeed(userID: number) {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/${userID}/feed`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/feed/user/${userID}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

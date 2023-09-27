@@ -1,6 +1,6 @@
 export const sendConfirmationToken = async () => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/registration`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/registration`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
